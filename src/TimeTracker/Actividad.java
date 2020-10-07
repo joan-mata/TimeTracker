@@ -1,5 +1,8 @@
 package TimeTracker;
 
+import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
+
 public class Actividad{
     private String a_ID;
     private String a_nombre;
@@ -7,18 +10,22 @@ public class Actividad{
     private String a_fecha_final;
     private int a_tiempo_total;
 
-    public Actividad(String ID, String name, String start){
-        a_ID = ID;
+    public Actividad(String name){ //contructor
+        
+        LocalDateTime myDateObj = LocalDateTime.now(); //cogemos fecha y hora de la creacion de la actividad
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"); //cambiamos formato
+        a_ID = myDateObj.format(myFormatObj); //ID es la dehca y la hora cambaida el fomato
+        
         a_nombre = name;
-        a_fecha_inicial = start;
+        a_fecha_inicial = "";
         a_fecha_final = "";
         a_tiempo_total = 0;
+        
+        //System.out.println(a_ID + ", " + a_nombre);
     }
     
-    //calcular_tiempo_total(){} = get_tiempo_total()
-
     //getters
-    public String get_ID(){ //get ID(this)
+    public String get_ID(){ //get_ID(this)
         return a_ID;
     }
     

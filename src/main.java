@@ -25,10 +25,14 @@ public class main{
                     System.out.println("Test de pruebas.");
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS AQUÍ ******** \\
                     
-                    Actividad activity = new Actividad("Hola", "H2", "H3");
-                    activity.printpet();
-
-
+                    Actividad activity = new Actividad("Study");
+                    /*
+                    activity.start();
+                    wait(12);
+                    activity.stop();
+                    */
+                    
+                    
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS HASTA AQUÍ ******** \\
                     break;
                 

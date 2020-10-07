@@ -8,6 +8,6 @@ public class Proyecto extends Actividad{
     public void añadir(Actividad Activity){}
     public void eliminar(Actividad Activity){}
     public void getChild(){}
-    public void inicio(){}
+    public void empezar(){}
     public void detener(){}
 }
