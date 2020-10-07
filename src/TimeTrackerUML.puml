@@ -1,0 +1,64 @@
+@startuml
+
+
+Actividad "0 " <--* "n " Proyecto
+Actividad <|-- Proyecto : hereda
+Actividad <|-- Tarea : hereda
+Tarea "1" <-- "n" Interval : dependencia >
+Actividad -- Gestor
+
+Abstract Actividad {
+#ID
+#nombre
+#fechaInicial
+#fechaFinal
+#tiempoTotal
+
+#getName()
+#crear()
+#update()
+#añadir(Actividad)
+#eliminar(Actividad)
+#getChild(int)
+#start()
+#stop()
+}
+
+Abstract Proyecto {
+#añadir(Actividad)
+#eliminar(Actividad)
+#getChild(int)
+#start()
+#stop()
+}
+
+Class Tarea {
+#start()
+#stop()
+}
+
+Class Interval {
++ID
++inicioIntervalo
++finIntervalo
++tiempo
++contTiempo()
++update()
+}
+
+Class Reloj {
+#periodo
+#timer
++setPeriodo()
++reloj(periodo)
++start()
++stop()
++notify()
+}
+
+Class Gestor {
++fin(actividad)
++crear(actividad)
++contar(actividad)
+}
+@enduml
