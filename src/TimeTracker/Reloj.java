@@ -1,7 +1,10 @@
+package TimeTracker;
+
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.time.LocalDateTime;
+//import java.lang.Object
 
 class Reloj extends Observable {
   private int periodo;
@@ -25,15 +28,15 @@ class Reloj extends Observable {
     Timer timer = new Timer();
     TimerTask task = new TimerTask() {
       public void run() {
-        notify();
+        Notify();
       }
     };
     timer.scheduleAtFixedRate(task, 0, 1000 * periodo);
   }
-  public void set_periodo(period) {
+  public void set_periodo(int period) {
     this.periodo = period;
   }
-  public void notify(){
+  public void Notify(){
     hora = LocalDateTime.now();
     notifyObservers(this);
   }

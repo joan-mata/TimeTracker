@@ -9,6 +9,7 @@ public class Actividad{
     private String a_fecha_inicial;   
     private String a_fecha_final;
     private int a_tiempo_total;
+    private Reloj a_reloj;
 
     public Actividad(String name){ //contructor
         
@@ -74,4 +75,13 @@ public class Actividad{
         set_fecha_inicial(start);
     }
     
+    public void Start(){ //iniciar la tarea
+        a_reloj.start(); //inciamos el crono
+        System.out.println("\nHemos inicado la actividad");
+    }
+    
+    public void Stop(){ //finalizamos la tarea
+        //a_reloj.notify(); //paramos el crono
+        System.out.println("Hemos finalizado la actividad");
+    }
 }

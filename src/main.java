@@ -8,6 +8,7 @@ No consigo unir toods los archivos como un solo pryecto
 import TimeTracker.*;
 
 import java.util.Scanner;
+import java.lang.Object;
 
 //import classes.java;
 
@@ -17,7 +18,7 @@ public class main{
         Scanner entrada = new Scanner(System.in); //Para introducir elementos por terminal
 
         System.out.println("¿Qué test quieres realizar? \n" + "(exit = -1)");
-        int test = entrada.nextInt(); 
+        int test = entrada.nextInt();
         
         while(test != -1){
             switch (test) {
@@ -26,11 +27,13 @@ public class main{
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS AQUÍ ******** \\
                     
                     Actividad activity = new Actividad("Study");
-                    /*
-                    activity.start();
-                    wait(12);
-                    activity.stop();
-                    */
+                    
+                    activity.Start();
+                    System.out.println("Antes de espera");
+                    //Object.wait(12000000*1);
+                    System.out.println("Despues de espera");
+                    //activity.Stop();
+                    
                     
                     
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS HASTA AQUÍ ******** \\
@@ -60,7 +63,7 @@ public class main{
                 default: //Cualquier otro número, no hay test
                     System.out.println("Test no disponible.");
                     break;
-            } 
+            }
 
             System.out.println("¿Otro test?\n" + "(exit = -1)");
             test = entrada.nextInt();
