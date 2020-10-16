@@ -7,10 +7,20 @@ class Reloj extends Observable {
   private int periodo;
   private LocalDateTime hora;
   private Timer timer;
+  private static Reloj uniqueInstance = null;
 
-  public Reloj(int period) {
-    this.periodo = periodo;
+  private Reloj() {
+    this.periodo = 2;
   }
+  
+  public static Reloj getInstance() {
+    if(uniqueInstance == null) {
+      return new Reloj();
+    } else {
+      return uniqueInstance;
+    }    
+  }
+  
   public void start() {
     Timer timer = new Timer();
     TimerTask task = new TimerTask() {
