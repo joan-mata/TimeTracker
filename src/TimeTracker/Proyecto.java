@@ -2,28 +2,36 @@ package TimeTracker;
 
 import java.lang.*;
 
-public class Proyecto extends Actividad{
+public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
     private String p_nombre;
     private Proyecto p_proyecto_superior;
     private String p_fecha_inicial;
     private String p_fecha_final;
     private int p_tiempo_total;
     
-    public Proyecto(String name, Proyecto p){ //constructor
+    //Constructores
+    public Proyecto(String name, Proyecto p){
         this.p_nombre = name;
-        //p_proyecto_superior = p;
         this.p_fecha_inicial = "";
         this.p_fecha_final = "";
         this.p_tiempo_total = 0;
+        
+        if(p != null){ //Tiene un proyecto superior
+            this.p_proyecto_superior = new Proyecto(p);
+        }
+        else { //En este caso, el proyecto actual es el root
+            this.p_proyecto_superior = null;
+        }
     }
     
     public Proyecto(Proyecto p){ //constructor copia
-        this.p_nombre = ;
-        this.p_proyecto_superior = ;
-        this.p_fecha_inicial = ;
-        this.p_fecha_final = ;
-        this.p_tiempo_total = ;
+        this.p_nombre = p.get_nombre();
+        this.p_proyecto_superior = p.get_proyecto();
+        this.p_fecha_inicial = p.get_fecha_inicial();
+        this.p_fecha_final = p.get_fecha_final();
+        this.p_tiempo_total = p.get_tiempo_total();
     }
+    
     
     //getters
     public String get_nombre(){
@@ -31,7 +39,7 @@ public class Proyecto extends Actividad{
     }
     
     public Proyecto get_proyecto(){
-        
+        return p_proyecto_superior;
     }
     
     public String get_fecha_inicial(){
@@ -51,8 +59,13 @@ public class Proyecto extends Actividad{
         this.p_nombre = name;
     }
     
-    public void set_proyecto(Proyecto p){
-        this.p_proyecto_superior = p;
+    public void set_proyecto(Proyecto p){ //Set Proyecto Superior
+        if(p != null){ //Tiene un proyecto superior
+            this.p_proyecto_superior = new Proyecto(p);
+        }
+        else { //En este caso, el proyecto actual es el root
+            this.p_proyecto_superior = null;
+        }
     }
 
     public void set_fecha_inicial(String start){
@@ -67,11 +80,31 @@ public class Proyecto extends Actividad{
         this.p_tiempo_total = time;
     }
     
+    public void set_completo(String name, Proyecto p, String initial, String end, int time){
+        this.set_nombre(name);
+        this.set_proyecto(p);
+        this.set_fecha_inicial(initial);
+        this.set_fecha_final(end);
+        this.set_tiempo_total(time);
+    }
     
     //funciones
+    public void modificar_proyecto(Proyecto p){
+        this.p_nombre = p.get_nombre();
+        this.p_fecha_inicial = p.get_fecha_inicial();
+        this.p_fecha_final = p.get_fecha_final();
+        this.p_tiempo_total = p.get_tiempo_total();
+        this.p_proyecto_superior = p.get_proyecto();
+    }
+    
     public void añadir(Actividad Activity){}
     public void eliminar(Actividad Activity){}
     public void getChild(){}
     public void empezar(){}
     public void detener(){}
+    
+    //FUNCIONES PRUEBAS
+   
+    
+    
 }

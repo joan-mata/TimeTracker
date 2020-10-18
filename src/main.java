@@ -31,18 +31,25 @@ public class main{
                     //Crear proyectos y actividades
                     Proyecto root = new Proyecto("root", null);
                     Proyecto p1 = new Proyecto("p1", root);
+                    Proyecto p2 = new Proyecto("p2", root);
                     
-                    //Actividad act1 = new Actividad("act1", root);
-                    //Actividad act2 = new Actividad("act2", p1);
+                    System.out.println("CAMBIO P1-P2\n");
                     
-                    //Probarlo
+                    System.out.println("\nP1\n");
+                    System.out.println("\nP2\n");
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     //act1.Start();
-                    System.out.println("Antes de espera");
+                    //System.out.println("Antes de espera");
                     //Thread.sleep(2000);
-                    System.out.println("Despues de espera");
+                    //System.out.println("Despues de espera");
                     //activity.Stop();
-                    
-                    
                     
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS HASTA AQUÍ ******** \\
                     break;
