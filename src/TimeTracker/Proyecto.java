@@ -3,7 +3,7 @@ package TimeTracker;
 import java.lang.*;
 import Actividad.java;
 
-public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
+public class Proyecto extends Actividad { //extends Actividad ~Me da error ¿Porqué?~
     private String p_nombre;
     private Proyecto p_proyecto_superior;
     private String p_fecha_inicial;
