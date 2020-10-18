@@ -1,6 +1,7 @@
 package TimeTracker;
 
 import java.lang.*;
+import Actividad.java;
 
 public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
     private String p_nombre;
