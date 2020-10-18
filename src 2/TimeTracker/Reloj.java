@@ -41,4 +41,5 @@ class Reloj extends Observable {
     hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
     notifyObservers(this); //Notifica a los observadores y les envia el objeto del reloj.
   }
+
 }

@@ -1,10 +1,3 @@
-/* NOTAS
-
-No consigo unir toods los archivos como un solo pryecto
-
-
-*/
-
 import TimeTracker.*;
 
 import java.util.Scanner;
@@ -27,26 +20,14 @@ public class main{
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS AQUÍ ******** \\
                     
                     //Agregar i crear reloj
-                    
-                    //Crear proyectos y actividades
-                    Tarea t1 = new Tarea("T1");
-                    Tarea t2 = new Tarea("T2");
-                    
-                    System.out.println("T1\n");
-                    t1.comprueba_getters();
-                    t1.comprueba_setters("T1Prueba", "Hoy-26-Junio", "Ayer-35-Mayo", 24);
+                    Proyecto root = new Proyecto("Root", null);
+                    Proyecto p1 = new Proyecto("p1", root);
 
-                    System.out.println("\nT2\n");
-                    t2.comprueba_getters();
-                    t2.comprueba_setters("T2Prueba", "Mañana-15-Enero", "Pasado-40-Diciembre", 35);
-
-                    
-                    
-                    //act1.Start();
-                    //System.out.println("Antes de espera");
-                    //Thread.sleep(2000);
-                    //System.out.println("Despues de espera");
-                    //activity.Stop();
+                    Tarea t1 = new Tarea("t1");
+                
+                    //t1.start();
+                    //wait(12);
+                    //t2.stop();
                     
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS HASTA AQUÍ ******** \\
                     break;
