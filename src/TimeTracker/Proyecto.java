@@ -9,6 +9,8 @@ public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
     private String p_fecha_final;
     private int p_tiempo_total;
     
+    private Actividad[] p_actividad;
+    
     //Constructores
     public Proyecto(String name, Proyecto p){
         this.p_nombre = name;
@@ -88,7 +90,6 @@ public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
         this.set_tiempo_total(time);
     }
     
-    //funciones
     public void modificar_proyecto(Proyecto p){
         //Cambiamos toda la info menos el nombre
         this.p_fecha_inicial = p.get_fecha_inicial();
@@ -97,6 +98,7 @@ public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
         this.p_proyecto_superior = p.get_proyecto();
     }
     
+    //funciones
     public void añadir(Actividad Activity){}
     public void eliminar(Actividad Activity){}
     public void getChild(){}
@@ -104,7 +106,7 @@ public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
     public void detener(){}
     
     //FUNCIONES PRUEBAS
-    public void comprueba_getters(){ //Incluir en Proyecto y Actividad
+    public void comprueba_getters(){ 
         System.out.println("Nombre: " + this.get_nombre() + "\n");
         System.out.println("Proyecto Superior: " + this.get_proyecto() + "\n");
         System.out.println("F. Inicio: " + this.get_fecha_inicial() + "\n");
@@ -112,7 +114,7 @@ public class Proyecto{ //extends Actividad ~Me da error ¿Porqué?~
         System.out.println("T. Total: " + this.get_tiempo_total() + "\n");
     }
 
-    public void comprueba_setters(String name, Proyecto p, String initial, String end, int time){ //Incluir en Proyecto y Actividad
+    public void comprueba_setters(String name, Proyecto p, String initial, String end, int time){
         this.set_nombre(name);
         this.set_proyecto(p);
         this.set_fecha_inicial(initial);

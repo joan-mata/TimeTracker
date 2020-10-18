@@ -1,6 +1,5 @@
 @startuml
 
-
 Actividad "0 " <--* "n " Proyecto
 Actividad <|-- Proyecto : hereda
 Actividad <|-- Tarea : hereda
