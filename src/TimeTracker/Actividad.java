@@ -90,7 +90,11 @@ public class Actividad {
     
     //Funciones
     public void modificar_actividad(Actividad a){
-        
+        //Cambiamos toda la info menos el nombre
+        this.a_fecha_inicial = a.get_fecha_inicial();
+        this.a_fecha_final = a.get_fecha_final();
+        this.a_tiempo_total = a.get_tiempo_total();
+        this.a_proyecto = a.get_proyecto();
     }
     
     public void actualizar(String ID, String name, String start){
@@ -110,5 +114,21 @@ public class Actividad {
     }
     
     //FUNCIONES PRUEBAS
-    
+    public void comprueba_getters(){ //Incluir en Proyecto y Actividad
+        System.out.println("Nombre: " + this.get_nombre() + "\n");
+        System.out.println("Proyecto Superior: " + this.get_proyecto() + "\n");
+        System.out.println("F. Inicio: " + this.get_fecha_inicial() + "\n");
+        System.out.println("F. Final: " + this.get_fecha_final() + "\n");
+        System.out.println("T. Total: " + this.get_tiempo_total() + "\n");
+    }
+
+    public void comprueba_setters(String name, Proyecto p, String initial, String end, int time){ //Incluir en Proyecto y Actividad
+        this.set_nombre(name);
+        this.set_proyecto(p);
+        this.set_fecha_inicial(initial);
+        this.set_fecha_final(end);
+        this.set_tiempo_total(time);
+
+        comprueba_getters();
+    }
 }
