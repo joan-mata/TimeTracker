@@ -8,7 +8,7 @@ No consigo unir toods los archivos como un solo pryecto
 import TimeTracker.*;
 
 import java.util.Scanner;
-import java.lang.Object;
+import java.lang.*;
 
 //import classes.java;
 
@@ -26,11 +26,19 @@ public class main{
                     System.out.println("Test de pruebas.");
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS AQUÍ ******** \\
                     
-                    Actividad activity = new Actividad("Study");
+                    //Agregar i crear reloj
                     
-                    activity.Start();
+                    //Crear proyectos y actividades
+                    Proyecto root = new Proyecto("root", null);
+                    Proyecto p1 = new Proyecto("p1", root);
+                    
+                    //Actividad act1 = new Actividad("act1", root);
+                    //Actividad act2 = new Actividad("act2", p1);
+                    
+                    //Probarlo
+                    //act1.Start();
                     System.out.println("Antes de espera");
-                    //Object.wait(12000000*1);
+                    //Thread.sleep(2000);
                     System.out.println("Despues de espera");
                     //activity.Stop();
                     

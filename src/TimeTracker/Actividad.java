@@ -1,70 +1,81 @@
 package TimeTracker;
 
+import java.lang.*;
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 
 public class Actividad{
     private String a_ID;
     private String a_nombre;
+    private Proyecto a_proyecto;
     private String a_fecha_inicial;   
     private String a_fecha_final;
     private int a_tiempo_total;
     private Reloj a_reloj;
 
-    public Actividad(String name){ //contructor
+    public Actividad(String name, Proyecto p1){ //contructor
         
         LocalDateTime myDateObj = LocalDateTime.now(); //cogemos fecha y hora de la creacion de la actividad
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"); //cambiamos formato
-        a_ID = myDateObj.format(myFormatObj); //ID es la dehca y la hora cambaida el fomato
+        this.a_ID = myDateObj.format(myFormatObj); //ID es la dehca y la hora cambaida el fomato
         
-        a_nombre = name;
-        a_fecha_inicial = "";
-        a_fecha_final = "";
-        a_tiempo_total = 0;
+        this.a_nombre = name;
+        //this.a_proyecto = p1;
+        this.a_fecha_inicial = "";
+        this.a_fecha_final = "";
+        this.a_tiempo_total = 0;
         
         //System.out.println(a_ID + ", " + a_nombre);
     }
     
     //getters
     public String get_ID(){ //get_ID(this)
-        return a_ID;
+        return this.a_ID;
     }
     
     public String get_nombre(){
-        return a_nombre;
+        return this.a_nombre;
+    }
+    
+    public Proyecto get_proyecto(){
+        
     }
     
     public String get_fecha_inicial(){
-        return a_fecha_inicial;
+        return this.a_fecha_inicial;
     }
     
     public String get_fecha_final(){
-        return a_fecha_final;
+        return this.a_fecha_final;
     }
     
     public int get_tiempo_total(){ //podría calcular el tiempo también
-        return a_tiempo_total;
+        return this.a_tiempo_total;
     }
     
     //setters
     public void set_ID(String ID){
-        a_ID = ID;
+        this.a_ID = ID;
     }
     
     public void set_nombre(String name){
-        a_nombre = name;
+        this.a_nombre = name;
     }
     
+    public void set_proyecto(Proyecto p){
+        this.a_proyecto = p;
+    }
+
     public void set_fecha_inicial(String start){
-        a_fecha_inicial = start;
+        this.a_fecha_inicial = start;
     }
     
     public void set_fecha_final(String finish){
-        a_fecha_final = finish;
+        this.a_fecha_final = finish;
     }
     
     public void set_tiempo_total(int time){ //¿necesaria?
-        a_tiempo_total = time;
+        this.a_tiempo_total = time;
     }
     
     //crear() == contructor ¿no?
