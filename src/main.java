@@ -1,7 +1,8 @@
 import TimeTracker.*;
 
 import java.util.Scanner;
-import java.lang.*;
+//import java.lang.*;
+import java.lang.Thread;
 
 //import classes.java;
 
@@ -20,14 +21,20 @@ public class main{
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS AQUÍ ******** \\
                     
                     //Agregar i crear reloj
-                    Proyecto root = new Proyecto("Root", null);
-                    Proyecto p1 = new Proyecto("p1", root);
+                    Proyecto root_prueba = new Proyecto("Root", null);
 
                     Tarea t1 = new Tarea("t1");
                 
-                    //t1.start();
-                    //wait(12);
-                    //t2.stop();
+                    t1.start();
+                    try{
+                        Thread.sleep(1000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        //e.printStackTrace();
+                        System.out.println(e);
+                    }
+                    t1.stop();
                     
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS HASTA AQUÍ ******** \\
                     break;
@@ -36,34 +43,71 @@ public class main{
                     System.out.println("=> Milestone 1.");
                     
                     //Declaramos y creamos los proyectos y tareas que necesitaremos en este test
-                    Proyecto root = new Proyecto("Root", null);
-                    Task t_transportation = new Task("Transportation", root);
-                    Task t_first_list = new Task("First list", root);
-                    Task t_second_list = new Task("Second list", root);
+                    Proyecto m1_root = new Proyecto("Root", null);
+                    Tarea m1_t_transportation = new Tarea("Transportation", m1_root);
+                    Tarea m1_t_first_list = new Tarea("First list", m1_root);
+                    Tarea m1_t_second_list = new Tarea("Second list", m1_root);
                     
                     System.out.println("Start Test");
-                    System.ou.println("Transportation starts:");
+                    System.out.println("Transportation starts:");
                     //CODIGO
-                    t_transportation.start();
+                    //m1_t_transportation.start();
                     //continue...
-                    Thread.sleep(4000);
-                    System.out.println("Transportation stops");
-                    Thread.sleep(2000);
-                    System.out.println("First list starts");
+                    try{
+                        Thread.sleep(4000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }                    System.out.println("Transportation stops");
+                    try{
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }                    System.out.println("First list starts");
                     //Codigo
-                    Thread.sleep(6000);
-                    System.out.println("Second list start");
-                    Thread.sleep(4000);
-                    //Codigo
+                    try{
+                        Thread.sleep(6000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }                    System.out.println("Second list start");
+                    try{
+                        Thread.sleep(4000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }                    //Codigo
                     System.out.println("First list stops");
-                    Thread.sleep(2000);
+                    try{
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
                     //Codigo
                     System.out.println("Second list stops");
-                    Thread.sleep(2000);
-                    //Codigo
+                    try{
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }                    //Codigo
                     System.out.println("Transportation starts");
                     ///Codigo
-                    Thread.sleep(4000);
+                    try{
+                        Thread.sleep(4000);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
                     System.out.println("Transportation stops");
                     System.out.println("End of test");
                     

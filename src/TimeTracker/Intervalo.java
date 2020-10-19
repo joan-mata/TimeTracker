@@ -1,5 +1,6 @@
 package TimeTracker;
 
+import java.lang.Object;
 import java.time.LocalDateTime;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,8 +28,8 @@ public class Intervalo implements Observer{
     
     public LocalDateTime get_tiempo(){
         //Calculamos el tiempo utilizado
-        int i_segundos_inicial = i_fecha_inicial.getSeconds();
-        this.i_tiempo_total = i_fecha_final.minusSeconds(long(i_segundos_inicial)); //REVISAR QUE FUNCIONE CAMBIO DE INT A LONG
+        int i_segundos_inicial = i_fecha_inicial.getSecond();
+        this.i_tiempo_total = i_fecha_final.minusSeconds(i_segundos_inicial); //REVISAR QUE FUNCIONE CAMBIO DE INT A LONG
 
         return this.i_tiempo_total;
     }
@@ -47,6 +48,10 @@ public class Intervalo implements Observer{
         this.setI_fecha_final((LocalDateTime) arg);
     }
 
+    public void i_mostrar(){
+        System.out.println("%-20s%-20s%-20s%-20s%-20s", "Interval:", "", i_fecha_inicial, i_fecha_final, i_tiempo_total);
+        i_tarea_superior.t_mostrar();
+    }
     /*
     observable.addObserver(observer);
     observable.start();

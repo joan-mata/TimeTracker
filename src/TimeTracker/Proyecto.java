@@ -1,11 +1,11 @@
 package TimeTracker;
 
-import java.lang.*;
+import java.lang.Object;
 import java.util.ArrayList;
 
 public class Proyecto extends Actividad{ 
     private Proyecto p_proyecto_superior;
-    private List<Tarea> p_tarea;
+    private ArrayList<Tarea> p_tarea;
 
     //Constructores
     public Proyecto(String name, Proyecto p){
@@ -32,7 +32,13 @@ public class Proyecto extends Actividad{
     public void eliminar_tarea(Tarea t){
         p_tarea.remove(t);
     }
-
+    
+    public void p_mostrar(){
+        a_mostrar();
+        if(p_proyecto_superior != null){
+            p_proyecto_superior.p_mostrar();
+        }
+    }
     
     /*
     //funciones
