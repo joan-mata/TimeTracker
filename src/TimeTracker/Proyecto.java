@@ -36,7 +36,7 @@ public class Proyecto extends Actividad{
     public void p_mostrar(){
         a_mostrar();
         if(p_proyecto_superior != null){
-            p_proyecto_superior.p_mostrar();
+            this.p_proyecto_superior.p_mostrar();
         }
     }
     

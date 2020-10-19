@@ -1,5 +1,6 @@
 package TimeTracker;
 
+import java.util.Scanner;
 import java.lang.Object;
 import java.time.LocalDateTime;
 import java.util.Observable;
@@ -11,10 +12,12 @@ public class Intervalo implements Observer{
     private LocalDateTime i_fecha_final;
     private LocalDateTime i_tiempo_total;
     private Tarea i_tarea_superior;
+    private boolean i_booleano;
     
     public Intervalo(Tarea t, LocalDateTime start){
         i_tarea_superior = t;
         i_fecha_inicial = start;
+        i_booleano = true;
     }
     
     //getters
@@ -34,6 +37,10 @@ public class Intervalo implements Observer{
         return this.i_tiempo_total;
     }
     
+    public boolean get_booleano(){
+        return this.i_booleano;
+    }
+    
     //setters
     public void setI_fecha_inicial(LocalDateTime start){
         this.i_fecha_inicial = start;
@@ -42,6 +49,15 @@ public class Intervalo implements Observer{
     public void setI_fecha_final(LocalDateTime finish){
         this.i_fecha_final = finish;
     }
+    
+    public void cambiar_booleano(){
+        if(i_booleano){
+            i_booleano = false;
+        }
+        else{
+            i_booleano = true;
+        }
+    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -49,9 +65,10 @@ public class Intervalo implements Observer{
     }
 
     public void i_mostrar(){
-        System.out.println("%-20s%-20s%-20s%-20s%-20s", "Interval:", "", i_fecha_inicial, i_fecha_final, i_tiempo_total);
+        System.out.printf("%-20s%-20s%-20s%-20s%-20s", "Interval:", "", i_fecha_inicial, i_fecha_final, i_tiempo_total);
         i_tarea_superior.t_mostrar();
     }
+    
     /*
     observable.addObserver(observer);
     observable.start();

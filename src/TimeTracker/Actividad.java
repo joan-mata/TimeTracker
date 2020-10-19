@@ -59,22 +59,8 @@ public class Actividad {
         set_fecha_inicial(start);
     }
     
-    public Reloj start(){ //iniciar la actividad => DEBE ESTAR EN TAREA
-        Reloj time = a_reloj.getInstance(); //conseguimos la uniqueInstance
-        time.start();
-        time.Notify();
-        System.out.println(a_reloj.getInstance());
-        
-        return time;
-    }
-    
-    public void stop(){ //finalizamos la actividad
-        //a_reloj.notify(); //paramos el crono
-        System.out.println("Hemos finalizado la actividad");
-    }
-    
     public void a_mostrar(){
-        System.out.println("%-20s%-20s%-20s%-20s%-20s", "Actividad:", a_nombre, a_fecha_inicial, a_fecha_final, a_tiempo_total);
+        System.out.printf("%-20s%-20s%-20s%-20s%-20s", "Actividad:", a_nombre, a_fecha_inicial, a_fecha_final, a_tiempo_total);
     }
     
     //FUNCIONES PRUEBAS
