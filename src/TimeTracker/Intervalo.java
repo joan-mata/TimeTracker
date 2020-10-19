@@ -1,8 +1,11 @@
 package TimeTracker;
 
+import java.time.LocalDateTime;
+import java.util.Observable;
 import java.util.Observer;
 
-public class Intervalo extends Observer{
+public class Intervalo implements Observer{
+   // Intervalo observer = new Intervalo();  tendriamos que diferenciar cada observer, osea cada intervalo que monitorizamos, una lista por ejemplo
     private LocalDateTime i_fecha_inicial;
     private LocalDateTime i_fecha_final;
     private LocalDateTime i_tiempo_total;
@@ -31,11 +34,22 @@ public class Intervalo extends Observer{
     }
     
     //setters
-    public void set_inicio(LocalDateTime start){
+    public void setI_fecha_inicial(LocalDateTime start){
         this.i_fecha_inicial = start;
     }
     
-    public void set_fecha_final(LocalDateTime finish){
+    public void setI_fecha_final(LocalDateTime finish){
         this.i_fecha_final = finish;
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.setI_fecha_final((LocalDateTime) arg);
+    }
+
+    /*
+    observable.addObserver(observer);
+    observable.start();
+    assertEquals(observer.update(), "hora"); //no tengo claro si va hora, args, nada, o otra cosa
+     */
 }

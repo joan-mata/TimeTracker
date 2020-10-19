@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 //Esta clase se encargará de acceder a la hora del dispositivo e ir actualizando a sus observadores
 class Reloj extends Observable {
+  Reloj observable = new Reloj();
   private int periodo;
-  private LocalDateTime hora;
   private Timer timer;
   private static Reloj uniqueInstance = null;
 
@@ -38,8 +38,8 @@ class Reloj extends Observable {
     timer.scheduleAtFixedRate(task, 0, 1000 * periodo); //Método que repite la tarea que se pasa como primer argumento cada 1000*periodo = 2".
   }
   public void Notify(){
-    hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
-    notifyObservers(this); //Notifica a los observadores y les envia el objeto del reloj.
+    LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
+    notifyObservers(hora); //Notifica a los observadores y les envia el objeto del reloj.
   }
 
 }
