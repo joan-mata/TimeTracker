@@ -2,7 +2,7 @@ package TimeTracker;
 
 import java.lang.Object;
 import java.util.ArrayList;
-import java.time.LocalDataTime;
+import java.time.LocalDateTime;
 
 
 public class Tarea extends Actividad{
@@ -14,6 +14,7 @@ public class Tarea extends Actividad{
     public Tarea(String name){
         super(name);
         this.t_proyecto_superior = null;
+        this.t_intervalo = new ArrayList<Intervalo>();
     }
     
     public Tarea(String name, Proyecto p){
@@ -23,10 +24,9 @@ public class Tarea extends Actividad{
     }
 
     //Funciones
-    public boolean añadir_intervalo(Intervalo i, LocalDataTime start) {
+    public boolean añadir_intervalo(Intervalo i) {
         //Comprobamos si la lista de intervalos este vacia
-        if(this.t_intervalo.isEmpty()){
-            this.t_intervalo = new ArrayList<Intervalo>(this, start);
+        if(t_intervalo.isEmpty() == true){
             this.t_intervalo.add(i);
         }
         //Comprobamos si el último intervalo está abierto
@@ -53,9 +53,11 @@ public class Tarea extends Actividad{
     
     //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
     public void start(){
-        Intervalo i;
-        Reloj time = a_reloj.getInstance(); //conseguimos la uniqueInstance
-        boolean flag = añadir_intervalo(i, time);
+        LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
+        Intervalo i = new Intervalo(this, hora);
+        Reloj time = a_getInstance(); //conseguimos la uniqueInstance
+        time.start();
+        boolean flag = añadir_intervalo(i);
         
         if(flag){ //Solo se ejecuta si no hay ningún intervalo abierto
             i.i_mostrar();

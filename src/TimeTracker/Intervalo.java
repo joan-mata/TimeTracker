@@ -18,6 +18,7 @@ public class Intervalo implements Observer{
         i_tarea_superior = t;
         i_fecha_inicial = start;
         i_booleano = true;
+        
     }
     
     //getters
@@ -65,7 +66,7 @@ public class Intervalo implements Observer{
     }
 
     public void i_mostrar(){
-        System.out.printf("%-20s%-20s%-20s%-20s%-20s", "Interval:", "", i_fecha_inicial, i_fecha_final, i_tiempo_total);
+        System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Interval:", "", i_fecha_inicial, " ", i_fecha_final, "", i_tiempo_total);
         i_tarea_superior.t_mostrar();
     }
     

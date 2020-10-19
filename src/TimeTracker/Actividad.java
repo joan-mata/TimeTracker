@@ -60,7 +60,11 @@ public class Actividad {
     }
     
     public void a_mostrar(){
-        System.out.printf("%-20s%-20s%-20s%-20s%-20s", "Actividad:", a_nombre, a_fecha_inicial, a_fecha_final, a_tiempo_total);
+        System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Actividad:", a_nombre, a_fecha_inicial, "", a_fecha_final, "", a_tiempo_total);
+    }
+    
+    public Reloj a_getInstance(){
+        return a_reloj.getInstance();
     }
     
     //FUNCIONES PRUEBAS

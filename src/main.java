@@ -40,7 +40,7 @@ public class main{
                     break;
                 
                 case 1: //Milestone 1
-                    System.out.println("=> Milestone 1.");
+                    System.out.println("=> Milestone 1.\n");
                     
                     //Declaramos y creamos los proyectos y tareas que necesitaremos en este test
                     Proyecto m1_root = new Proyecto("Root", null);
@@ -48,8 +48,8 @@ public class main{
                     Tarea m1_t_first_list = new Tarea("First list", m1_root);
                     Tarea m1_t_second_list = new Tarea("Second list", m1_root);
                     
-                    System.out.println("Start Test");
-                    System.out.println("Transportation starts:");
+                    System.out.println("Start Test\n");
+                    System.out.println("Transportation starts:\n");
                     //CODIGO
                     //m1_t_transportation.start();
                     //continue...
@@ -59,14 +59,14 @@ public class main{
                     catch(InterruptedException e)
                     {
                         e.printStackTrace();
-                    }                    System.out.println("Transportation stops");
+                    }                    System.out.println("Transportation stops\n");
                     try{
                         Thread.sleep(2000);
                     }
                     catch(InterruptedException e)
                     {
                         e.printStackTrace();
-                    }                    System.out.println("First list starts");
+                    }                    System.out.println("First list starts\n");
                     //Codigo
                     try{
                         Thread.sleep(6000);
@@ -74,7 +74,7 @@ public class main{
                     catch(InterruptedException e)
                     {
                         e.printStackTrace();
-                    }                    System.out.println("Second list start");
+                    }                    System.out.println("Second list start\n");
                     try{
                         Thread.sleep(4000);
                     }
@@ -82,7 +82,7 @@ public class main{
                     {
                         e.printStackTrace();
                     }                    //Codigo
-                    System.out.println("First list stops");
+                    System.out.println("First list stops\n");
                     try{
                         Thread.sleep(2000);
                     }
@@ -91,7 +91,7 @@ public class main{
                         e.printStackTrace();
                     }
                     //Codigo
-                    System.out.println("Second list stops");
+                    System.out.println("Second list stops\n");
                     try{
                         Thread.sleep(2000);
                     }
@@ -99,7 +99,7 @@ public class main{
                     {
                         e.printStackTrace();
                     }                    //Codigo
-                    System.out.println("Transportation starts");
+                    System.out.println("Transportation starts\n");
                     ///Codigo
                     try{
                         Thread.sleep(4000);
@@ -108,31 +108,31 @@ public class main{
                     {
                         e.printStackTrace();
                     }
-                    System.out.println("Transportation stops");
-                    System.out.println("End of test");
+                    System.out.println("Transportation stops\n");
+                    System.out.println("End of test\n");
                     
                     break;
                 
                 case 2: //Milestone 2
-                    System.out.println("Milestone 2.");
+                    System.out.println("Milestone 2.\n");
 
 
 
                     break;
                 
                 case 3: //Milestone 3
-                    System.out.println("Milestone 3.");
+                    System.out.println("Milestone 3.\n");
 
 
 
                     break;
                 
                 default: //Cualquier otro número, no hay test
-                    System.out.println("Test no disponible.");
+                    System.out.println("Test no disponible.\n");
                     break;
             }
 
-            System.out.println("¿Otro test?\n" + "(exit = -1)");
+            System.out.println("¿Otro test?\n" + "(exit = -1)\n");
             test = entrada.nextInt();
 
         }
