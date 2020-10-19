@@ -35,9 +35,17 @@ public class main{
                 case 1: //Milestone 1
                     System.out.println("=> Milestone 1.");
                     
+                    //Declaramos y creamos los proyectos y tareas que necesitaremos en este test
+                    Proyecto root = new Proyecto("Root", null);
+                    Task t_transportation = new Task("Transportation", root);
+                    Task t_first_list = new Task("First list", root);
+                    Task t_second_list = new Task("Second list", root);
+                    
                     System.out.println("Start Test");
                     System.ou.println("Transportation starts:");
                     //CODIGO
+                    t_transportation.start();
+                    //continue...
                     Thread.sleep(4000);
                     System.out.println("Transportation stops");
                     Thread.sleep(2000);
