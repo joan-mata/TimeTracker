@@ -22,6 +22,7 @@ public class Proyecto extends Actividad{
     public void añadir_tarea(Tarea t) {
         if(p_tarea.isEmpty()){
             p_tarea = new ArrayList<Tarea>();
+            p_tarea.add(t);
         }
         else{
             p_tarea.add(t);
