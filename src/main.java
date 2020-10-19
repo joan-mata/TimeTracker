@@ -33,21 +33,43 @@ public class main{
                     break;
                 
                 case 1: //Milestone 1
-                    System.out.println("Test 1.");
-
-
-
+                    System.out.println("=> Milestone 1.");
+                    
+                    System.out.println("Start Test");
+                    System.ou.println("Transportation starts:");
+                    //CODIGO
+                    Thread.sleep(4000);
+                    System.out.println("Transportation stops");
+                    Thread.sleep(2000);
+                    System.out.println("First list starts");
+                    //Codigo
+                    Thread.sleep(6000);
+                    System.out.println("Second list start");
+                    Thread.sleep(4000);
+                    //Codigo
+                    System.out.println("First list stops");
+                    Thread.sleep(2000);
+                    //Codigo
+                    System.out.println("Second list stops");
+                    Thread.sleep(2000);
+                    //Codigo
+                    System.out.println("Transportation starts");
+                    ///Codigo
+                    Thread.sleep(4000);
+                    System.out.println("Transportation stops");
+                    System.out.println("End of test");
+                    
                     break;
                 
                 case 2: //Milestone 2
-                    System.out.println("Test 2.");
+                    System.out.println("Milestone 2.");
 
 
 
                     break;
                 
                 case 3: //Milestone 3
-                    System.out.println("Test 3.");
+                    System.out.println("Milestone 3.");
 
 
 
