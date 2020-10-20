@@ -70,12 +70,13 @@ public class Intervalo implements Observer{
     public void i_cambiar_tiempos(LocalDateTime finish){
         this.i_fecha_final = finish;
         this.i_calcular_tiempo_total();
+        this.i_tarea_superior.t_cambiar_tiempos(finish);
     }
     
     public void i_calcular_tiempo_total(){
         //Calculamos el tiempo utilizado
         int i_segundos_inicial = i_fecha_inicial.getSecond();
-        this.i_tiempo_total = i_fecha_final.minusSeconds(i_segundos_inicial); //REVISAR QUE FUNCIONE CAMBIO DE INT A LONG
+        this.i_tiempo_total = i_fecha_final.minusSeconds(i_segundos_inicial);
     }
     
     @Override

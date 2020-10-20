@@ -21,9 +21,19 @@ public class Tarea extends Actividad{
     public Tarea(String name, Proyecto p){
         super(name);
         this.t_proyecto_superior = p;
-        p.añadir_tarea(this);
     }
-
+    
+    public void t_cambiar_tiempos(LocalDateTime finish){
+        set_fecha_final(finish);
+        if(t_proyecto_superior != null){
+            this.t_proyecto_superior.p_cambiar_tiempos(finish);
+        }
+    }
+    
+    public Proyecto t_get_proyecto_superior(){
+        return this.t_proyecto_superior;
+    }
+    
     //Funciones
     public boolean añadir_intervalo(Intervalo i) {
         //Comprobamos si la lista de intervalos este vacia
@@ -60,6 +70,7 @@ public class Tarea extends Actividad{
         boolean flag = añadir_intervalo(i);
         
         if(flag){ //Solo se ejecuta si no hay ningún intervalo abierto
+            set_fecha_inicial(hora);
             time.r_start(this.t_intervalo.get(this.t_intervalo.size() - 1));
             //i.i_mostrar();
         }

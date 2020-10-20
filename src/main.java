@@ -21,9 +21,12 @@ public class main{
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS AQUÍ ******** \\
                     
                     //Agregar i crear reloj
+                    Gestor gestor_prueba = new Gestor();
                     Proyecto root_prueba = new Proyecto("Root", null);
-
-                    Tarea t1 = new Tarea("t1");
+                    Tarea t1 = new Tarea("t1", root_prueba);
+                    
+                    gestor_prueba.g_crear_proyecto(root_prueba);
+                    gestor_prueba.g_crear_tarea(t1);
                 
                     t1.start();
                     try{

@@ -35,7 +35,6 @@ class Rellotge extends Thread {
       
     //Función que actualiza la hora y notifica a los observadores.
     public void r_start(Intervalo i) {
-        System.out.println("Entramos start");
         r_intervalo = new Intervalo(i);
         this.run();
         System.out.println("Salimos start");
