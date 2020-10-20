@@ -12,8 +12,6 @@ class Reloj extends Observable {
     private int periodo;
     private Timer timer;
     private static Reloj uniqueInstance;
-    
-    private Intervalo r_intervalo;
 
     //Constructor donde inicializamos el periodo mediante el cual irá actualizando la hora a los observadores.
     private Reloj() {
@@ -24,32 +22,26 @@ class Reloj extends Observable {
     //Método que devuelve la instancia del reloj para asegurar que solo hay un reloj corriendo para todos los observadores.
     public static Reloj getInstance() {
         if(uniqueInstance == null) {
-            return new Reloj();
+            uniqueInstance = new Reloj();
         }
-        else {
-            return uniqueInstance;
-        }
+        return uniqueInstance;
     }
       
     //Función que actualiza la hora y notifica a los observadores.
-    public void start(Intervalo i) {
-        r_intervalo = new Intervalo(i);
+    public void r_start() {
+        System.out.println("Start reloj\n");
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
-        public void run() {
-            Notify(); //Función a llamar cada 2" mediante scheduleAtFixedRate.
-        }
+            public void run() {
+                Notify(); //Función a llamar cada 2" mediante scheduleAtFixedRate.
+            }
+        };
         timer.scheduleAtFixedRate(task, 0, 1000 * periodo); //Método que repite la tarea que se pasa como primer argumento cada 1000*periodo = 2".
-    };
-    }
+        System.out.println("Stop reloj\n");
+    }
         
     public void Notify(){
         LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
         notifyObservers(hora); //Notifica a los observadores y les envia el objeto del reloj.
-        this.r_intervalo.i_mostrar();
-        //System.out.println("%-20s\n",hora);
     }
-    
-        
-
 }

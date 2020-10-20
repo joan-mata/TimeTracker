@@ -16,18 +16,15 @@ public class Intervalo implements Observer{
     
     public Intervalo(Tarea t, LocalDateTime start){
         i_tarea_superior = t;
-        i_fecha_inicial = start;
-        i_booleano = true;
-        
+        i_fecha_inicial = start;        
     }
     
     public Intervalo(Intervalo i){
         this.i_tarea_superior = i.i_get_tarea_superior();
         this.i_fecha_inicial = i.i_get_fecha_inicial();
-        this.i_booleano = i.i_get_booleano();
     }
     
-    //getters
+    //GETTERS
     public LocalDateTime i_get_fecha_inicial(){
         return this.i_fecha_inicial;
     }
@@ -37,59 +34,47 @@ public class Intervalo implements Observer{
     }
     
     public int i_get_tiempo(){
-        this.i_calcular_tiempo_total();
         return this.i_tiempo_total;
-    }
-    
-    public boolean i_get_booleano(){
-        return this.i_booleano;
     }
     
     public Tarea i_get_tarea_superior(){
         return this.i_tarea_superior;
     }
     
-    //setters
+    //SETTERS
     public void i_set_fecha_inicial(LocalDateTime start){
-        this.i_fecha_inicial = start;
+        if(this.i_fecha_inicial == null){
+            this.i_fecha_inicial = start;
+        }
     }
     
     public void i_set_fecha_final(LocalDateTime finish){
         this.i_fecha_final = finish;
-    }
-    
-    public void i_cambiar_booleano(){
-        if(i_booleano){
-            i_booleano = false;
-        }
-        else{
-            i_booleano = true;
-        }
-    }
-    
-    public void i_cambiar_tiempos(LocalDateTime finish){
-        this.i_fecha_final = finish;
-        this.i_calcular_tiempo_total();
-        this.i_tarea_superior.t_cambiar_tiempos(finish);
-    }
-    
-    public void i_calcular_tiempo_total(){
-        //Calculamos el tiempo utilizado
+        this.i_tarea_superior.set_fecha_final(finish);
+
+        //Calcular tiempo total
         LocalDateTime total;
         int i_segundos_inicial = i_fecha_inicial.getSecond();
         total = i_fecha_final.minusSeconds(i_segundos_inicial);
         this.i_tiempo_total = total.getSecond();
+
+    }
+
+    //FUNCIONES
+    public void i_mostrar(){
+        System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Interval:", "", i_fecha_inicial, "", i_fecha_final, "", i_tiempo_total);
+        i_tarea_superior.a_mostrar();
     }
     
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, Object arg) { 
         this.i_set_fecha_final((LocalDateTime) arg);
+        this.i_tarea_superior.set_fecha_final((LocalDateTime) arg);
+        System.out.println("Update\n");
+        this.i_mostrar();
     }
 
-    public void i_mostrar(){
-        System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Interval:", "", i_fecha_inicial, "", i_fecha_final, "", i_tiempo_total);
-        i_tarea_superior.t_mostrar();
-    }
+
     
     /*
     observable.addObserver(observer);

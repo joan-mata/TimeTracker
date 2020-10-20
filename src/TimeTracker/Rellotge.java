@@ -54,6 +54,16 @@ class Rellotge extends Thread {
                 LocalDateTime time = LocalDateTime.now();
                 this.r_intervalo.i_cambiar_tiempos(time);
                 this.r_intervalo.i_mostrar();
+                
+                /*
+                runOnUiThread(new Runnable()
+                    {
+                    @Override
+                    public void run(){
+                        
+                    }
+                });*/
+                
             }
             catch (InterruptedException e){
                 e.printStackTrace();
