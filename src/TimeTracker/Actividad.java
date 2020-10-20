@@ -14,7 +14,7 @@ public class Actividad {
     //private Reloj a_reloj;
     private Reloj a_reloj;
     
-    public Actividad(String name){ //contructor
+    public Actividad(String name){ //constructor
         this.a_nombre = name;
         this.a_tiempo_total = 0;
     }
@@ -69,13 +69,6 @@ public class Actividad {
         }
     }
     
-    public void calcular_tiempo_total(){
-        //Calculamos el tiempo utilizado
-        LocalDateTime total;
-        int a_segundos_inicial = a_fecha_inicial.getSecond();
-        total = a_fecha_final.minusSeconds(a_segundos_inicial);
-        this.a_tiempo_total = total.getSecond();
-    }
     
     //FUNCIONES
     public void a_mostrar(){

@@ -12,7 +12,6 @@ public class Intervalo implements Observer{
     private LocalDateTime i_fecha_final;
     private int i_tiempo_total;
     private Tarea i_tarea_superior;
-    private boolean i_booleano;
     
     public Intervalo(Tarea t, LocalDateTime start){
         i_tarea_superior = t;
@@ -31,10 +30,6 @@ public class Intervalo implements Observer{
     
     public LocalDateTime i_get_fecha_final(){
         return this.i_fecha_final;
-    }
-    
-    public int i_get_tiempo(){
-        return this.i_tiempo_total;
     }
     
     public Tarea i_get_tarea_superior(){

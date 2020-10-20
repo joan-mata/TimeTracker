@@ -6,21 +6,21 @@ import java.time.LocalDateTime;
 
 
 public class Tarea extends Actividad{
-    private ArrayList<Intervalo> t_intervalo;
+    private ArrayList<Intervalo> t_lista_intervalos;
        
     //CONSTRUCTOR
     public Tarea(String name, Proyecto p){
         super(name);
-        this.t_intervalo = new ArrayList<Intervalo>();
+        this.t_lista_intervalos = new ArrayList<Intervalo>();
     }
     
     //FUNCIONES
     public void añadir_intervalo(Intervalo i) { //Añadimos intervalo a la lista de intervalos.
-        this.t_intervalo.add(i);
+        this.t_lista_intervalos.add(i);
     }
 
     public void eliminar_intervalo(Intervalo i){ //Eliminamos intervalo de la lista de intervalos. 
-        t_intervalo.remove(i);
+        t_lista_intervalos.remove(i);
     }
     
     //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
@@ -38,8 +38,7 @@ public class Tarea extends Actividad{
     public void stop(){ //finalizamos la actividad
         LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
         Reloj time = a_getInstance(); //conseguimos la uniqueInstance
-        Intervalo i = this.t_intervalo.get(this.t_intervalo.size() - 1);
+        Intervalo i = this.t_lista_intervalos.get(this.t_lista_intervalos.size() - 1);
         time.deleteObserver(i);
     }
-    
 }

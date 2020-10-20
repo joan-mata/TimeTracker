@@ -1,63 +1,66 @@
 @startuml
 
-Actividad "0 " <--* "n " Proyecto
+Actividad "0..n" <--* "n " Proyecto
 Actividad <|-- Proyecto : hereda
 Actividad <|-- Tarea : hereda
-Tarea "1" <-- "n" Interval : dependencia >
-Actividad -- Gestor
+Tarea "1" <-- "1..n" Interval : dependencia >
 
 Abstract Actividad {
-#ID
-#nombre
-#fechaInicial
-#fechaFinal
-#tiempoTotal
+-a_nombre
+-a_fecha_inicial
+-a_fecha_final
+-a_tiempo_total
+-a_proyecto_superior
 
-#getName()
-#crear()
-#update()
-#añadir(Actividad)
-#eliminar(Actividad)
-#getChild(int)
-#start()
-#stop()
++get_nombre()
++get_fecha_inicial()
++get_gecha_final()
++a_getInstance()
++set_get_nombre(name)
++set_fecha_inicial(start)
++set_fecha_final(finish)
++a_mostrar()
 }
 
 Abstract Proyecto {
-#añadir(Actividad)
-#eliminar(Actividad)
-#getChild(int)
-#start()
-#stop()
+-p_lista_tareas
+
++añadir_tarea(task)
++eliminar_tarea(task)
 }
 
 Class Tarea {
-#start()
-#stop()
+-t_lista_intervalos
+
++añadir_intervalo(interval)
++eliminar_interval(interval)
++start()
++stop()
 }
 
 Class Interval {
-+ID
-+inicioIntervalo
-+finIntervalo
-+tiempo
-+contTiempo()
+-i_fecha_inicio
+-i_fecha_final
+-i_tiempo_total
+-i_tarea_superior
+
++i_get_fecha_inicial()
++i_get_fecha_final()
++i_get_tarea_superior()
++i_set_fecha_inicial()
++i_set_fecha_final()
++i_mostrar()
 +update()
 }
 
 Class Reloj {
-#periodo
-#timer
-+setPeriodo()
-+reloj(periodo)
-+start()
-+stop()
-+notify()
+-periodo
+-timer
+-uniqueinstance
+
++getInstance()
++r_start()
++Notify()
 }
 
-Class Gestor {
-+fin(actividad)
-+crear(actividad)
-+contar(actividad)
-}
 @enduml
