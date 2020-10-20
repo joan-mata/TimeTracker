@@ -10,9 +10,6 @@ public class Actividad {
     private LocalDateTime a_fecha_final;
     private int a_tiempo_total;
     private Proyecto a_proyecto_superior;
-
-    //private Reloj a_reloj;
-    private Reloj a_reloj;
     
     public Actividad(String name){ //constructor
         this.a_nombre = name;
@@ -34,10 +31,6 @@ public class Actividad {
     
     public int get_tiempo_total(){
         return this.a_tiempo_total;
-    }
-
-    public Reloj a_getInstance(){
-        return a_reloj.getInstance();
     }
     
     //SETTERS
