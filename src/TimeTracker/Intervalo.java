@@ -10,7 +10,7 @@ public class Intervalo implements Observer{
    // Intervalo observer = new Intervalo();  tendriamos que diferenciar cada observer, osea cada intervalo que monitorizamos, una lista por ejemplo
     private LocalDateTime i_fecha_inicial;
     private LocalDateTime i_fecha_final;
-    private LocalDateTime i_tiempo_total;
+    private int i_tiempo_total;
     private Tarea i_tarea_superior;
     private boolean i_booleano;
     
@@ -36,7 +36,7 @@ public class Intervalo implements Observer{
         return this.i_fecha_final;
     }
     
-    public LocalDateTime i_get_tiempo(){
+    public int i_get_tiempo(){
         this.i_calcular_tiempo_total();
         return this.i_tiempo_total;
     }
@@ -75,8 +75,10 @@ public class Intervalo implements Observer{
     
     public void i_calcular_tiempo_total(){
         //Calculamos el tiempo utilizado
+        LocalDateTime total;
         int i_segundos_inicial = i_fecha_inicial.getSecond();
-        this.i_tiempo_total = i_fecha_final.minusSeconds(i_segundos_inicial);
+        total = i_fecha_final.minusSeconds(i_segundos_inicial);
+        this.i_tiempo_total = total.getSecond();
     }
     
     @Override

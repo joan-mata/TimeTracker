@@ -8,12 +8,13 @@ public class Actividad {
     private String a_nombre;
     private LocalDateTime a_fecha_inicial;   
     private LocalDateTime a_fecha_final;
-    private LocalDateTime a_tiempo_total;
+    private int a_tiempo_total;
     //private Reloj a_reloj;
     private Rellotge a_reloj;
     
     public Actividad(String name){ //contructor
         this.a_nombre = name;
+        this.a_tiempo_total = 0;
     }
     
     //getters
@@ -29,7 +30,7 @@ public class Actividad {
         return this.a_fecha_final;
     }
     
-    public LocalDateTime get_tiempo_total(){
+    public int get_tiempo_total(){
         return this.a_tiempo_total;
     }
     //public Reloj a_getInstance(){
@@ -44,7 +45,9 @@ public class Actividad {
 
 
     public void set_fecha_inicial(LocalDateTime start){
-        this.a_fecha_inicial = start;
+        if(this.a_fecha_inicial == null){
+            this.a_fecha_inicial = start;
+        }
     }
     
     public void set_fecha_final(LocalDateTime finish){
@@ -54,8 +57,10 @@ public class Actividad {
     
     public void calcular_tiempo_total(){
         //Calculamos el tiempo utilizado
+        LocalDateTime total;
         int a_segundos_inicial = a_fecha_inicial.getSecond();
-        this.a_tiempo_total = a_fecha_final.minusSeconds(a_segundos_inicial);
+        total = a_fecha_final.minusSeconds(a_segundos_inicial);
+        this.a_tiempo_total = total.getSecond();
     }
     
     //Funciones

@@ -72,6 +72,9 @@ public class Tarea extends Actividad{
         
         if(flag){ //Solo se ejecuta si no hay ningún intervalo abierto
             set_fecha_inicial(hora);
+            if (t_proyecto_superior != null){
+                t_proyecto_superior.p_set_fecha_inicial(hora);
+            }
             time.r_start(this.t_intervalo.get(this.t_intervalo.size() - 1));
             //i.i_mostrar();
         }

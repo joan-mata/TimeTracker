@@ -26,6 +26,13 @@ public class Proyecto extends Actividad{
         return this.p_proyecto_superior;
     }
     
+    public void p_set_fecha_inicial(LocalDateTime start){
+        set_fecha_inicial(start);
+        if (p_proyecto_superior != null){
+            p_proyecto_superior.p_set_fecha_inicial(start);
+        }
+    }
+    
     public void p_cambiar_tiempos(LocalDateTime finish){
         set_fecha_final(finish);
         if(p_proyecto_superior != null){
