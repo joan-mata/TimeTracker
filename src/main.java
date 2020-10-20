@@ -29,6 +29,7 @@ public class main{
                     gestor_prueba.g_crear_tarea(t1);
                 
                     t1.start();
+                    //gestor_prueba.g_modificar_tarea(t1);
                     try{
                         Thread.sleep(4000);
                     }
@@ -38,6 +39,8 @@ public class main{
                         System.out.println(e);
                     }
                     t1.stop();
+                    //gestor_prueba.g_modificar_tarea(t1);
+
                     
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS HASTA AQUÍ ******** \\
                     break;
@@ -121,9 +124,9 @@ public class main{
                 
                 case 2: //Milestone 2
                     System.out.println("Milestone 2.\n");
-
-
-
+                    
+                    
+                    
                     break;
                 
                 case 3: //Milestone 3

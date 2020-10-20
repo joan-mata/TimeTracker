@@ -21,6 +21,7 @@ public class Tarea extends Actividad{
     public Tarea(String name, Proyecto p){
         super(name);
         this.t_proyecto_superior = p;
+        this.t_intervalo = new ArrayList<Intervalo>();
     }
     
     public void t_cambiar_tiempos(LocalDateTime finish){
@@ -89,4 +90,21 @@ public class Tarea extends Actividad{
         }
     }
     
+    
+    
+    
+    
+    //FUNCIONES DE PRUEBA
+    public void comprueba_getters(){ //Incluir en Proyecto y Actividad
+        System.out.println("Nombre: " + get_nombre() + "\n");
+        System.out.println("Proyecto Superior: " + t_get_proyecto_superior() + "\n");
+        System.out.println("F. Inicio: " + get_fecha_inicial() + "\n");
+        System.out.println("F. Final: " + get_fecha_final() + "\n");
+        System.out.println("T. Total: " + get_tiempo_total() + "\n");
+    }
+    
+    public void comprueba_setters(String name, Proyecto p){ //Incluir en Proyecto y Actividad
+        set_nombre(name);
+        comprueba_getters();
+    }
 }

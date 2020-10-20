@@ -19,10 +19,11 @@ public class Proyecto extends Actividad{
         else { //Tiene un proyecto superior
             this.p_proyecto_superior = p;
         }
+        this.p_tarea = new ArrayList<Tarea>();
     }
     
-    public Proyecto g_get_proyecto_superior(){
-        return this.g_proyecto_superior;
+    public Proyecto p_get_proyecto_superior(){
+        return this.p_proyecto_superior;
     }
     
     public void p_cambiar_tiempos(LocalDateTime finish){
@@ -33,13 +34,7 @@ public class Proyecto extends Actividad{
     }
     
     public void añadir_tarea(Tarea t) {
-        if(p_tarea.isEmpty()){
-            p_tarea = new ArrayList<Tarea>();
             p_tarea.add(t);
-        }
-        else{
-            p_tarea.add(t);
-        }   
     }
 
     public void eliminar_tarea(Tarea t){
@@ -56,5 +51,23 @@ public class Proyecto extends Actividad{
     /*
     //funciones
     public void getChild(){}
-    */    
+    */
+    
+    
+    
+    
+    
+    //FUNCIONES DE PRUEBA
+    public void comprueba_getters(){ //Incluir en Proyecto y Actividad
+        System.out.println("Nombre: " + get_nombre() + "\n");
+        System.out.println("Proyecto Superior: " + p_get_proyecto_superior() + "\n");
+        System.out.println("F. Inicio: " + get_fecha_inicial() + "\n");
+        System.out.println("F. Final: " + get_fecha_final() + "\n");
+        System.out.println("T. Total: " + get_tiempo_total() + "\n");
+    }
+    
+    public void comprueba_setters(String name, Proyecto p){ //Incluir en Proyecto y Actividad
+        set_nombre(name);
+        comprueba_getters();
+    }
 }
