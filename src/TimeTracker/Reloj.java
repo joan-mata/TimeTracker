@@ -40,12 +40,7 @@ class Reloj extends Observable implements Runnable{
         while(!Thread.interrupted()){
             try{
                 Thread.sleep(1000 * periodo);
-                Timer timer = new Timer();
-                TimerTask task = new TimerTask() {
-                public void run() {
-                    Notify(); //Función a llamar cada 2" mediante scheduleAtFixedRate.
-                }
-                };
+                Notify();
             }
             catch (InterruptedException e){
                 e.printStackTrace();

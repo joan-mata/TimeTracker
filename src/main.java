@@ -44,86 +44,56 @@ public class main{
                 
                 case 1: //Milestone 1
                     System.out.printf("\n%-20s%-20s%-20s\n", "", "", "MILESTONE 1");
-                    int apendice;
+                    
+                    System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "", "", "Fecha Inicial", "", "Fecha Final", "", "Duración");
 
-                    do{
-                        System.out.println("¿Qué apéndice quieres realizar? (1/2) \n"+ "(exit = -1)");
-                        apendice = entrada2.nextInt();
+                    //Declaramos y creamos los proyectos y tareas que necesitaremos en este test
+                    /*Proyecto m1_apB_p_root = new Proyecto("Root", null);
+                    Tarea m1_apB_t_transportation = new Tarea("Transportation", m1_apB_p_root);
+                    Tarea m1_apB_t_first_list = new Tarea("First list", m1_apB_p_root);
+                    Tarea m1_apB_t_second_list = new Tarea("Second list", m1_apB_p_root);*/
 
-                        //APENDICE A
-                        if (apendice == 1){
-                            System.out.printf("\n%-20s%-20s%-20s\n", "", "", "APÉNDICE A");
+                    Proyecto m1_p_root = new Proyecto("Root", null);
+                    Proyecto m1_p_software_desing = new Proyecto("Software design", m1_p_root);
+                    Proyecto m1_p_software_testing = new Proyecto("Software testing", m1_p_root);
+                    Proyecto m1_p_databases = new Proyecto("Databases", m1_p_root);
+                    Proyecto m1_p_problems = new Proyecto("Problems", m1_p_software_desing);
+                    Proyecto m1_p_project_time_tracker = new Proyecto("Project time tracker", m1_p_software_desing); 
 
-                            Proyecto m1_apA_p_software_desing = new Proyecto("Software design", null);
-                            Proyecto m1_apA_p_software_testing = new Proyecto("Software testing", null);
-                            Proyecto m1_apA_p_databases = new Proyecto("Databases", null);
-                            Proyecto m1_apA_p_problems = new Proyecto("Problems", m1_apA_p_software_desing);
-                            Proyecto m1_apA_p_project_time_tracker = new Proyecto("Project time tracker", m1_apA_p_software_desing); 
+                    Tarea m1_t_transportation = new Tarea("transportation", m1_p_root);
+                    Tarea m1_t_first_list = new Tarea("first list", m1_p_problems);
+                    Tarea m1_t_second_list = new Tarea("second list", m1_p_problems);
+                    Tarea m1_t_read_handout = new Tarea("read handout", m1_p_project_time_tracker);
+                    Tarea m1_t_first_milestone = new Tarea("first milestone", m1_p_project_time_tracker);
+                    
+                    System.out.println("Start Test\n");
+                    System.out.println("Transportation starts:\n");
+                    //CODIGO
+                    m1_t_transportation.start();
+                    sleep(6);
+                    System.out.println("Transportation stop\n");
+                    m1_t_transportation.stop();
+                    sleep(2);
+                    System.out.println("First list starts\n");
+                    m1_t_first_list.start();
+                    sleep(6);
+                    System.out.println("Second list start\n");
+                    m1_t_second_list.start();
+                    sleep(4);
+                    System.out.println("First list stop\n");
+                    m1_t_first_list.stop();
+                    sleep(2);
+                    System.out.println("Second list stop\n");
+                    m1_t_second_list.stop();
+                    sleep(2);                    
+                    System.out.println("Transportation starts\n");
+                    m1_t_transportation.start();
+                    sleep(4);
+                    System.out.println("Transportation stop\n");
+                    m1_t_transportation.stop();
+                    System.out.println("End of test\n");
 
-                            Tarea m1_apA_t_transporation = new Tarea("trasnportation", null);
-                            Tarea m1_apA_t_first_list = new Tarea("first list", m1_apA_p_problems);
-                            Tarea m1_apA_t_second_list = new Tarea("second list", m1_apA_p_problems);
-                            Tarea m1_apA_t_read_handout = new Tarea("read handout", m1_apA_p_project_time_tracker);
-                            Tarea m1_apA_t_first_milestone = new Tarea("first milestone", m1_apA_p_project_time_tracker);
-
-                            m1_apA_t_transporation.start();
-                            sleep(2);
-                            m1_apA_t_first_list.start();
-                            sleep(6);
-                            m1_apA_t_transporation.stop();
-                            m1_apA_t_second_list.start();
-                            sleep(4);
-                            m1_apA_t_first_list.stop();
-                            m1_apA_t_second_list.stop();
-                            m1_apA_t_read_handout.start();
-                            sleep(2);
-                            m1_apA_t_first_milestone.start();
-                            sleep(4);
-                            m1_apA_t_first_milestone.stop();
-                            sleep(2);
-                            m1_apA_t_read_handout.stop();
-
-                        }
-                        //APENDICE B
-                        else if (apendice == 2){
-                            System.out.printf("\n%-20s%-20s%-20s\n", "", "", "APÉNDICE B");
-
-                            System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "", "", "Fecha Inicial", "", "Fecha Final", "", "Duración");
-
-                            //Declaramos y creamos los proyectos y tareas que necesitaremos en este test
-                            Proyecto m1_apB_p_root = new Proyecto("Root", null);
-                            Tarea m1_apB_t_transportation = new Tarea("Transportation", m1_apB_p_root);
-                            Tarea m1_apB_t_first_list = new Tarea("First list", m1_apB_p_root);
-                            Tarea m1_apB_t_second_list = new Tarea("Second list", m1_apB_p_root);
-                            
-                            System.out.println("Start Test\n");
-                            System.out.println("Transportation starts:\n");
-                            //CODIGO
-                            m1_apB_t_transportation.start();
-                            sleep(4);
-                            System.out.println("Transportation stop\n");
-                            m1_apB_t_transportation.stop();
-                            sleep(2);
-                            System.out.println("First list starts\n");
-                            m1_apB_t_first_list.start();
-                            sleep(6);
-                            System.out.println("Second list start\n");
-                            m1_apB_t_second_list.start();
-                            sleep(4);
-                            System.out.println("First list stop\n");
-                            m1_apB_t_first_list.stop();
-                            sleep(2);
-                            System.out.println("Second list stop\n");
-                            m1_apB_t_second_list.stop();
-                            sleep(2);                    
-                            System.out.println("Transportation starts\n");
-                            m1_apB_t_transportation.start();
-                            sleep(4);
-                            System.out.println("Transportation stop\n");
-                            m1_apB_t_transportation.stop();
-                            System.out.println("End of test\n");
-                        }
-                    }while(apendice != -1);
+                    
 
                     break;
                 

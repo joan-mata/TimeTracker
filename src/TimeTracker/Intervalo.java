@@ -65,7 +65,7 @@ public class Intervalo implements Observer{
     public void update(Observable o, Object arg) { 
         this.i_set_fecha_final((LocalDateTime) arg);
         this.i_tarea_superior.set_fecha_final((LocalDateTime) arg);
-        System.out.println("Update\n");
+        //System.out.println("Update\n");
         this.i_mostrar();
     }
 

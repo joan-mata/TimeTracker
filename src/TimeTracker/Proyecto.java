@@ -10,7 +10,7 @@ public class Proyecto extends Actividad{
 
     //CONSTRUCTORES
     public Proyecto(String name, Proyecto p){
-        super (name);
+        super (name, p);
         this.p_lista_tareas = new ArrayList<Tarea>();
     }
     

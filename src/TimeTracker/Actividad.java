@@ -11,9 +11,10 @@ public class Actividad {
     private int a_tiempo_total;
     private Proyecto a_proyecto_superior;
     
-    public Actividad(String name){ //constructor
+    public Actividad(String name, Proyecto p){ //constructor
         this.a_nombre = name;
         this.a_tiempo_total = 0;
+        this.a_proyecto_superior = p;
     }
     
     //GETTERS

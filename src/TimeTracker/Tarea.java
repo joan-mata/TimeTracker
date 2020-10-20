@@ -11,7 +11,7 @@ public class Tarea extends Actividad{
  
     //CONSTRUCTOR
     public Tarea(String name, Proyecto p){
-        super(name);
+        super(name, p);
         this.t_lista_intervalos = new ArrayList<Intervalo>();
     }
 
@@ -30,15 +30,13 @@ public class Tarea extends Actividad{
     
     //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
     public void start(){
-        
         LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
         Intervalo i = new Intervalo(this, hora);
         set_fecha_inicial(hora);       
         Thread time =  new Thread(t_getInstance()); 
         añadir_intervalo(i);
         time.start(); 
-        time.addObserver(i);
-        System.out.println("Start tarea\n");
+        t_getInstance().addObserver(i);
     }
     
     public void stop(){ //finalizamos la actividad
