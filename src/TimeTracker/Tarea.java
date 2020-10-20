@@ -9,7 +9,8 @@ public class Tarea extends Actividad{
     private Proyecto t_proyecto_superior;
     private ArrayList<Intervalo> t_intervalo;
    
-
+    //private Rellotge t_reloj; //Copia del reloj de Actividad
+    
     //Constructor
     public Tarea(String name){
         super(name);
@@ -30,7 +31,7 @@ public class Tarea extends Actividad{
             this.t_intervalo.add(i);
         }
         //Comprobamos si el último intervalo está abierto
-        else if((this.t_intervalo.get(this.t_intervalo.size() - 1)).get_booleano() == false){
+        else if((this.t_intervalo.get(this.t_intervalo.size() - 1)).i_get_booleano() == false){
             this.t_intervalo.add(i);
         }
         //El último intervalo SI está abierto
@@ -55,20 +56,26 @@ public class Tarea extends Actividad{
     public void start(){
         LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
         Intervalo i = new Intervalo(this, hora);
-        Reloj time = a_getInstance(); //conseguimos la uniqueInstance
-        time.start();
+        Rellotge time = a_getInstance(); //conseguimos la uniqueInstance
         boolean flag = añadir_intervalo(i);
         
         if(flag){ //Solo se ejecuta si no hay ningún intervalo abierto
-            i.i_mostrar();
+            time.r_start(this.t_intervalo.get(this.t_intervalo.size() - 1));
+            //i.i_mostrar();
         }
         
         
     }
     
     public void stop(){ //finalizamos la actividad
-        //a_reloj.notify(); //paramos el crono
-        System.out.println("Hemos finalizado la actividad");
+        LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
+        Intervalo i = new Intervalo(this, hora);
+        Rellotge time = a_getInstance(); //conseguimos la uniqueInstance
+        boolean flag = añadir_intervalo(i);
+        
+        if(!flag){ //Solo se ejecuta si no hay ningún intervalo abierto
+            time.r_stop();
+        }
     }
     
 }

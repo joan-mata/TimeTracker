@@ -27,7 +27,7 @@ public class main{
                 
                     t1.start();
                     try{
-                        Thread.sleep(1000);
+                        Thread.sleep(4000);
                     }
                     catch(InterruptedException e)
                     {
@@ -59,14 +59,16 @@ public class main{
                     catch(InterruptedException e)
                     {
                         e.printStackTrace();
-                    }                    System.out.println("Transportation stops\n");
+                    }
+                    System.out.println("Transportation stops\n");
                     try{
                         Thread.sleep(2000);
                     }
                     catch(InterruptedException e)
                     {
                         e.printStackTrace();
-                    }                    System.out.println("First list starts\n");
+                    }
+                    System.out.println("First list starts\n");
                     //Codigo
                     try{
                         Thread.sleep(6000);
@@ -74,7 +76,8 @@ public class main{
                     catch(InterruptedException e)
                     {
                         e.printStackTrace();
-                    }                    System.out.println("Second list start\n");
+                    }
+                    System.out.println("Second list start\n");
                     try{
                         Thread.sleep(4000);
                     }
@@ -132,7 +135,7 @@ public class main{
                     break;
             }
 
-            System.out.println("¿Otro test?\n" + "(exit = -1)\n");
+            System.out.println("¿Otro test?\n" + "(exit = -1)");
             test = entrada.nextInt();
 
         }

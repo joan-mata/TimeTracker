@@ -21,37 +21,44 @@ public class Intervalo implements Observer{
         
     }
     
+    public Intervalo(Intervalo i){
+        this.i_tarea_superior = i.i_get_tarea_superior();
+        this.i_fecha_inicial = i.i_get_fecha_inicial();
+        this.i_booleano = i.i_get_booleano();
+    }
+    
     //getters
-    public LocalDateTime get_inicio(){
+    public LocalDateTime i_get_fecha_inicial(){
         return this.i_fecha_inicial;
     }
     
-    public LocalDateTime get_final(){
+    public LocalDateTime i_get_fecha_final(){
         return this.i_fecha_final;
     }
     
-    public LocalDateTime get_tiempo(){
-        //Calculamos el tiempo utilizado
-        int i_segundos_inicial = i_fecha_inicial.getSecond();
-        this.i_tiempo_total = i_fecha_final.minusSeconds(i_segundos_inicial); //REVISAR QUE FUNCIONE CAMBIO DE INT A LONG
-
+    public LocalDateTime i_get_tiempo(){
+        this.i_calcular_tiempo_total();
         return this.i_tiempo_total;
     }
     
-    public boolean get_booleano(){
+    public boolean i_get_booleano(){
         return this.i_booleano;
     }
     
+    public Tarea i_get_tarea_superior(){
+        return this.i_tarea_superior;
+    }
+    
     //setters
-    public void setI_fecha_inicial(LocalDateTime start){
+    public void i_set_fecha_inicial(LocalDateTime start){
         this.i_fecha_inicial = start;
     }
     
-    public void setI_fecha_final(LocalDateTime finish){
+    public void i_set_fecha_final(LocalDateTime finish){
         this.i_fecha_final = finish;
     }
     
-    public void cambiar_booleano(){
+    public void i_cambiar_booleano(){
         if(i_booleano){
             i_booleano = false;
         }
@@ -59,14 +66,25 @@ public class Intervalo implements Observer{
             i_booleano = true;
         }
     }
-
+    
+    public void i_cambiar_tiempos(LocalDateTime finish){
+        this.i_fecha_final = finish;
+        this.i_calcular_tiempo_total();
+    }
+    
+    public void i_calcular_tiempo_total(){
+        //Calculamos el tiempo utilizado
+        int i_segundos_inicial = i_fecha_inicial.getSecond();
+        this.i_tiempo_total = i_fecha_final.minusSeconds(i_segundos_inicial); //REVISAR QUE FUNCIONE CAMBIO DE INT A LONG
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
-        this.setI_fecha_final((LocalDateTime) arg);
+        this.i_set_fecha_final((LocalDateTime) arg);
     }
 
     public void i_mostrar(){
-        System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Interval:", "", i_fecha_inicial, " ", i_fecha_final, "", i_tiempo_total);
+        System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Interval:", "", i_fecha_inicial, "", i_fecha_final, "", i_tiempo_total);
         i_tarea_superior.t_mostrar();
     }
     

@@ -9,8 +9,9 @@ public class Actividad {
     private LocalDateTime a_fecha_inicial;   
     private LocalDateTime a_fecha_final;
     private LocalDateTime a_tiempo_total;
-    private Reloj a_reloj;
-
+    //private Reloj a_reloj;
+    private Rellotge a_reloj;
+    
     public Actividad(String name){ //contructor
         this.a_nombre = name;
         this.a_fecha_inicial = null;
@@ -38,6 +39,10 @@ public class Actividad {
 
         return this.a_tiempo_total;
     }
+    //public Reloj a_getInstance(){
+    public Rellotge a_getInstance(){
+        return a_reloj.r_getInstance();
+    }
     
     //setters
     public void set_nombre(String name){
@@ -63,9 +68,7 @@ public class Actividad {
         System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Actividad:", a_nombre, a_fecha_inicial, "", a_fecha_final, "", a_tiempo_total);
     }
     
-    public Reloj a_getInstance(){
-        return a_reloj.getInstance();
-    }
+    
     
     //FUNCIONES PRUEBAS
     
