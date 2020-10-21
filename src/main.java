@@ -22,23 +22,7 @@ public class main{
                     System.out.printf("\n%-20s%-20s%-20s\n", "", "", "TEST DE PRUEBAS");
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS AQUÍ ******** \\
                     
-                    //Agregar i crear reloj
-                    Proyecto root_prueba = new Proyecto("Root", null);
-                    Proyecto p_p1 = new Proyecto("P1", root_prueba);
-                    Tarea t1 = new Tarea("t1", p_p1);
-
                 
-                    t1.start();
-                    try{
-                        Thread.sleep(4000);
-                    }
-                    catch(InterruptedException e)
-                    {
-                        System.out.println(e);
-                    }
-                    t1.stop();
-
-                    
                     // ******** ESCRIBIR CODIGO PARA PRUEBAS HASTA AQUÍ ******** \\
                     break;
                 
@@ -46,12 +30,6 @@ public class main{
                     System.out.printf("\n%-20s%-20s%-20s\n", "", "", "MILESTONE 1");
                     
                     System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "", "", "Fecha Inicial", "", "Fecha Final", "", "Duración");
-
-                    //Declaramos y creamos los proyectos y tareas que necesitaremos en este test
-                    /*Proyecto m1_apB_p_root = new Proyecto("Root", null);
-                    Tarea m1_apB_t_transportation = new Tarea("Transportation", m1_apB_p_root);
-                    Tarea m1_apB_t_first_list = new Tarea("First list", m1_apB_p_root);
-                    Tarea m1_apB_t_second_list = new Tarea("Second list", m1_apB_p_root);*/
 
                     Proyecto m1_p_root = new Proyecto("Root", null);
                     Proyecto m1_p_software_desing = new Proyecto("Software design", m1_p_root);
@@ -70,9 +48,9 @@ public class main{
                     System.out.println("Transportation starts:\n");
                     //CODIGO
                     m1_t_transportation.start();
-                    sleep(6);
-                    System.out.println("Transportation stop\n");
+                    sleep(4);
                     m1_t_transportation.stop();
+                    System.out.println("Transportation stop\n");
                     sleep(2);
                     System.out.println("First list starts\n");
                     m1_t_first_list.start();
@@ -80,17 +58,17 @@ public class main{
                     System.out.println("Second list start\n");
                     m1_t_second_list.start();
                     sleep(4);
-                    System.out.println("First list stop\n");
                     m1_t_first_list.stop();
+                    System.out.println("First list stop\n");
                     sleep(2);
-                    System.out.println("Second list stop\n");
                     m1_t_second_list.stop();
+                    System.out.println("Second list stop\n");
                     sleep(2);                    
                     System.out.println("Transportation starts\n");
                     m1_t_transportation.start();
                     sleep(4);
-                    System.out.println("Transportation stop\n");
                     m1_t_transportation.stop();
+                    System.out.println("Transportation stop\n");
                     System.out.println("End of test\n");
 
                     

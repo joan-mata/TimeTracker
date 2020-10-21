@@ -4,10 +4,14 @@ import java.lang.Object;
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 
-public class Actividad {
+/*Clase Actividad,
+Su función es generalizar dos subclases (Proyecto y Tarea) */
+public abstract class Actividad {
     private String a_nombre;
-    private LocalDateTime a_fecha_inicial;   
-    private LocalDateTime a_fecha_final;
+    private LocalDateTime a_LDT_fecha_inicial;   
+    private LocalDateTime a_LDT_fecha_final;   
+    private String a_fecha_inicial;   
+    private String a_fecha_final;
     private int a_tiempo_total;
     private Proyecto a_proyecto_superior;
     
@@ -22,16 +26,20 @@ public class Actividad {
         return this.a_nombre;
     }
     
-    public LocalDateTime get_fecha_inicial(){
+    public String get_fecha_inicial(){
         return this.a_fecha_inicial;
     }
     
-    public LocalDateTime get_fecha_final(){
+    public String get_fecha_final(){
         return this.a_fecha_final;
     }
     
     public int get_tiempo_total(){
         return this.a_tiempo_total;
+    }
+
+    public Proyecto get_proyecto_superior(){
+        return this.a_proyecto_superior;
     }
     
     //SETTERS
@@ -39,37 +47,43 @@ public class Actividad {
         this.a_nombre = name;
     }
 
+    //Asignas la fecha inicial de la actividad y de sus proyectos superiores si los tuviera
     public void set_fecha_inicial(LocalDateTime start){
-        if(this.a_fecha_inicial == null){
-            this.a_fecha_inicial = start;
+        if(this.a_LDT_fecha_inicial == null){
+            this.a_LDT_fecha_inicial = start;
+            //Le damos el formato deseado al String fecha_inicial
+            a_fecha_inicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
         if (a_proyecto_superior != null){
             a_proyecto_superior.set_fecha_inicial(start);
         }
     }
-    
-    public void set_fecha_final(LocalDateTime finish){
-        this.a_fecha_final = finish;
 
-        //Calculamos el tiempo utilizado
-        LocalDateTime total;
-        int a_segundos_inicial = a_fecha_inicial.getSecond();
-        total = a_fecha_final.minusSeconds(a_segundos_inicial);
-        this.a_tiempo_total = total.getSecond();
+    //Asignas la fecha final y el tiempo total de la actividad
+    //Tambien de us proyectos superiores si los tuviera
+    public void set_fecha_final(LocalDateTime finish){
+        a_LDT_fecha_final = finish;
+        //Le damos el formato deseado al String fecha_final
+        a_fecha_final = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        this.a_tiempo_total = set_tiempo_total();
 
         //Actualizamos el tiempo final y total del proyecto superior
         if(a_proyecto_superior != null){
             this.a_proyecto_superior.set_fecha_final(finish);
         }
     }
-    
-    
-    //FUNCIONES
+
+    //Calcula el teimpo total, cada subtarea a su manera
+    abstract public int set_tiempo_total();
+   
+    //muestra por pantalla los datos de la actividad
     public void a_mostrar(){
         System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Actividad:", a_nombre, a_fecha_inicial, "", a_fecha_final, "", a_tiempo_total);
         if(a_proyecto_superior != null){
-            this.a_proyecto_superior.a_mostrar();
+            a_proyecto_superior.a_mostrar();
         }
     }
+    
         
 }
