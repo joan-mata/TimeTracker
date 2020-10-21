@@ -3,14 +3,17 @@ import TimeTracker.*;
 import java.util.Scanner;
 //import java.lang.*;
 import java.lang.Thread;
+import TimeTracker.Reloj;
 
 //import classes.java;
 
 
 public class main{
+    private static Reloj m1_reloj;
     public static void main(String[] args){
         Scanner entrada = new Scanner(System.in); //Para introducir elementos por terminal
         Scanner entrada2 = new Scanner(System.in); //Para introducir elementos por terminal
+        
 
         System.out.println("¿Qué test quieres realizar? \n" + "(exit = -1)");
         int test = entrada.nextInt();
@@ -30,6 +33,9 @@ public class main{
                     System.out.printf("\n%-20s%-20s%-20s\n", "", "", "MILESTONE 1");
                     
                     System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "", "", "Fecha Inicial", "", "Fecha Final", "", "Duración");
+                    
+                    Thread time = new Thread(m1_reloj.getInstance());
+                    time.start();
 
                     Proyecto m1_p_root = new Proyecto("Root", null);
                     Proyecto m1_p_software_desing = new Proyecto("Software design", m1_p_root);

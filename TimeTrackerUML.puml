@@ -41,6 +41,7 @@ Class Tarea {
 -t_lista_intervalos
 -t_reloj
 
++t_get_Instance()
 +set_tiempo_total()
 +añadir_intervalo(interval)
 +eliminar_interval(interval)
@@ -69,13 +70,9 @@ Class Intervalo {
 Class Reloj {
 -periodo
 -uniqueinstance
--empezar
--time
 
 +getInstance()
 +Notify()
-+stop()
-+start()
 +run()
 }
 

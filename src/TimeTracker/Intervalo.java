@@ -10,7 +10,6 @@ import java.util.Observer;
 /*Clase Intervalo, tratada como observer
 Trata de dividir una tarea en los lapsos de tiempos utilizados para finalizarla*/
 public class Intervalo implements Observer{
-   // Intervalo observer = new Intervalo();  tendriamos que diferenciar cada observer, osea cada intervalo que monitorizamos, una lista por ejemplo
     private LocalDateTime i_LDT_fecha_inicial;
     private LocalDateTime i_LDT_fecha_final;
     private String i_fecha_inicial;

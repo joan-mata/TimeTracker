@@ -46,15 +46,12 @@ public class Tarea extends Actividad{
         Intervalo i = new Intervalo(this, hora);
         set_fecha_inicial(hora);       
         añadir_intervalo(i);
-
         t_getInstance().addObserver(i);
-        t_getInstance().start(); 
     }
     
     //Finalizamos la actividad
     public void stop(){ 
         Intervalo i = this.t_lista_intervalos.get(this.t_lista_intervalos.size() - 1);
-        t_getInstance().stop();
         t_getInstance().deleteObserver(i);
     }
 
