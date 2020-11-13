@@ -5,10 +5,8 @@ import java.lang.Object;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 
 /*Clase proyecto extendidad de Actividad
