@@ -74,11 +74,16 @@ public abstract class Actividad {
   /*Asignas la fecha final y el tiempo total de la actividad
   Tambien de us proyectos superiores si los tuviera*/
   public void setFechaFinal(LocalDateTime finish) {
+  	//Precondiciones
+  	assert (finish > aLdtFechaInicial): "El tiempo final es inferior al tiempo inicial.";
+
     aLdtFechaFinal = finish;
-    //Le damos el formato deseado al String fecha_final
     aFechaFinal = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
     this.aTiempoTotal = setTiempoTotal();
+
+    assert (aTiempoTotal > 0): "El tiempo total es inferior o igual a 0.";
+    assert (aTiempoTotal%2 == 0): "El tiempo total es impar.";
 
     //Actualizamos el tiempo final y total del proyecto superior
     if (aProyectoSuperior != null) {

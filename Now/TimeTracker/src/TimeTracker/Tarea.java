@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
- /*Clase Tarea, extendida de Actividad
+/*Clase Tarea, extendida de Actividad
 Su función es dividir una clase proyecto en partes más pequeñas, y con ello más sencillas de trabajar.
 Tendrá una lista de los intervalos que se han realizado durante la tarea*/
 public class Tarea extends Actividad {
@@ -40,6 +40,9 @@ public class Tarea extends Actividad {
     for (int i = 0; i < tListaIntervalos.size(); i++) {
       totalTime += tListaIntervalos.get(i).iGetTiempoTotal();
     }
+
+    assert (totalTime >= getTiempoTotal()): "El tiempo total futuro es inferior al tiempo total anterior.";
+
     return totalTime;
   }
 
@@ -55,7 +58,7 @@ public class Tarea extends Actividad {
   public void start() {
     LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
     Intervalo i = new Intervalo(this, hora);
-    setFechaInicial(hora);
+    setFechaInicial(hora); //TODO Que lo haga directamente intervalo llamando a iTareaSuperior
     añadirIntervalo(i);
     tGetInstance().addObserver(i);
   }

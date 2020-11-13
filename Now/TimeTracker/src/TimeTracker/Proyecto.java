@@ -59,6 +59,9 @@ public class Proyecto extends Actividad {
     for (int i = 0; i < pListaProyectos.size(); i++) {
       totalTime += pListaProyectos.get(i).setTiempoTotal();
     }
+
+    assert (totalTime >= getTiempoTotal()): "El tiempo total futuro es inferior al tiempo total anterior.";
+
     return totalTime;
   }
 
