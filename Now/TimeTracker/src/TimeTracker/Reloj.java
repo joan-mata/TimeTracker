@@ -6,10 +6,17 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 //Esta clase se encargará de acceder a la hora del dispositivo e ir actualizando a sus observadores
 public class Reloj extends Observable implements Runnable {
   private int periodo;
   private static Reloj uniqueInstance;
+  
+  Logger logger = LoggerFactory.getLogger(Reloj.class);
 
   /*Constructor donde inicializamos el periodo mediante el cual irá
   actualizando la hora a los observadores.*/
