@@ -5,6 +5,12 @@ import java.lang.Object;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 /*Clase proyecto extendidad de Actividad
 Es utilizada para generalizar las partes de un trabajo o entrega.
 Tiene acceso a una lista de sus proyectos inferiores, en el caso que tuviese. 
@@ -12,6 +18,8 @@ Lo mismo con las tareas que pudieran depender de él.*/
 public class Proyecto extends Actividad {
   private ArrayList<Tarea> pListaTareas;
   private ArrayList<Proyecto> pListaProyectos;
+  
+  Logger logger = LoggerFactory.getLogger(Proyecto.class);
 
   //CONSTRUCTORES
   public Proyecto(String name, Proyecto p) {
