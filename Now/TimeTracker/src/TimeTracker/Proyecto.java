@@ -16,16 +16,16 @@ Es utilizada para generalizar las partes de un trabajo o entrega.
 Tiene acceso a una lista de sus proyectos inferiores, en el caso que tuviese. 
 Lo mismo con las tareas que pudieran depender de él.*/
 public class Proyecto extends Actividad {
-  private ArrayList<Tarea> pListaTareas;
-  private ArrayList<Proyecto> pListaProyectos;
+  private ArrayList<Tarea> proListaTareas;
+  private ArrayList<Proyecto> proListaProyectos;
   
   Logger logger = LoggerFactory.getLogger(Proyecto.class);
 
   //CONSTRUCTORES
   public Proyecto(String name, Proyecto p) {
     super(name, p, "Proyecto");
-    this.pListaTareas = new ArrayList<Tarea>();
-    this.pListaProyectos = new ArrayList<Proyecto>();
+    this.proListaTareas = new ArrayList<Tarea>();
+    this.proListaProyectos = new ArrayList<Proyecto>();
     if (this.getProyectoSuperior() != null) {
       this.getProyectoSuperior().añadirProyecto(this);
     }
@@ -34,30 +34,30 @@ public class Proyecto extends Actividad {
 
   //FUNCIONES
   public void añadirTarea(Tarea t) {
-    pListaTareas.add(t);
+    proListaTareas.add(t);
   }
 
   public void añadirProyecto(Proyecto p) {
-    pListaProyectos.add(p);
+    proListaProyectos.add(p);
   }
 
   public void eliminarTarea(Tarea t) {
-    pListaTareas.remove(t);
+    proListaTareas.remove(t);
   }
 
   public void eliminarProyect(Proyecto p) {
-    pListaProyectos.remove(p);
+    proListaProyectos.remove(p);
   }
 
   //Calcula el tiempo total del proyecto
   @Override
   public int setTiempoTotal() { //MAL - Demasiada memoria
     int totalTime = 0;
-    for (int i = 0; i < pListaTareas.size(); i++) {
-      totalTime += pListaTareas.get(i).setTiempoTotal();
+    for (int i = 0; i < proListaTareas.size(); i++) {
+      totalTime += proListaTareas.get(i).setTiempoTotal();
     }
-    for (int i = 0; i < pListaProyectos.size(); i++) {
-      totalTime += pListaProyectos.get(i).setTiempoTotal();
+    for (int i = 0; i < proListaProyectos.size(); i++) {
+      totalTime += proListaProyectos.get(i).setTiempoTotal();
     }
 
     assert (totalTime >= getTiempoTotal()): "El tiempo total futuro es inferior al tiempo total anterior.";
@@ -75,11 +75,11 @@ public class Proyecto extends Actividad {
       jo.put("finalDate", getFechaFinal());
       jo.put("duration", getTiempoTotal());
       JSONArray ja = new JSONArray();
-      for (int i = 0; i < pListaProyectos.size(); i++) {
-        ja.put(pListaProyectos.get(i).getJSON());
+      for (int i = 0; i < proListaProyectos.size(); i++) {
+        ja.put(proListaProyectos.get(i).getJSON());
       }
-      for (int i = 0; i < pListaTareas.size(); i++) {
-        ja.put(pListaTareas.get(i).getJSON());
+      for (int i = 0; i < proListaTareas.size(); i++) {
+        ja.put(proListaTareas.get(i).getJSON());
       }
       jo.put("activities", ja);
     } catch (JSONException e) {

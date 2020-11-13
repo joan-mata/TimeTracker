@@ -17,28 +17,28 @@ import org.slf4j.LoggerFactory;
 Su función es dividir una clase proyecto en partes más pequeñas, y con ello más sencillas de trabajar.
 Tendrá una lista de los intervalos que se han realizado durante la tarea*/
 public class Tarea extends Actividad {
-  private ArrayList<Intervalo> tListaIntervalos;
-  private Reloj tReloj;
+  private ArrayList<Intervalo> tarListaIntervalos;
+  private Reloj tarReloj;
   
   Logger logger = LoggerFactory.getLogger(Tarea.class);
 
   public Tarea(String name, Proyecto p) {
     super(name, p, "Tarea");
-    this.tListaIntervalos = new ArrayList<Intervalo>();
+    this.tarListaIntervalos = new ArrayList<Intervalo>();
     this.getProyectoSuperior().añadirTarea(this);
   }
 
   //Conseguimos la instancia única del reloj
   public Reloj tGetInstance() {
-    return tReloj.getInstance();
+    return tarReloj.getInstance();
   }
 
   //Conseguimos el tiempo total de tarea. al sumar los tiempos de sus intervalos
   @Override
   public int setTiempoTotal() {
     int totalTime = 0;
-    for (int i = 0; i < tListaIntervalos.size(); i++) {
-      totalTime += tListaIntervalos.get(i).iGetTiempoTotal();
+    for (int i = 0; i < tarListaIntervalos.size(); i++) {
+      totalTime += tarListaIntervalos.get(i).iGetTiempoTotal();
     }
 
     assert (totalTime >= getTiempoTotal()): "El tiempo total futuro es inferior al tiempo total anterior.";
@@ -47,11 +47,11 @@ public class Tarea extends Actividad {
   }
 
   public void añadirIntervalo(Intervalo i) {
-    this.tListaIntervalos.add(i);
+    this.tarListaIntervalos.add(i);
   }
 
   public void eliminarIntervalo(Intervalo i) {
-    this.tListaIntervalos.remove(i);
+    this.tarListaIntervalos.remove(i);
   }
 
   //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
@@ -65,7 +65,7 @@ public class Tarea extends Actividad {
 
   //Finalizamos la actividad
   public void stop() {
-    Intervalo i = this.tListaIntervalos.get(this.tListaIntervalos.size() - 1);
+    Intervalo i = this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1);
     tGetInstance().deleteObserver(i);
   }
 
@@ -79,8 +79,8 @@ public class Tarea extends Actividad {
       jo.put("finalDate", getFechaFinal());
       jo.put("duration", getTiempoTotal());
       JSONArray ja = new JSONArray();
-      for (int i = 0; i < tListaIntervalos.size(); i++) {
-        ja.put(tListaIntervalos.get(i).getJSON());
+      for (int i = 0; i < tarListaIntervalos.size(); i++) {
+        ja.put(tarListaIntervalos.get(i).getJSON());
       }
       jo.put("intervals", ja);
 

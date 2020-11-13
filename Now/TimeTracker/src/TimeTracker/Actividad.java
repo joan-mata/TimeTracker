@@ -15,59 +15,60 @@ import org.slf4j.LoggerFactory;
 /*Clase Actividad,
 Su función es generalizar dos subclases (Proyecto y Tarea) */
 public abstract class Actividad {
-  private String aNombre;
-  private LocalDateTime aLdtFechaInicial;
-  private LocalDateTime aLdtFechaFinal;
-  private String aFechaInicial;
-  private String aFechaFinal;
-  private int aTiempoTotal;
-  private Proyecto aProyectoSuperior;
-  private String aClase;
+  private String actNombre;
+  private LocalDateTime actLdtFechaInicial;
+  private LocalDateTime actLdtFechaFinal;
+  private String actFechaInicial;
+  private String actFechaFinal;
+  private int actTiempoTotal;
+  private Proyecto actProyectoSuperior;
+  private String actClase;
   
   Logger logger = LoggerFactory.getLogger(Actividad.class);
 
   public Actividad(String name, Proyecto p, String clase) { //constructor
-    this.aNombre = name;
-    this.aTiempoTotal = 0;
-    this.aProyectoSuperior = p;
-    this.aClase = clase;
+    this.actNombre = name;
+    this.actTiempoTotal = 0;
+    this.actProyectoSuperior = p;
+    this.actClase = clase;
   }
 
   //GETTERS
   public String getNombre() {
-    return this.aNombre;
+    return this.actNombre;
   }
 
   public String getFechaInicial() {
-    return this.aFechaInicial;
+    return this.actFechaInicial;
   }
 
   public String getFechaFinal() {
-    return this.aFechaFinal;
+    return this.actFechaFinal;
   }
 
   public int getTiempoTotal() {
-    return this.aTiempoTotal;
+
+    return this.actTiempoTotal;
   }
 
   public Proyecto getProyectoSuperior() {
-    return this.aProyectoSuperior;
+    return this.actProyectoSuperior;
   }
 
   //SETTERS
   public void setNombre(String name) {
-    this.aNombre = name;
+    this.actNombre = name;
   }
 
   //Asignas la fecha inicial de la actividad y de sus proyectos superiores si los tuviera
   public void setFechaInicial(LocalDateTime start) {
-    if (this.aLdtFechaInicial == null) {
-      this.aLdtFechaInicial = start;
+    if (this. == null) {
+      this.actLdtFechaInicial = start;
       //Le damos el formato deseado al String fecha_inicial
-      aFechaInicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      actFechaInicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
-    if (aProyectoSuperior != null) {
-      aProyectoSuperior.setFechaInicial(start);
+    if (actProyectoSuperior != null) {
+      actProyectoSuperior.setFechaInicial(start);
     }
   }
 
@@ -75,19 +76,19 @@ public abstract class Actividad {
   Tambien de us proyectos superiores si los tuviera*/
   public void setFechaFinal(LocalDateTime finish) {
   	//Precondiciones
-  	assert (finish > aLdtFechaInicial): "El tiempo final es inferior al tiempo inicial.";
+  	assert (finish > actLdtFechaInicial): "El tiempo final es inferior al tiempo inicial.";
 
-    aLdtFechaFinal = finish;
-    aFechaFinal = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    actLdtFechaFinal = finish;
+    actFechaFinal = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-    this.aTiempoTotal = setTiempoTotal();
+    this.actTiempoTotal = setTiempoTotal();
 
-    assert (aTiempoTotal > 0): "El tiempo total es inferior o igual a 0.";
-    assert (aTiempoTotal%2 == 0): "El tiempo total es impar.";
+    assert (actTiempoTotal > 0): "El tiempo total es inferior o igual a 0.";
+    assert (actTiempoTotal%2 == 0): "El tiempo total es impar.";
 
     //Actualizamos el tiempo final y total del proyecto superior
-    if (aProyectoSuperior != null) {
-      this.aProyectoSuperior.setFechaFinal(finish);
+    if (actProyectoSuperior != null) {
+      this.actProyectoSuperior.setFechaFinal(finish);
     }
   }
 
@@ -97,9 +98,9 @@ public abstract class Actividad {
   //muestra por pantalla los datos de la actividad
   public void aMostrar() {
     System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Actividad:",
-        aNombre, aFechaInicial, "", aFechaFinal, "", aTiempoTotal);
-    if (aProyectoSuperior != null) {
-      aProyectoSuperior.aMostrar();
+        actNombre, actFechaInicial, "", actFechaFinal, "", actTiempoTotal);
+    if (actProyectoSuperior != null) {
+      actProyectoSuperior.aMostrar();
     }
   }
 
