@@ -6,6 +6,12 @@ import java.lang.Object;
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 /*Clase Actividad,
 Su función es generalizar dos subclases (Proyecto y Tarea) */
 public abstract class Actividad {
@@ -17,6 +23,8 @@ public abstract class Actividad {
   private int aTiempoTotal;
   private Proyecto aProyectoSuperior;
   private String aClase;
+  
+  Logger logger = LoggerFactory.getLogger(Actividad.class);
 
   public Actividad(String name, Proyecto p, String clase) { //constructor
     this.aNombre = name;
