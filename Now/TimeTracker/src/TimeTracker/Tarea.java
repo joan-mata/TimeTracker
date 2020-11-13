@@ -8,12 +8,19 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 
-/*Clase Tarea, extendida de Actividad
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+ /*Clase Tarea, extendida de Actividad
 Su función es dividir una clase proyecto en partes más pequeñas, y con ello más sencillas de trabajar.
 Tendrá una lista de los intervalos que se han realizado durante la tarea*/
 public class Tarea extends Actividad {
   private ArrayList<Intervalo> tListaIntervalos;
   private Reloj tReloj;
+  
+  Logger logger = LoggerFactory.getLogger(Tarea.class);
 
   public Tarea(String name, Proyecto p) {
     super(name, p, "Tarea");
