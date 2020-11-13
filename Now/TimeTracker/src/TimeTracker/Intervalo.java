@@ -8,6 +8,11 @@ import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 import java.util.Observable;
 import java.util.Observer;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+  
 /*Clase Intervalo, tratada como observer
 Trata de dividir una tarea en los lapsos de tiempos utilizados para finalizarla*/
 public class Intervalo implements Observer {
@@ -18,6 +23,8 @@ public class Intervalo implements Observer {
   private int iTiempoTotal;
   private Tarea iTareaSuperior;
   private String iClase = "intervalo";
+  
+  Logger logger = LoggerFactory.getLogger(Intervalo.class);
 
   public Intervalo(Tarea t, LocalDateTime start) {
     this.iTareaSuperior = t;
