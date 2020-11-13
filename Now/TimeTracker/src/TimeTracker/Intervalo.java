@@ -30,8 +30,7 @@ public class Intervalo implements Observer {
     this.iTareaSuperior = t;
     this.iLdtFechaInicial = start;
     this.iFechaInicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-    System.out.println(start);
-    //" " + LocalDateTime.now()
+    System.out.println(start + " " + LocalDateTime.now());
   }
 
   //GETTERS
@@ -51,24 +50,35 @@ public class Intervalo implements Observer {
     return this.iTiempoTotal;
   }
 
+//TODO Borrar!!
+/*
   //SETTERS
   public void iSetFechaInicial(LocalDateTime start) {
     if (this.iLdtFechaInicial == null) {
       this.iLdtFechaInicial = start;
-     
     }
-  }
+  }*/
 
-  //Asigna la fecha final del intervalo y calcula el teimpo total
+  //Asigna la fecha final del intervalo y calcula el tiempo total
   public void iSetFechaFinal(LocalDateTime finish) {
+  	//Precondiciones
+  	assert (finish > iLdtFechaInicial): "El tiempo final es inferior al tiempo inicial.";
+
+
     iLdtFechaFinal = finish;
     iFechaFinal = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
     //Calcular tiempo total
     int iSegundosInicial = iLdtFechaInicial.getSecond();
     LocalDateTime total = iLdtFechaFinal.minusSeconds(iSegundosInicial);
+
+    assert (total.getSecond() >= iTiempoTotal): "El tiempo total futuro es inferior al tiempo total anterior.";
     this.iTiempoTotal = total.getSecond();
     this.iTareaSuperior.setFechaFinal(finish);
+
+    //Postcondiciones
+    assert (iTiempoTotal > 0): "El tiempo total es inferior o igual a 0.";
+    assert (iTiempoTotal%2 == 0): "El tiempo total es impar.";
 
   }
 
@@ -88,7 +98,7 @@ public class Intervalo implements Observer {
     }catch (JSONException e){
 
     }
-      return jo;
+    return jo;
   }
   
 
