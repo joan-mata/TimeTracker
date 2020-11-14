@@ -1,12 +1,8 @@
-package TimeTracker;
+package timetracker;
 
 import java.lang.Thread;
 import java.time.LocalDateTime;
 import java.util.Observable;
-import java.util.Timer;
-import java.util.TimerTask;
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +32,7 @@ public class Reloj extends Observable implements Runnable {
     return uniqueInstance;
   }
 
-  public void Notify() {
+  public void notificar() {
     LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
     setChanged();
     notifyObservers(hora); //Notifica a los observadores y les envia el objeto del reloj.
@@ -49,7 +45,7 @@ public class Reloj extends Observable implements Runnable {
     while (!Thread.interrupted()) {
       try {
         Thread.sleep(1000 * periodo);
-        Notify();
+        notificar();
         //System.out.println(LocalDateTime.now());
       } catch (InterruptedException e) {
         e.printStackTrace();

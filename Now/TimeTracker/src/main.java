@@ -1,29 +1,37 @@
-import TimeTracker.*;
-
-import TimeTracker.Reloj;
-import org.json.*;
+import java.io.IOException;
 import java.lang.Thread;
-import java.util.Scanner;
-import java.lang.Object;
-import java.lang.Exception;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
-import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+import org.json.JSONObject;
+import timetracker.*;
 
-//import classes.java;
+public class Main {
+  private static Reloj Reloj;
 
-public class main {
-  private static Reloj m1Reloj;
-
-  /*Función que realiza el código*/
   public static void main(String[] args) {
     Scanner entrada = new Scanner(System.in); //Para introducir elementos por terminal
-    Scanner entrada2 = new Scanner(System.in); //Para introducir elementos por terminal
-
 
     System.out.println("¿Qué test quieres realizar? \n" + "(exit = -1)");
     int test = entrada.nextInt();
 
+    Proyecto root = new Proyecto("Root", null);
+    Proyecto softwareDesing = new Proyecto("Software design", root);
+    Proyecto softwareTesting = new Proyecto("Software testing", root);
+    Proyecto databases = new Proyecto("Databases", root);
+    Proyecto problems = new Proyecto("Problems", softwareDesing);
+    Proyecto projectTimeTracker = new Proyecto("Project time tracker", softwareDesing);
+
+    Tarea transportation = new Tarea("transportation", root);
+    Tarea firstList = new Tarea("first list", problems);
+    Tarea secondList = new Tarea("second list", problems);
+    Tarea readHandout = new Tarea("read handout", projectTimeTracker);
+    Tarea firstMilestone = new Tarea("first milestone", projectTimeTracker);
+
+    Thread time = new Thread(Reloj.getInstance());
+    time.start();
 
     while (test != -1) {
       switch (test) {
@@ -41,53 +49,36 @@ public class main {
           System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "", "",
               "Fecha Inicial", "", "Fecha Final", "", "Duración");
 
-          Thread time = new Thread(m1Reloj.getInstance());
-          time.start();
-
-          Proyecto m1PRoot = new Proyecto("Root", null);
-          Proyecto m1PSoftwareDesing = new Proyecto("Software design", m1PRoot);
-          Proyecto m1PSoftwareTesting = new Proyecto("Software testing", m1PRoot);
-          Proyecto m1PDatabases = new Proyecto("Databases", m1PRoot);
-          Proyecto m1PProblems = new Proyecto("Problems", m1PSoftwareDesing);
-          Proyecto m1PProjectTimeTracker = new Proyecto("Project time tracker", m1PSoftwareDesing);
-
-          Tarea m1TTransportation = new Tarea("transportation", m1PRoot);
-          Tarea m1TFirstList = new Tarea("first list", m1PProblems);
-          Tarea m1TSecondList = new Tarea("second list", m1PProblems);
-          Tarea m1TReadHandout = new Tarea("read handout", m1PProjectTimeTracker);
-          Tarea m1TFirstMilestone = new Tarea("first milestone", m1PProjectTimeTracker);
-
           System.out.println("Start Test\n");
           System.out.println("Transportation starts:\n");
-          //CODIGO
-          m1TTransportation.start();
+          transportation.start();
           sleep(4);
-          m1TTransportation.stop();
+          transportation.stop();
           System.out.println("Transportation stop\n");
           sleep(2);
           System.out.println("First list starts\n");
-          m1TFirstList.start();
+          firstList.start();
           sleep(6);
           System.out.println("Second list start\n");
-          m1TSecondList.start();
+          secondList.start();
           sleep(4);
-          m1TFirstList.stop();
+          firstList.stop();
           System.out.println("First list stop\n");
           sleep(2);
-          m1TSecondList.stop();
+          secondList.stop();
           System.out.println("Second list stop\n");
           sleep(2);
           System.out.println("Transportation starts\n");
-          m1TTransportation.start();
+          transportation.start();
           sleep(4);
-          m1TTransportation.stop();
+          transportation.stop();
           System.out.println("Transportation stop\n");
 
-          JSONObject json = m1PRoot.getJSON();
+          JSONObject json = root.getJson();
           String jsonString = json.toString();
           Path path = Paths.get("json.txt");
           try {
-              Files.writeString(path, jsonString, StandardCharsets.UTF_8);
+            Files.writeString(path, jsonString, StandardCharsets.UTF_8);
           } catch (IOException e) {
             e.printStackTrace();
           }

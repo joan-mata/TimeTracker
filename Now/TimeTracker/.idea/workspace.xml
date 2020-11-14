@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa6b79ea-1ff8-44ce-a880-e2a70e06ed1a" name="Default Changelist" comment="" />
+    <list default="true" id="fa6b79ea-1ff8-44ce-a880-e2a70e06ed1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/TimeTracker.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/TimeTracker.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/java_json.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_slf4j_slf4j_ext_1_7_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Old Version/Old Version.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeTracker/TimeTracker/Actividad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeTracker/TimeTracker/Intervalo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeTracker/TimeTracker/Proyecto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeTracker/TimeTracker/Reloj.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeTracker/TimeTracker/Tarea.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeTracker/logs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeTracker/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Actividad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Actividad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Intervalo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Intervalo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Proyecto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Proyecto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Reloj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Reloj.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Tarea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -20,17 +67,22 @@
     </option>
   </component>
   <component name="ProjectId" id="1jPgfs5GFvQbmeAvXIFlLb6SHkc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33103448" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -44,18 +96,16 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main" />
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="TimeTracker" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -68,47 +118,77 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="196" y="23" key="#Project_Structure" timestamp="1604926858779">
-      <screen x="0" y="23" width="1440" height="800" />
+    <state x="196" y="0" key="#Project_Structure" timestamp="1605376257407">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="196" y="0" key="#Project_Structure/0.0.1440.900@0.0.1440.900" timestamp="1605376257407" />
     <state x="196" y="23" key="#Project_Structure/0.23.1440.800/-480.-1057.1920.1057/1440.-1061.900.1417@0.23.1440.800" timestamp="1604926858779" />
+    <state x="184" y="25" width="1071" height="800" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605380479651">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="25" width="1071" height="800" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1605380479651" />
+    <state x="0" y="0" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1605376847820">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.ide.macro.MacrosDialog/0.0.1440.900@0.0.1440.900" timestamp="1605376847820" />
     <state x="1703" y="-651" key="#com.intellij.ide.util.MemberChooser" timestamp="1603876430608">
       <screen x="1440" y="-1084" width="900" height="1440" />
     </state>
     <state x="1703" y="-651" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/-480.-1080.1920.1080/1440.-1084.900.1440@1440.-1084.900.1440" timestamp="1603876430608" />
+    <state x="0" y="0" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1605374772501">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1605374772501" />
     <state x="-167" y="-896" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1604859435323">
       <screen x="-480" y="-1057" width="1920" height="1057" />
     </state>
     <state x="-167" y="-896" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.23.1440.877/1440.-877.1440.805/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604859435323" />
-    <state x="242" y="-649" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604859565285">
-      <screen x="-480" y="-1057" width="1920" height="1057" />
+    <state x="542" y="347" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605375575585">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="2162" y="136" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900/1440.-281.1920.1080@1440.-281.1920.1080" timestamp="1603712582189" />
+    <state x="542" y="347" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900@0.0.1440.900" timestamp="1605375575585" />
     <state x="242" y="-649" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.877/1440.-877.1440.805/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604859565285" />
-    <state width="1878" height="862" key="GridCell.Tab.0.bottom" timestamp="1604930389960">
-      <screen x="-480" y="-1080" width="1920" height="1080" />
+    <state width="1398" height="259" key="GridCell.Tab.0.bottom" timestamp="1605381020241">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="862" key="GridCell.Tab.0.bottom/0.0.1440.900/-480.-1080.1920.1080/1440.-1084.900.1440@-480.-1080.1920.1080" timestamp="1604930389960" />
     <state width="1878" height="413" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604856884324" />
+    <state width="1398" height="259" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1605381020241" />
     <state width="1878" height="413" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-877.1440.807/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604862228476" />
-    <state width="1878" height="862" key="GridCell.Tab.0.center" timestamp="1604930389958">
-      <screen x="-480" y="-1080" width="1920" height="1080" />
+    <state width="1398" height="259" key="GridCell.Tab.0.center" timestamp="1605381020239">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="862" key="GridCell.Tab.0.center/0.0.1440.900/-480.-1080.1920.1080/1440.-1084.900.1440@-480.-1080.1920.1080" timestamp="1604930389958" />
     <state width="1878" height="413" key="GridCell.Tab.0.center/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604856884322" />
+    <state width="1398" height="259" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1605381020239" />
     <state width="1878" height="413" key="GridCell.Tab.0.center/0.23.1440.877/1440.-877.1440.807/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604862228474" />
-    <state width="1878" height="862" key="GridCell.Tab.0.left" timestamp="1604930389957">
-      <screen x="-480" y="-1080" width="1920" height="1080" />
+    <state width="1398" height="259" key="GridCell.Tab.0.left" timestamp="1605381020238">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="862" key="GridCell.Tab.0.left/0.0.1440.900/-480.-1080.1920.1080/1440.-1084.900.1440@-480.-1080.1920.1080" timestamp="1604930389957" />
     <state width="1878" height="413" key="GridCell.Tab.0.left/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604856884319" />
+    <state width="1398" height="259" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1605381020238" />
     <state width="1878" height="413" key="GridCell.Tab.0.left/0.23.1440.877/1440.-877.1440.807/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604862228473" />
-    <state width="1878" height="862" key="GridCell.Tab.0.right" timestamp="1604930389959">
-      <screen x="-480" y="-1080" width="1920" height="1080" />
+    <state width="1398" height="259" key="GridCell.Tab.0.right" timestamp="1605381020240">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="862" key="GridCell.Tab.0.right/0.0.1440.900/-480.-1080.1920.1080/1440.-1084.900.1440@-480.-1080.1920.1080" timestamp="1604930389959" />
     <state width="1878" height="413" key="GridCell.Tab.0.right/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604856884323" />
+    <state width="1398" height="259" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1605381020240" />
     <state width="1878" height="413" key="GridCell.Tab.0.right/0.23.1440.877/1440.-877.1440.807/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604862228475" />
     <state width="1878" height="376" key="GridCell.Tab.1.bottom" timestamp="1604856681430">
       <screen x="-480" y="-1080" width="1920" height="1080" />
@@ -126,33 +206,48 @@
       <screen x="-480" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1878" height="376" key="GridCell.Tab.1.right/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604856681429" />
-    <state x="181" y="23" key="SettingsEditor" timestamp="1604929001804">
-      <screen x="0" y="23" width="1440" height="803" />
+    <state x="308" y="100" width="1024" height="800" key="SettingsEditor" timestamp="1605379705079">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1440" y="-845" key="SettingsEditor/0.0.1440.900/-480.-1080.1920.1080/1440.-1084.900.1440@1440.-1084.900.1440" timestamp="1603876458301" />
     <state x="1909" y="-102" key="SettingsEditor/0.0.1440.900/1440.-281.1920.1080@1440.-281.1920.1080" timestamp="1603712798659" />
     <state x="-43" y="-961" key="SettingsEditor/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604858663928" />
+    <state x="308" y="100" width="1024" height="800" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605379705079" />
     <state x="24" y="23" key="SettingsEditor/0.23.1440.800/-480.-1057.1920.1057/1440.-1061.900.1417@0.23.1440.800" timestamp="1604927489956" />
     <state x="181" y="23" key="SettingsEditor/0.23.1440.803/-480.-1057.1920.1057/1440.-1061.900.1417@0.23.1440.803" timestamp="1604929001804" />
     <state x="56" y="-837" key="SettingsEditor/0.23.1440.803/1440.-1061.900.1417/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604165535980" />
     <state x="1909" y="-102" key="SettingsEditor/0.23.1440.877/1440.-281.1920.1080@1440.-281.1920.1080" timestamp="1603712112327" />
     <state x="-450" y="-1036" key="SettingsEditor/0.23.1440.877/1440.-877.1440.805/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604859488806" />
     <state x="-43" y="-961" key="SettingsEditor/0.23.1440.877/1440.-877.1440.877/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604858790829" />
-    <state x="528" y="392" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604928671090">
-      <screen x="0" y="23" width="1440" height="803" />
+    <state x="0" y="0" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1605376108271">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="224" y="-583" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604858595170" />
+    <state x="0" y="0" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1440.900@0.0.1440.900" timestamp="1605376108271" />
     <state x="528" y="391" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1440.800/-480.-1057.1920.1057/1440.-1061.900.1417@0.23.1440.800" timestamp="1604926849654" />
     <state x="528" y="392" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1440.803/-480.-1057.1920.1057/1440.-1061.900.1417@0.23.1440.803" timestamp="1604928671090" />
     <state x="224" y="-571" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1440.803/1440.-1061.900.1417/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604165521165" />
     <state x="2144" y="216" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1440.877/1440.-281.1920.1080@1440.-281.1920.1080" timestamp="1603711571677" />
+    <state x="528" y="414" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.25.1440.800@0.25.1440.800" timestamp="1605375977658" />
+    <state x="521" y="368" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605375554145">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="521" y="368" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1605375554145" />
     <state x="46" y="-804" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1604854803664">
       <screen x="-480" y="-1080" width="1920" height="1080" />
     </state>
     <state x="46" y="-804" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604854803664" />
-    <state x="145" y="-822" width="670" height="676" key="search.everywhere.popup" timestamp="1604858849309">
-      <screen x="-480" y="-1057" width="1920" height="1057" />
+    <state x="421" y="82" width="597" height="735" key="find.popup" timestamp="1605379151984">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="421" y="82" width="597" height="735" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1605379151984" />
+    <state x="469" y="200" width="670" height="576" key="search.everywhere.popup" timestamp="1605374872181">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="469" y="200" width="670" height="576" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1605374872181" />
     <state x="145" y="-822" width="670" height="676" key="search.everywhere.popup/0.23.1440.877/1440.-877.1440.805/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604858849309" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TimeTracker$Main.ic" NAME="Main Coverage Results" MODIFIED="1605376988920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

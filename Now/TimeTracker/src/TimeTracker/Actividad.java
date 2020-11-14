@@ -1,13 +1,8 @@
-package TimeTracker;
+package timetracker;
 
-
-import org.json.*;
-import java.lang.Object;
-import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
-
-
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +57,7 @@ public abstract class Actividad {
 
   //Asignas la fecha inicial de la actividad y de sus proyectos superiores si los tuviera
   public void setFechaInicial(LocalDateTime start) {
-    if (this. == null) {
+    if (this.actLdtFechaInicial == null) {
       this.actLdtFechaInicial = start;
       //Le damos el formato deseado al String fecha_inicial
       actFechaInicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -75,16 +70,16 @@ public abstract class Actividad {
   /*Asignas la fecha final y el tiempo total de la actividad
   Tambien de us proyectos superiores si los tuviera*/
   public void setFechaFinal(LocalDateTime finish) {
-  	//Precondiciones
-  	assert (finish > actLdtFechaInicial): "El tiempo final es inferior al tiempo inicial.";
+
+    assert (finish.isAfter(actLdtFechaInicial)) : "El tiempo final es inferior al tiempo inicial.";
 
     actLdtFechaFinal = finish;
     actFechaFinal = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
     this.actTiempoTotal = setTiempoTotal();
 
-    assert (actTiempoTotal > 0): "El tiempo total es inferior o igual a 0.";
-    assert (actTiempoTotal%2 == 0): "El tiempo total es impar.";
+    assert (actTiempoTotal > 0) : "El tiempo total es inferior o igual a 0.";
+    assert (actTiempoTotal % 2 == 0) : "El tiempo total es impar.";
 
     //Actualizamos el tiempo final y total del proyecto superior
     if (actProyectoSuperior != null) {
@@ -93,17 +88,17 @@ public abstract class Actividad {
   }
 
   //Calcula el tiempo total, cada subtarea a su manera
-  abstract public int setTiempoTotal();
+  public abstract int setTiempoTotal();
 
   //muestra por pantalla los datos de la actividad
-  public void aMostrar() {
+  public void actMostrar() {
     System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Actividad:",
         actNombre, actFechaInicial, "", actFechaFinal, "", actTiempoTotal);
     if (actProyectoSuperior != null) {
-      actProyectoSuperior.aMostrar();
+      actProyectoSuperior.actMostrar();
     }
   }
 
-  abstract public JSONObject getJSON();
+  public abstract JSONObject getJson();
 }
 

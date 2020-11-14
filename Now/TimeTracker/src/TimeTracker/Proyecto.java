@@ -1,10 +1,9 @@
-package TimeTracker;
+package timetracker;
 
-import org.json.*;
-import java.lang.Object;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
-
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,17 +24,17 @@ public class Proyecto extends Actividad {
     this.proListaTareas = new ArrayList<Tarea>();
     this.proListaProyectos = new ArrayList<Proyecto>();
     if (this.getProyectoSuperior() != null) {
-      this.getProyectoSuperior().añadirProyecto(this);
+      this.getProyectoSuperior().anadirProyecto(this);
     }
   }
 
 
   //FUNCIONES
-  public void añadirTarea(Tarea t) {
+  public void anadirTarea(Tarea t) {
     proListaTareas.add(t);
   }
 
-  public void añadirProyecto(Proyecto p) {
+  public void anadirProyecto(Proyecto p) {
     proListaProyectos.add(p);
   }
 
@@ -58,13 +57,14 @@ public class Proyecto extends Actividad {
       totalTime += proListaProyectos.get(i).setTiempoTotal();
     }
 
-    assert (totalTime >= getTiempoTotal()): "El tiempo total futuro es inferior al tiempo total anterior.";
+    assert (totalTime >= getTiempoTotal()) :
+        "El tiempo total futuro es inferior al tiempo total anterior.";
 
     return totalTime;
   }
 
   @Override
-  public JSONObject getJSON(){
+  public JSONObject getJson() {
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
@@ -74,14 +74,14 @@ public class Proyecto extends Actividad {
       jo.put("duration", getTiempoTotal());
       JSONArray ja = new JSONArray();
       for (int i = 0; i < proListaProyectos.size(); i++) {
-        ja.put(proListaProyectos.get(i).getJSON());
+        ja.put(proListaProyectos.get(i).getJson());
       }
       for (int i = 0; i < proListaTareas.size(); i++) {
-        ja.put(proListaTareas.get(i).getJSON());
+        ja.put(proListaTareas.get(i).getJson());
       }
       jo.put("activities", ja);
     } catch (JSONException e) {
-
+      e.printStackTrace();
     }
     return jo;
   }
