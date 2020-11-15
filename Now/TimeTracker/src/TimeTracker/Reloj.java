@@ -38,15 +38,13 @@ public class Reloj extends Observable implements Runnable {
     notifyObservers(hora); //Notifica a los observadores y les envia el objeto del reloj.
   }
 
-
   //Función que actualiza la hora y notifica a los observadores.
   @Override
-  public void run() { //Declaración de la función
+  public void run() {
     while (!Thread.interrupted()) {
       try {
         Thread.sleep(1000 * periodo);
         notificar();
-        //System.out.println(LocalDateTime.now());
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

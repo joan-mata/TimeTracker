@@ -29,45 +29,65 @@ public class Intervalo implements Observer {
     this.intTareaSuperior = t;
     this.intLdtFechaInicial = start;
     this.intFechaInicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    this.intTiempoTotal = -100; //un valor muy pequeño para trabajar con él
     System.out.println(start + " " + LocalDateTime.now());
+
+    assert intInvariant(): "Invariante";
+  }
+
+  protected boolean intInvariant() {
+    return intLdtFechaInicial != null &&
+      (intTiempoTotal == -100 || (intTiempoTotal > 0 && intTiempoTotal % 2 == 0));
   }
 
   public int intGetTiempoTotal() {
+    assert intInvariant(): "Invariante";
+    this.intSetTiempoTotal();
+    assert intInvariant(): "Invariante";
     return this.intTiempoTotal;
   }
 
   //Asigna la fecha final del intervalo y calcula el tiempo total
   public void intSetFechaFinal(LocalDateTime finish) {
+    assert intInvariant(): "Invariante";
     assert (finish.isAfter(intLdtFechaInicial)) :
         "El tiempo final es inferior al tiempo inicial.";
-
 
     intLdtFechaFinal = finish;
     intFechaFinal = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-    //Calcular tiempo total
+    this.intSetTiempoTotal();
+    this.intTareaSuperior.setFechaFinal(finish);
+
+    assert intInvariant(): "Invariante";
+  }
+
+  public void intSetTiempoTotal() {
+    assert intInvariant(): "Invariante";
     int intSegundosInicial = intLdtFechaInicial.getSecond();
     LocalDateTime total = intLdtFechaFinal.minusSeconds(intSegundosInicial);
 
     assert (total.getSecond() >= intTiempoTotal) :
         "El tiempo total futuro es inferior al tiempo total anterior.";
     this.intTiempoTotal = total.getSecond();
-    this.intTareaSuperior.setFechaFinal(finish);
-
-    //Postcondiciones
-    assert (intTiempoTotal > 0) : "El tiempo total es inferior o igual a 0.";
-    assert (intTiempoTotal % 2 == 0) : "El tiempo total es impar.";
+    assert intInvariant(): "Invariante";
 
   }
 
   //muestra las variables del intervalo
   public void intMostrar() {
+    assert intInvariant(): "Invariante";
+
     System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Interval:", "",
         intFechaInicial, "", intFechaFinal, "", intTiempoTotal);
     intTareaSuperior.actMostrar();
+
+    assert intInvariant(): "Invariante";
   }
 
   public JSONObject getJson() {
+    assert intInvariant(): "Invariante";
+
     JSONObject jo = new JSONObject();
     try {
       jo.put("class", intClase);
@@ -77,14 +97,19 @@ public class Intervalo implements Observer {
     } catch (JSONException e) {
       e.printStackTrace();
     }
+
+    assert intInvariant(): "Invariante";
     return jo;
   }
-  
 
   //Sobreescribe los datos para que los pueda ver el observer
   @Override
   public void update(Observable o, Object arg) {
+    assert intInvariant(): "Invariante";
+
     this.intSetFechaFinal((LocalDateTime) arg);
     this.intMostrar();
+
+    assert intInvariant(): "Invariante";
   }
 }

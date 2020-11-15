@@ -23,16 +23,23 @@ public class Tarea extends Actividad {
     super(name, p, "Tarea");
     this.tarListaIntervalos = new ArrayList<Intervalo>();
     this.getProyectoSuperior().anadirTarea(this);
+    assert tarInvariant(): "Invariante";
+  }
+
+  protected boolean tarInvariant() {
+    return actInvariant() && this.getProyectoSuperior() != null;
   }
 
   //Conseguimos la instancia única del reloj
   public Reloj tarGetInstance() {
+    assert tarInvariant(): "Invariante";
     return tarReloj.getInstance();
   }
 
   //Conseguimos el tiempo total de tarea. al sumar los tiempos de sus intervalos
   @Override
   public int setTiempoTotal() {
+    assert tarInvariant(): "Invariante";
     int totalTime = 0;
     for (int i = 0; i < tarListaIntervalos.size(); i++) {
       totalTime += tarListaIntervalos.get(i).intGetTiempoTotal();
@@ -40,35 +47,40 @@ public class Tarea extends Actividad {
 
     assert (totalTime >= getTiempoTotal()) :
         "El tiempo total futuro es inferior al tiempo total anterior.";
-
+    assert tarInvariant(): "Invariante";
     return totalTime;
   }
 
   public void anadirIntervalo(Intervalo i) {
-    this.tarListaIntervalos.add(i);
-  }
 
-  public void eliminarIntervalo(Intervalo i) {
-    this.tarListaIntervalos.remove(i);
+    assert tarInvariant(): "Invariante";
+    this.tarListaIntervalos.add(i);
+    assert tarInvariant(): "Invariante";
+
   }
 
   //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
   public void start() {
+    assert tarInvariant(): "Invariante";
     LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
     Intervalo i = new Intervalo(this, hora);
     setFechaInicial(hora); //TODO Que lo haga directamente intervalo llamando a iTareaSuperior
     anadirIntervalo(i);
     tarGetInstance().addObserver(i);
+    assert tarInvariant(): "Invariante";
   }
 
   //Finalizamos la actividad
   public void stop() {
+    assert tarInvariant(): "Invariante";
     Intervalo i = this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1);
     tarGetInstance().deleteObserver(i);
+    assert tarInvariant(): "Invariante";
   }
 
   @Override
   public JSONObject getJson() {
+    assert tarInvariant(): "Invariante";
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
@@ -85,6 +97,7 @@ public class Tarea extends Actividad {
     } catch (JSONException e) {
       e.printStackTrace();
     }
+    assert tarInvariant(): "Invariante";
     return jo;
   }
 }

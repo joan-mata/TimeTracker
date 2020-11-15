@@ -26,29 +26,30 @@ public class Proyecto extends Actividad {
     if (this.getProyectoSuperior() != null) {
       this.getProyectoSuperior().anadirProyecto(this);
     }
+
+    assert actInvariant(): "Invariante";
   }
 
 
   //FUNCIONES
   public void anadirTarea(Tarea t) {
+    assert actInvariant(): "Invariante";
     proListaTareas.add(t);
+    assert actInvariant(): "Invariante";
   }
 
   public void anadirProyecto(Proyecto p) {
+    assert actInvariant(): "Invariante";
     proListaProyectos.add(p);
-  }
+    assert actInvariant(): "Invariante";
 
-  public void eliminarTarea(Tarea t) {
-    proListaTareas.remove(t);
-  }
-
-  public void eliminarProyect(Proyecto p) {
-    proListaProyectos.remove(p);
   }
 
   //Calcula el tiempo total del proyecto
   @Override
-  public int setTiempoTotal() { //MAL - Demasiada memoria
+  public int setTiempoTotal() {
+    assert actInvariant(): "Invariante";
+
     int totalTime = 0;
     for (int i = 0; i < proListaTareas.size(); i++) {
       totalTime += proListaTareas.get(i).setTiempoTotal();
@@ -60,11 +61,13 @@ public class Proyecto extends Actividad {
     assert (totalTime >= getTiempoTotal()) :
         "El tiempo total futuro es inferior al tiempo total anterior.";
 
+    assert actInvariant(): "Invariante";
     return totalTime;
   }
 
   @Override
   public JSONObject getJson() {
+    assert actInvariant(): "Invariante";
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
@@ -83,6 +86,7 @@ public class Proyecto extends Actividad {
     } catch (JSONException e) {
       e.printStackTrace();
     }
+    assert actInvariant(): "Invariante";
     return jo;
   }
   

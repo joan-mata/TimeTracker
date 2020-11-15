@@ -17,5 +17,14 @@
     <orderEntry type="library" exported="" name="org.slf4j:slf4j-ext:1.7.30" level="project" />
     <orderEntry type="library" exported="" name="ch.qos.logback:logback-core:1.2.3" level="project" />
     <orderEntry type="library" exported="" name="ch.qos.logback:logback-classic:1.2.3" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

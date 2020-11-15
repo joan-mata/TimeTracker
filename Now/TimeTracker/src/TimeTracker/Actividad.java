@@ -21,42 +21,52 @@ public abstract class Actividad {
   
   Logger logger = LoggerFactory.getLogger(Actividad.class);
 
-  public Actividad(String name, Proyecto p, String clase) { //constructor
+  public Actividad(String name, Proyecto p, String clase) {
     this.actNombre = name;
-    this.actTiempoTotal = 0;
     this.actProyectoSuperior = p;
+    this.actTiempoTotal = -100; //un valor muy pequeño para trabajar con él
     this.actClase = clase;
+
+    assert actInvariant(): "Invariante";
   }
 
-  //GETTERS
+  protected boolean actInvariant() {
+    return actTiempoTotal == -100 || (actTiempoTotal > 0 && actTiempoTotal % 2 == 0);
+  }
+
   public String getNombre() {
+    assert actInvariant(): "Invariante";
     return this.actNombre;
   }
 
   public String getFechaInicial() {
+
+    assert actInvariant(): "Invariante";
     return this.actFechaInicial;
   }
 
   public String getFechaFinal() {
+
+    assert actInvariant(): "Invariante";
     return this.actFechaFinal;
   }
 
   public int getTiempoTotal() {
 
+    assert actInvariant(): "Invariante";
     return this.actTiempoTotal;
   }
 
   public Proyecto getProyectoSuperior() {
-    return this.actProyectoSuperior;
-  }
 
-  //SETTERS
-  public void setNombre(String name) {
-    this.actNombre = name;
+    assert actInvariant(): "Invariante";
+    return this.actProyectoSuperior;
   }
 
   //Asignas la fecha inicial de la actividad y de sus proyectos superiores si los tuviera
   public void setFechaInicial(LocalDateTime start) {
+    assert actInvariant(): "Invariante";
+
     if (this.actLdtFechaInicial == null) {
       this.actLdtFechaInicial = start;
       //Le damos el formato deseado al String fecha_inicial
@@ -65,11 +75,14 @@ public abstract class Actividad {
     if (actProyectoSuperior != null) {
       actProyectoSuperior.setFechaInicial(start);
     }
+
+    assert actInvariant(): "Invariante";
   }
 
   /*Asignas la fecha final y el tiempo total de la actividad
   Tambien de us proyectos superiores si los tuviera*/
   public void setFechaFinal(LocalDateTime finish) {
+    assert actInvariant(): "Invariante";
 
     assert (finish.isAfter(actLdtFechaInicial)) : "El tiempo final es inferior al tiempo inicial.";
 
@@ -78,13 +91,12 @@ public abstract class Actividad {
 
     this.actTiempoTotal = setTiempoTotal();
 
-    assert (actTiempoTotal > 0) : "El tiempo total es inferior o igual a 0.";
-    assert (actTiempoTotal % 2 == 0) : "El tiempo total es impar.";
 
     //Actualizamos el tiempo final y total del proyecto superior
     if (actProyectoSuperior != null) {
       this.actProyectoSuperior.setFechaFinal(finish);
     }
+    assert actInvariant(): "Invariante";
   }
 
   //Calcula el tiempo total, cada subtarea a su manera
@@ -92,11 +104,15 @@ public abstract class Actividad {
 
   //muestra por pantalla los datos de la actividad
   public void actMostrar() {
+    assert actInvariant(): "Invariante";
+
     System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Actividad:",
         actNombre, actFechaInicial, "", actFechaFinal, "", actTiempoTotal);
     if (actProyectoSuperior != null) {
       actProyectoSuperior.actMostrar();
     }
+
+    assert actInvariant(): "Invariante";
   }
 
   public abstract JSONObject getJson();
