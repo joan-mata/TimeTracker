@@ -2,7 +2,7 @@ package timetracker;
 
 import java.lang.Object;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
+import java.time.format.DateTimeFormatter;
 import java.util.Observable;
 import java.util.Observer;
 import org.json.JSONObject;
@@ -30,6 +30,8 @@ public class Intervalo implements Observer {
     this.intLdtFechaInicial = start;
     this.intFechaInicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     this.intTiempoTotal = -100; //un valor muy pequeño para trabajar con él
+    t.setFechaInicial(start);
+    t.anadirIntervalo(this);
     System.out.println(start + " " + LocalDateTime.now());
 
     assert intInvariant(): "Invariante";

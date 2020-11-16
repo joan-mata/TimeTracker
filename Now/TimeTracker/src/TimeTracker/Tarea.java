@@ -64,8 +64,8 @@ public class Tarea extends Actividad {
     assert tarInvariant(): "Invariante";
     LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
     Intervalo i = new Intervalo(this, hora);
-    setFechaInicial(hora); //TODO Que lo haga directamente intervalo llamando a iTareaSuperior
-    anadirIntervalo(i);
+    //setFechaInicial(hora); //TODO Que lo haga directamente intervalo llamando a iTareaSuperior
+    //anadirIntervalo(i);
     tarGetInstance().addObserver(i);
     assert tarInvariant(): "Invariante";
   }
