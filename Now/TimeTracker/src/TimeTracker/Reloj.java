@@ -11,8 +11,10 @@ import org.slf4j.LoggerFactory;
 public class Reloj extends Observable implements Runnable {
   private int periodo;
   private static Reloj uniqueInstance;
+  private boolean flag = false;
   
-  Logger logger = LoggerFactory.getLogger(Reloj.class);
+  //Logger logger = LoggerFactory.getLogger(Reloj.class);
+  private static final Logger logger = LoggerFactory.getLogger(Reloj.class);
 
   /*Constructor donde inicializamos el periodo mediante el cual irá
   actualizando la hora a los observadores.*/
@@ -27,15 +29,26 @@ public class Reloj extends Observable implements Runnable {
   public static synchronized Reloj getInstance() {
     if (uniqueInstance == null) {
       uniqueInstance = new Reloj();
-      //time =  new Thread(uniqueInstance);
+      logger.info("Reloj instanciado");
     }
+    logger.trace("Estoy en el método getInstance de la clase Reloj");
     return uniqueInstance;
   }
 
+  public void changeFlag(boolean f){
+    flag = f;
+  }
+
   public void notificar() {
-    LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
-    setChanged();
-    notifyObservers(hora); //Notifica a los observadores y les envia el objeto del reloj.
+    logger.debug("Entré notificar()");
+
+    if(flag){
+      setChanged();
+      logger.debug("Entré setChanged()");
+
+    }
+    notifyObservers(LocalDateTime.now()); //Notifica a los observadores y les envia el objeto del reloj.
+    logger.debug("Final notificar(), now={}", LocalDateTime.now());
   }
 
   //Función que actualiza la hora y notifica a los observadores.
@@ -46,7 +59,7 @@ public class Reloj extends Observable implements Runnable {
         Thread.sleep(1000 * periodo);
         notificar();
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        logger.error("{}", e);
       }
     }
   }

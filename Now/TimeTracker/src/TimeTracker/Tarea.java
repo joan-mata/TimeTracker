@@ -17,10 +17,17 @@ public class Tarea extends Actividad {
   private ArrayList<Intervalo> tarListaIntervalos;
   private Reloj tarReloj;
   
-  Logger logger = LoggerFactory.getLogger(Tarea.class);
+  private static final Logger logger = LoggerFactory.getLogger(Tarea.class);
 
   public Tarea(String name, Proyecto p) {
     super(name, p, "Tarea");
+    this.tarListaIntervalos = new ArrayList<Intervalo>();
+    this.getProyectoSuperior().anadirTarea(this);
+    assert tarInvariant(): "Invariante";
+  }
+
+  public Tarea(String name, Proyecto p, Reloj r) {
+    super(name, p, "Tarea", r);
     this.tarListaIntervalos = new ArrayList<Intervalo>();
     this.getProyectoSuperior().anadirTarea(this);
     assert tarInvariant(): "Invariante";
@@ -40,15 +47,31 @@ public class Tarea extends Actividad {
   @Override
   public int setTiempoTotal() {
     assert tarInvariant(): "Invariante";
+
+    logger.debug("Tiempo de intervalo sumado.");
+    logger.trace("Estoy en el método setTiempoTotal de la clase Tarea.");
+
     int totalTime = 0;
     for (int i = 0; i < tarListaIntervalos.size(); i++) {
       totalTime += tarListaIntervalos.get(i).intGetTiempoTotal();
     }
-
+    logger.debug("{}", totalTime);
     assert (totalTime >= getTiempoTotal()) :
         "El tiempo total futuro es inferior al tiempo total anterior.";
     assert tarInvariant(): "Invariante";
     return totalTime;
+  }
+
+  @Override
+  public boolean searchFlag() {
+    boolean flag = false;
+    int i = 0;
+    while (i < tarListaIntervalos.size() && !flag) {
+      flag = tarListaIntervalos.get(i).isIntflag();
+      i++;
+    }
+
+    return flag;
   }
 
   public void anadirIntervalo(Intervalo i) {
@@ -62,7 +85,10 @@ public class Tarea extends Actividad {
   //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
   public void start() {
     assert tarInvariant(): "Invariante";
-    LocalDateTime hora = LocalDateTime.now(); //Guarda la hora actual del sistema.
+
+    logger.trace("Estoy en el método start de la clase Tarea.");
+
+    LocalDateTime hora = LocalDateTime.now();
     Intervalo i = new Intervalo(this, hora);
     //setFechaInicial(hora); //TODO Que lo haga directamente intervalo llamando a iTareaSuperior
     //anadirIntervalo(i);
@@ -73,14 +99,25 @@ public class Tarea extends Actividad {
   //Finalizamos la actividad
   public void stop() {
     assert tarInvariant(): "Invariante";
+
+    logger.trace("Estoy en el método stop de la clase Tarea.");
+
     Intervalo i = this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1);
+    i.stopFlag();
     tarGetInstance().deleteObserver(i);
     assert tarInvariant(): "Invariante";
   }
 
+
+  //Crea un objeto JSON con los datos del proyecto 
+  //y un array JSON con los datos de los intervalos hijos
   @Override
   public JSONObject getJson() {
     assert tarInvariant(): "Invariante";
+
+    logger.info("Generando JSON...");
+    logger.trace("Estoy en el método getJson de la clase Tarea.");
+
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
@@ -95,7 +132,7 @@ public class Tarea extends Actividad {
       jo.put("intervals", ja);
 
     } catch (JSONException e) {
-      e.printStackTrace();
+      logger.error("{}", e);
     }
     assert tarInvariant(): "Invariante";
     return jo;

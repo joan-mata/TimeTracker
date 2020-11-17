@@ -18,15 +18,25 @@ public abstract class Actividad {
   private int actTiempoTotal;
   private Proyecto actProyectoSuperior;
   private String actClase;
+  private Reloj actReloj;
   
-  Logger logger = LoggerFactory.getLogger(Actividad.class);
+  private static final Logger logger = LoggerFactory.getLogger(Actividad.class);
 
   public Actividad(String name, Proyecto p, String clase) {
     this.actNombre = name;
     this.actProyectoSuperior = p;
     this.actTiempoTotal = -100; //un valor muy pequeño para trabajar con él
     this.actClase = clase;
+    assert actInvariant(): "Invariante";
+  }
 
+  public Actividad(String name, Proyecto p, String clase, Reloj r) {
+    this.actNombre = name;
+    this.actProyectoSuperior = p;
+    this.actTiempoTotal = -100; //un valor muy pequeño para trabajar con él
+    this.actClase = clase;
+    assert (p == null) : "No es ROOT";
+    this.actReloj = r;
     assert actInvariant(): "Invariante";
   }
 
@@ -63,18 +73,25 @@ public abstract class Actividad {
     return this.actProyectoSuperior;
   }
 
+
+
   //Asignas la fecha inicial de la actividad y de sus proyectos superiores si los tuviera
   public void setFechaInicial(LocalDateTime start) {
     assert actInvariant(): "Invariante";
 
+    logger.debug("Fecha inicial asignada.");
+    logger.trace("Estoy en el método setFechaInicial de la clase Actividad.");
+    
     if (this.actLdtFechaInicial == null) {
       this.actLdtFechaInicial = start;
       //Le damos el formato deseado al String fecha_inicial
-      actFechaInicial = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      actFechaInicial = actLdtFechaInicial.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
     if (actProyectoSuperior != null) {
-      actProyectoSuperior.setFechaInicial(start);
+      actProyectoSuperior.setFechaInicial(actLdtFechaInicial);
     }
+
+    logger.debug("{}", actFechaInicial);
 
     assert actInvariant(): "Invariante";
   }
@@ -84,17 +101,23 @@ public abstract class Actividad {
   public void setFechaFinal(LocalDateTime finish) {
     assert actInvariant(): "Invariante";
 
+    logger.debug("Fecha final asignada.");
+    logger.debug("Tiempo total asignado.");
+    logger.trace("Estoy en el método setFechaFinal de la clase Actividad.");
+
     assert (finish.isAfter(actLdtFechaInicial)) : "El tiempo final es inferior al tiempo inicial.";
 
     actLdtFechaFinal = finish;
-    actFechaFinal = finish.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    actFechaFinal = actLdtFechaFinal.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
     this.actTiempoTotal = setTiempoTotal();
+
+    logger.debug("{}", actFechaFinal);
 
 
     //Actualizamos el tiempo final y total del proyecto superior
     if (actProyectoSuperior != null) {
-      this.actProyectoSuperior.setFechaFinal(finish);
+      this.actProyectoSuperior.setFechaFinal(actLdtFechaFinal);
     }
     assert actInvariant(): "Invariante";
   }
@@ -102,12 +125,26 @@ public abstract class Actividad {
   //Calcula el tiempo total, cada subtarea a su manera
   public abstract int setTiempoTotal();
 
+  public void setActReloj() {
+    logger.debug("SetActReloj()");
+    if (actProyectoSuperior == null) {
+      logger.debug("CHANGEFLAG()");
+      actReloj.changeFlag(searchFlag());
+    }
+    else {
+      actProyectoSuperior.setActReloj();
+    }
+  }
+  public abstract boolean searchFlag();
+
   //muestra por pantalla los datos de la actividad
   public void actMostrar() {
     assert actInvariant(): "Invariante";
+    
+    logger.trace("Estoy en el método actMostra de la clase Actividad.");
 
-    System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Actividad:",
-        actNombre, actFechaInicial, "", actFechaFinal, "", actTiempoTotal);
+    logger.info("Interval: (n){} (f.i){} (f.f){} (t.t){}", actNombre, actFechaInicial, actFechaFinal, actTiempoTotal);
+
     if (actProyectoSuperior != null) {
       actProyectoSuperior.actMostrar();
     }

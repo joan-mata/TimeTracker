@@ -16,7 +16,7 @@ public class Proyecto extends Actividad {
   private ArrayList<Tarea> proListaTareas;
   private ArrayList<Proyecto> proListaProyectos;
   
-  Logger logger = LoggerFactory.getLogger(Proyecto.class);
+  private static final Logger logger = LoggerFactory.getLogger(Proyecto.class);
 
   //CONSTRUCTORES
   public Proyecto(String name, Proyecto p) {
@@ -30,8 +30,17 @@ public class Proyecto extends Actividad {
     assert actInvariant(): "Invariante";
   }
 
+  public Proyecto(String name, Proyecto p, Reloj r) {
+    super(name, p, "Proyecto", r);
+    this.proListaTareas = new ArrayList<Tarea>();
+    this.proListaProyectos = new ArrayList<Proyecto>();
+    if (this.getProyectoSuperior() != null) {
+      this.getProyectoSuperior().anadirProyecto(this);
+    }
 
-  //FUNCIONES
+    assert actInvariant(): "Invariante";
+  }
+
   public void anadirTarea(Tarea t) {
     assert actInvariant(): "Invariante";
     proListaTareas.add(t);
@@ -47,8 +56,11 @@ public class Proyecto extends Actividad {
 
   //Calcula el tiempo total del proyecto
   @Override
-  public int setTiempoTotal() {
+  public int setTiempoTotal() {   
     assert actInvariant(): "Invariante";
+    
+    logger.debug("Tiempo de proyecto calculado.");
+    logger.trace("Estoy en el método setTiempoTotal de la clase Proyecto.");
 
     int totalTime = 0;
     for (int i = 0; i < proListaTareas.size(); i++) {
@@ -58,6 +70,8 @@ public class Proyecto extends Actividad {
       totalTime += proListaProyectos.get(i).setTiempoTotal();
     }
 
+    logger.debug("{}", totalTime);
+
     assert (totalTime >= getTiempoTotal()) :
         "El tiempo total futuro es inferior al tiempo total anterior.";
 
@@ -66,8 +80,31 @@ public class Proyecto extends Actividad {
   }
 
   @Override
-  public JSONObject getJson() {
+  public boolean searchFlag() {
     assert actInvariant(): "Invariante";
+    boolean flag = false;
+    int i = 0;
+    while (i < proListaTareas.size() && !flag){
+      flag = proListaTareas.get(i).searchFlag();
+      i++;
+    }
+    i = 0;
+    while (i < proListaProyectos.size() && !flag) {
+      flag = proListaProyectos.get(i).searchFlag();
+    }
+    assert actInvariant(): "Invariante";
+    return flag;
+  }
+
+  //Crea un objeto JSON con los datos del proyecto 
+  //y un array JSON con los datos de los proyectos, tareas e intervalos hijos
+  @Override
+  public JSONObject getJson() {      
+    assert actInvariant(): "Invariante";
+        
+    logger.info("Generando JSON...");
+    logger.trace("Estoy en el método getJson de la clase Proyecto.");
+    
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
@@ -84,7 +121,7 @@ public class Proyecto extends Actividad {
       }
       jo.put("activities", ja);
     } catch (JSONException e) {
-      e.printStackTrace();
+      logger.error("{}", e);
     }
     assert actInvariant(): "Invariante";
     return jo;

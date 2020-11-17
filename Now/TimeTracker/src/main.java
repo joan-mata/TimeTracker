@@ -7,17 +7,22 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import org.json.JSONObject;
 import timetracker.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
   private static Reloj Reloj;
+  
+  private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
   public static void main(String[] args) {
     Scanner entrada = new Scanner(System.in); //Para introducir elementos por terminal
+    
+    logger.trace("Estoy en el Main");
+        
+    Thread time = new Thread(Reloj.getInstance());
 
-    System.out.println("¿Qué test quieres realizar? \n" + "(exit = -1)");
-    int test = entrada.nextInt();
-
-    Proyecto root = new Proyecto("Root", null);
+    Proyecto root = new Proyecto("Root", null, Reloj.getInstance());
     Proyecto softwareDesing = new Proyecto("Software design", root);
     Proyecto softwareTesting = new Proyecto("Software testing", root);
     Proyecto databases = new Proyecto("Databases", root);
@@ -28,38 +33,52 @@ public class Main {
     Tarea firstList = new Tarea("first list", problems);
     Tarea secondList = new Tarea("second list", problems);
     Tarea readHandout = new Tarea("read handout", projectTimeTracker);
-    Tarea firstMilestone = new Tarea("first milestone", projectTimeTracker);
+    Tarea firstMilestone = new Tarea("first milestone", projectTimeTracker);    
 
-    Thread time = new Thread(Reloj.getInstance());
+    Tag tags = new Tag();
+    tags.anadirTag(softwareDesing.getNombre(), "java");
+    tags.anadirTag(softwareDesing.getNombre(), "flutter");
+    tags.anadirTag(softwareTesting.getNombre(), "c++");
+    tags.anadirTag(softwareTesting.getNombre(), "Java");
+    tags.anadirTag(softwareTesting.getNombre(), "python");
+    tags.anadirTag(databases.getNombre(), "SQL");
+    tags.anadirTag(databases.getNombre(), "python");
+    tags.anadirTag(databases.getNombre(), "C++");
+    tags.anadirTag(firstList.getNombre(), "java");
+    tags.anadirTag(secondList.getNombre(), "Dart");
+    tags.anadirTag(firstMilestone.getNombre(), "Java");
+    tags.anadirTag(firstMilestone.getNombre(), "IntellJ");
+
+    String tagSearch = "java";
+    logger.debug("Actividades con tag {}: {}", tagSearch, tags.searchTag(tagSearch));
+
+
     time.start();
 
-      System.out.printf("\n%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "", "",
-          "Fecha Inicial", "", "Fecha Final", "", "Duración");
-
-      System.out.println("Start Test\n");
-      System.out.println("Transportation starts:\n");
+      logger.info("Start Test\n");
+      logger.info("Transportation starts:\n");
       transportation.start();
       sleep(4);
       transportation.stop();
-      System.out.println("Transportation stop\n");
+      logger.info("Transportation stop\n");
       sleep(2);
-      System.out.println("First list starts\n");
+      logger.info("First list starts\n");
       firstList.start();
       sleep(6);
-      System.out.println("Second list start\n");
+      logger.info("Second list start\n");
       secondList.start();
       sleep(4);
       firstList.stop();
-      System.out.println("First list stop\n");
+      logger.info("First list stop\n");
       sleep(2);
       secondList.stop();
-      System.out.println("Second list stop\n");
+      logger.info("Second list stop\n");
       sleep(2);
-      System.out.println("Transportation starts\n");
+      logger.info("Transportation starts\n");
       transportation.start();
       sleep(4);
       transportation.stop();
-      System.out.println("Transportation stop\n");
+      logger.info("Transportation stop\n");
 
       JSONObject json = root.getJson();
       String jsonString = json.toString();
@@ -67,17 +86,31 @@ public class Main {
       try {
         Files.writeString(path, jsonString, StandardCharsets.UTF_8);
       } catch (IOException e) {
-        e.printStackTrace();
+        logger.error("{}", e);
       }
     
-      System.out.println("End of test\n");
+
+
+
+      
+
+
+
+     
+
+
+
+
+
+
+      logger.info("End of test\n");
   }
 
   public static void sleep(int seconds) {
     try {
       Thread.sleep(seconds * 1000);
     } catch (InterruptedException e) {
-      System.out.println(e);
+      logger.error("{}", e);
     }
   }
 }
