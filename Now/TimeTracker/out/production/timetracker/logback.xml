@@ -17,10 +17,16 @@
         <appender-ref ref="FILE" />
     </root>
 
+
+    <!-- Comentando y descomentando los conjuntos milestone 1 y milestone 2,
+     activamos o desactivamos los logs de cada milestone.
+     Dejar ambos comentados hará que se ejecuten los logs de ambos milestones. -->
+
+    <!-- Milestone 2: -->
     <logger name="timetracker.Tag" level="OFF"/>
     <logger name="timetracker.TotalTime" level="OFF"/>
-    
-    <!-- Estan comentados porque loss descomentas segun tus necesidades/intereses-->
+
+    <!-- Milestone 1: -->
     <!--<logger name="timetracker.Tarea" level="OFF"/>
     <logger name="timetracker.Intervalo" level="OFF"/>
     <logger name="timetracker.Main" level="OFF"/>
