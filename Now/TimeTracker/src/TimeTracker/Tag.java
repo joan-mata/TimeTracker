@@ -10,16 +10,15 @@ public class Tag {
 
   private static final Logger logger = LoggerFactory.getLogger(Tag.class);
 
-  //Constructor crea dos arrays, tags y actividades, que iremos actualizando a la par
+  //Constructor crea dos arrays, tags y actividades, que iremos actualizando a la par.
   public Tag() {
     this.tagList = new ArrayList<String>();
     this.actList = new ArrayList<String>();
     assert tagInvariant() : "Invariante";
   }
 
-  protected boolean tagInvariant() { //TODO Implementar
-    
-    return true;
+  protected boolean tagInvariant() {
+    return this.tagList.size() == this.actList.size();
   }
 
   //Introducir 
@@ -31,14 +30,14 @@ public class Tag {
     assert tagInvariant() : "Invariante";
   }
 
-  //searchTag recorrera la lista de tags buscando el
-  // tag que haya recibido y por cada match, añadira la
-  // actividad correspondiente de la lista de actividades
-  //a una nueva lista que devolvera al finalizar
+  /*searchTag recorrera la lista de tags buscando el
+  tag que haya recibido y por cada match, añadira la
+  actividad correspondiente de la lista de actividades
+  a una nueva lista que devolvera al finalizar.*/
   public ArrayList<String> searchTag(String tag) {
     logger.trace("Estoy en el método searchTag de la clase Tag");
     ArrayList<String> list = new ArrayList<String>();
-    logger.debug("{}", tag);
+    logger.debug("(tag) {}", tag);
     for (int i = 0; i < tagList.size(); i++) {
       logger.info("Buscando tag...");
       if (tagList.get(i).matches("(?i).*" + tag + ".*")) {

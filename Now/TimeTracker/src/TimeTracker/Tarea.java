@@ -26,13 +26,6 @@ public class Tarea extends Actividad {
     assert tarInvariant() : "Invariante";
   }
 
-  public Tarea(String name, Proyecto p, Reloj r) {
-    super(name, p, "Tarea", r);
-    this.tarListaIntervalos = new ArrayList<Intervalo>();
-    this.getProyectoSuperior().anadirTarea(this);
-    assert tarInvariant() : "Invariante";
-  }
-
   protected boolean tarInvariant() {
     return actInvariant() && this.getProyectoSuperior() != null;
   }
@@ -43,7 +36,54 @@ public class Tarea extends Actividad {
     return tarReloj.getInstance();
   }
 
-  //Conseguimos el tiempo total de tarea. al sumar los tiempos de sus intervalos
+  /*De los 5 casos posibles, sólo cojemos los 4 que nos interesan para la suma del tiempo total,
+  aquí vemos cada caso por separado con su método para hacer la suma*/
+  @Override
+  public int getTtTotalTime(LocalDateTime ini, LocalDateTime fin) {
+    assert tarInvariant() : "Invariante";
+    for (int i = 0; i < tarListaIntervalos.size(); i++) {
+
+      // Caso 1: Tiempo Inicial fuera, tiempo final dentro
+      if (tarListaIntervalos.get(i).getFechaInicial().isBefore(ini)
+          && tarListaIntervalos.get(i).getFechaFinal().isBefore(fin)) {
+                      
+        // inicial = ini, final = getfinal
+        sumaTtTiempoTotal(tarListaIntervalos.get(i).getFechaFinal().minusSeconds(ini.getSecond()).getSecond());
+
+      // Caso 2: Tiempo inicial dentro, tiempo final dentro
+      } else if (tarListaIntervalos.get(i).getFechaInicial().isAfter(ini) 
+                && tarListaIntervalos.get(i).getFechaFinal().isBefore(fin)) {
+
+        // inicial = getinicial, final = getfinal
+        sumaTtTiempoTotal(tarListaIntervalos.get(i).getFechaFinal().minusSeconds(tarListaIntervalos.get(i).getFechaInicial().getSecond()).getSecond());
+
+      // Caso 3: Tiempo inicial dentro, tiempo final fuera
+      } else if (tarListaIntervalos.get(i).getFechaInicial().isAfter(ini) 
+          && tarListaIntervalos.get(i).getFechaFinal().isAfter(fin)) {
+                       
+        // inicial = getinicial, final = fin
+        sumaTtTiempoTotal(fin.minusSeconds(tarListaIntervalos.get(i).getFechaInicial().getSecond()).getSecond());
+      
+      //Caso 4: Tiempo inicial fuera, tiempo final fuera
+      } else if (tarListaIntervalos.get(i).getFechaInicial().isBefore(ini)
+          && tarListaIntervalos.get(i).getFechaFinal().isAfter(fin)) {
+
+        // inicial = ini,  final = fin
+        sumaTtTiempoTotal(fin.minusSeconds(ini.getSecond()).getSecond());
+      }
+    }
+    assert tarInvariant() : "Invariante";
+    return getTtTiempoTotal();
+  }
+
+  //Añade un nuevo intervalo a la lista de intervalos de la tarea.
+  public void anadirIntervalo(Intervalo i) {
+    assert tarInvariant() : "Invariante";
+    this.tarListaIntervalos.add(i);
+    assert tarInvariant() : "Invariante";
+  }
+
+  //Conseguimos el tiempo total de tarea al sumar los tiempos de sus intervalos.
   @Override
   public int setTiempoTotal() {
     assert tarInvariant() : "Invariante";
@@ -55,38 +95,18 @@ public class Tarea extends Actividad {
     int k;
     for (int i = 0; i < tarListaIntervalos.size(); i++) {
       k = tarListaIntervalos.get(i).intGetTiempoTotal();
-      if (k > 0) { //Prevenir que no sume con tiempoTotal sin inicializar (=-100)
+      if (k > 0) { //Prevenir que no sume con tiempoTotal sin inicializar (=-100).
         totalTime += k;
       }
     }
-    logger.debug("{}", totalTime);
+    logger.debug("(t.t) {}", totalTime);
     assert (totalTime >= getTiempoTotal()) :
         "El tiempo total futuro es inferior al tiempo total anterior.";
     assert tarInvariant() : "Invariante";
     return totalTime;
   }
 
-  @Override
-  public boolean searchFlag() {
-    boolean flag = false;
-    int i = 0;
-    while (i < tarListaIntervalos.size() && !flag) {
-      flag = tarListaIntervalos.get(i).isIntflag();
-      i++;
-    }
-
-    return flag;
-  }
-
-  public void anadirIntervalo(Intervalo i) {
-
-    assert tarInvariant() : "Invariante";
-    this.tarListaIntervalos.add(i);
-    assert tarInvariant() : "Invariante";
-
-  }
-
-  //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
+  //Inicializa el intervalo que toca, nuevo en la lista y lo muestra.
   public void start() {
     assert tarInvariant() : "Invariante";
 
@@ -94,13 +114,11 @@ public class Tarea extends Actividad {
 
     LocalDateTime hora = LocalDateTime.now();
     Intervalo i = new Intervalo(this, hora);
-    //setFechaInicial(hora); //TODO Que lo haga directamente intervalo llamando a iTareaSuperior
-    //anadirIntervalo(i);
     tarGetInstance().addObserver(i);
     assert tarInvariant() : "Invariante";
   }
 
-  //Finalizamos la actividad
+  //Finaliza la tarea.
   public void stop() {
     assert tarInvariant() : "Invariante";
 
@@ -108,13 +126,12 @@ public class Tarea extends Actividad {
 
     Intervalo i = this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1);
     tarGetInstance().deleteObserver(i);
-    i.stopFlag();
     logger.debug("Salí stop()");
     assert tarInvariant() : "Invariante";
   }
 
-  //Crea un objeto JSON con los datos del proyecto 
-  //y un array JSON con los datos de los intervalos hijos
+  /*Crea un objeto JSON con los datos del proyecto 
+  y un array JSON con los datos de los intervalos hijo.*/
   @Override
   public JSONObject getJson() {
     assert tarInvariant() : "Invariante";

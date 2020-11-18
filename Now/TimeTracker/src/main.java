@@ -12,18 +12,20 @@ import timetracker.*;
 
 public class Main {
   private static Reloj Reloj;
-  
   private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
   public static void main(String[] args) {
     Scanner entrada = new Scanner(System.in); //Para introducir elementos por terminal
     
     logger.trace("Estoy en el Main");
-        
+    
+    //Se adquiere la instancia del reloj y se pone en marcha.
     Thread time = new Thread(Reloj.getInstance());
     time.start();
 
-    Proyecto root = new Proyecto("Root", null, Reloj.getInstance());
+    /*Se crean todos los proyectos y tareas que 
+    utilizará el test. Según Apéndice A*/
+    Proyecto root = new Proyecto("Root", null);
     Proyecto softwareDesing = new Proyecto("Software design", root);
     Proyecto softwareTesting = new Proyecto("Software testing", root);
     Proyecto databases = new Proyecto("Databases", root);
@@ -34,8 +36,9 @@ public class Main {
     Tarea firstList = new Tarea("first list", problems);
     Tarea secondList = new Tarea("second list", problems);
     Tarea readHandout = new Tarea("read handout", projectTimeTracker);
-    Tarea firstMilestone = new Tarea("first milestone", projectTimeTracker);    
+    Tarea firstMilestone = new Tarea("first milestone", projectTimeTracker);  
 
+    //Se crea el objeto Tag y se le añaden todos los tags del apendice A.
     Tag tags = new Tag();
     tags.anadirTag(softwareDesing.getNombre(), "java");
     tags.anadirTag(softwareDesing.getNombre(), "flutter");
@@ -48,11 +51,15 @@ public class Main {
     tags.anadirTag(firstList.getNombre(), "java");
     tags.anadirTag(secondList.getNombre(), "Dart");
     tags.anadirTag(firstMilestone.getNombre(), "Java");
-    tags.anadirTag(firstMilestone.getNombre(), "IntellJ");
+    tags.anadirTag(firstMilestone.getNombre(), "IntellJ");  
 
+    /*Se busca el tag 'java' y se informa de 
+    cuáles son las actividades que lo contienen.*/
     String tagSearch = "java";
     logger.info("Actividades con tag {}: {}", tagSearch, tags.searchTag(tagSearch));
 
+    /*Se inicia el test y con él cada proyecto o tarea, 
+    con la duración indicada en la función sleep*/
     logger.info("Start Test\n");
     logger.info("Transportation starts:\n");
     transportation.start();
@@ -78,6 +85,14 @@ public class Main {
     transportation.stop();
     logger.info("Transportation stop\n");
 
+    //Se calcula el total time de la actividad introducida, en este caso 'databases'
+    //y con el intervalo de 4 a 16
+    TotalTime tiempoTotal = new TotalTime(root);
+    logger.info("Tiempo Total: {}", tiempoTotal.getTtTotalTime(softwareDesing, 4, 16));
+    
+    /*Se crear el objeto JSON a partir del proyecto root,
+    a partir del cual se recorrerá todo el árbol y se 
+    añadirá a dicho objeto JSON.*/
     JSONObject json = root.getJson();
     String jsonString = json.toString();
     Path path = Paths.get("json.txt");
@@ -86,11 +101,13 @@ public class Main {
     } catch (IOException e) {
       logger.error("{}", e);
     }
-    
+
     logger.info("End of test\n");
     time.stop();
   }
 
+  /*Método que recibe el número de segundos que 
+  el thread debe dormir.*/
   public static void sleep(int seconds) {
     try {
       Thread.sleep(seconds * 1000);
@@ -99,5 +116,3 @@ public class Main {
     }
   }
 }
-
-

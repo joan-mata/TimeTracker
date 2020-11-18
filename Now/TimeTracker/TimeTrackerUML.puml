@@ -1,11 +1,11 @@
 @startuml
 
-Actividad "1" - "0" Reloj
 Actividad "0..n" <--* "n " Proyecto
 Actividad <|-- Proyecto : hereda
 Actividad <|-- Tarea : hereda
 Tarea "1" <-- "1..n" Intervalo : dependencia >
 Actividad "0..n" -- "0..n" Tag
+Actividad "0..n" -- "0..n" TotalTime
 
 Abstract Actividad {
 -actNombre
@@ -16,20 +16,22 @@ Abstract Actividad {
 -actTiempoTotal
 -actProyectoSuperior
 -actClase
--actReloj
 -logger
+-ttTiempoTotal
 
-+actInvariant()
+#actInvariant()
 +getNombre()
++getLdtFechaInicial()
 +getFechaInicial()
 +getFechaFinal()
 +getTiempoTotal()
 +getProyectoSuperior()
++getTtTiempoTotal()
++getTtTotalTime(ini, fin)
 +setFechaInicial(start)
 +setFechaFinal(finish)
 +setTiempoTotal()
-+setActReloj()
-+searchFlag()
++sumaTtTiempoTotal(valor)
 +actMostrar()
 +getJson()
 }
@@ -37,22 +39,24 @@ Abstract Actividad {
 Abstract Proyecto {
 -proListaTareas
 -proListaProyectos
+-logger
 
 +anadirTarea(task)
 +anadirProyecto(proyect)
 +setTiempoTotal()
-+searchFlag()
++getTtTotalTime()
 +getJson()
 }
 
 Class Tarea {
 -tarListaIntervalos
 -tarReloj
+-logger
 
-+tarInvariant()
+#tarInvariant()
 +tarGetinstance()
++getTtTotalTime()
 +setTiempoTotal()
-+searchFlag()
 +anadirIntervalo(interval)
 +start()
 +stop()
@@ -67,13 +71,12 @@ Class Intervalo {
 -intTiempoTotal
 -intTareaSuperior
 -intClase
--intflag
 -logger
 
-+intInvariant()
+#intInvariant()
 +intGetTiempoTotal()
-+isIntflag()
-+stopFlag()
++getFechaInicial()
++getFechaFinal()
 +intSetFechaFinal(finish)
 +intSetTiempoTotal()
 +intMostrar()
@@ -86,19 +89,26 @@ Class Tag{
 -actList
 -logger
 
-+tagInvariant()
+#tagInvariant()
 +anadirTag()
 +searchTag()
+}
+Class TotalTime {
+-ttLdtTiempoInicial;
+-ttLdtTiempoFinal;
+-ttRoot;
+
+#ttInvariant()
++getTtTotalTime(Actividad, ini, fin)
++getTtTotalTime(Actividad)
 }
 
 Class Reloj {
 -periodo
 -uniqueinstance
--flag
 -logger
 
 +getInstance()
-+changeFlag()
 +notificar()
 +run()
 }

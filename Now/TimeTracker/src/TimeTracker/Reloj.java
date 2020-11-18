@@ -7,14 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-//Esta clase se encargará de acceder a la hora del dispositivo e ir actualizando a sus observadores
+//Esta clase se encargará de acceder a la hora del dispositivo e ir actualizando a sus observadores.
 public class Reloj extends Observable implements Runnable {
   private int periodo;
   private static Reloj uniqueInstance;
-  private boolean flag = false;
   
-  //Logger logger = LoggerFactory.getLogger(Reloj.class);
   private static final Logger logger = LoggerFactory.getLogger(Reloj.class);
+
 
   /*Constructor donde inicializamos el periodo mediante el cual irá
   actualizando la hora a los observadores.*/
@@ -25,7 +24,7 @@ public class Reloj extends Observable implements Runnable {
   /*Método que devuelve la instancia del reloj para asegurar que
   solo hay un reloj corriendo para todos los observadores.
   synchronized no permite a dos thread o mas entrar a la vez
-  en la función, entran de uno en uno */
+  en la función, entran de uno en uno. */
   public static synchronized Reloj getInstance() {
     if (uniqueInstance == null) {
       uniqueInstance = new Reloj();
@@ -35,20 +34,17 @@ public class Reloj extends Observable implements Runnable {
     return uniqueInstance;
   }
 
-  public void changeFlag(boolean f) {
-    flag = f;
-  }
-
   public void notificar() {
-    logger.debug("Entré notificar()");
+    logger.trace("Estoy en notificar() de la clase Reloj");
 
-    if (flag) {
-      setChanged();
-      logger.debug("Entré setChanged()");
-    }
+    //Marca el objeto tipo Observable como que ha cambiado.
+    setChanged();
+    logger.trace("Estoy en setChanged() de la clase Reloj");
+
     //Notifica a los observadores y les envia el objeto del reloj.
     notifyObservers(LocalDateTime.now());
-    logger.debug("Final notificar(), now={}", LocalDateTime.now());
+    logger.trace("Final notificar()");
+    logger.debug("now={}", LocalDateTime.now());
   }
 
   //Función que actualiza la hora y notifica a los observadores.

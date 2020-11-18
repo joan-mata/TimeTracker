@@ -1,5 +1,6 @@
 package timetracker;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,20 +19,8 @@ public class Proyecto extends Actividad {
   
   private static final Logger logger = LoggerFactory.getLogger(Proyecto.class);
 
-  //CONSTRUCTORES
   public Proyecto(String name, Proyecto p) {
     super(name, p, "Proyecto");
-    this.proListaTareas = new ArrayList<Tarea>();
-    this.proListaProyectos = new ArrayList<Proyecto>();
-    if (this.getProyectoSuperior() != null) {
-      this.getProyectoSuperior().anadirProyecto(this);
-    }
-
-    assert actInvariant() : "Invariante";
-  }
-
-  public Proyecto(String name, Proyecto p, Reloj r) {
-    super(name, p, "Proyecto", r);
     this.proListaTareas = new ArrayList<Tarea>();
     this.proListaProyectos = new ArrayList<Proyecto>();
     if (this.getProyectoSuperior() != null) {
@@ -54,55 +43,52 @@ public class Proyecto extends Actividad {
 
   }
 
-  //Calcula el tiempo total del proyecto
+  /*Calcula el tiempo total del proyecto sumando los tiempos 
+  totales de sus proyectos hijo y de sus tareas hijo.*/
   @Override
   public int setTiempoTotal() {   
     assert actInvariant() : "Invariante";
     
-    logger.debug("Tiempo de proyecto calculado.");
     logger.trace("Estoy en el método setTiempoTotal de la clase Proyecto.");
 
     int totalTime = 0;
     int k;
     for (int i = 0; i < proListaTareas.size(); i++) {
       k = proListaTareas.get(i).setTiempoTotal();
-      if (k > 0) { //Prevenir que no sume con tiempoTotal sin inicializar (=-100)
+      if (k > 0) { //Prevenir que no sume con tiempoTotal sin inicializar (=-100).
         totalTime += k;
       }
     }
     for (int i = 0; i < proListaProyectos.size(); i++) {
       k = proListaProyectos.get(i).setTiempoTotal();
-      if (k > 0) { //Prevenir que no sume con tiempoTotal sin inicializar (=-100)
+      if (k > 0) { //Prevenir que no sume con tiempoTotal sin inicializar (=-100).
         totalTime += k;
       }
     }
-
-    logger.debug("{}", totalTime);
+    
+    logger.debug("Tiempo de proyecto calculado. (t.t) {}", totalTime);
 
     assert actInvariant() : "Invariante";
     return totalTime;
   }
 
+
+  /*Recorre todas las sub tareas y sub proyectos del proyecto en questión ejecutando 
+  el getTtTotalTime en ellos */
   @Override
-  public boolean searchFlag() {
-    assert actInvariant() : "Invariante";
-    boolean flag = false;
-    int i = 0;
-    while (i < proListaTareas.size() && !flag) {
-      flag = proListaTareas.get(i).searchFlag();
-      i++;
+  public int getTtTotalTime(LocalDateTime ini, LocalDateTime fin) {
+    for (int i = 0; i < proListaTareas.size(); i++) {
+      sumaTtTiempoTotal(proListaTareas.get(i).getTtTotalTime(ini, fin));
     }
-    i = 0;
-    while (i < proListaProyectos.size() && !flag) {
-      flag = proListaProyectos.get(i).searchFlag();
-      i++;
+    for (int i = 0; i > proListaProyectos.size(); i++) {
+      sumaTtTiempoTotal(proListaProyectos.get(i).getTtTotalTime(ini, fin));
     }
-    assert actInvariant() : "Invariante";
-    return flag;
+    return getTtTiempoTotal();
   }
 
-  //Crea un objeto JSON con los datos del proyecto 
-  //y un array JSON con los datos de los proyectos, tareas e intervalos hijos
+
+  /*Crea un objeto JSON con los datos del proyecto y un array 
+  JSON con los datos de los proyectos, tareas e intervalos hijos*/
   @Override
   public JSONObject getJson() {      
     assert actInvariant() : "Invariante";

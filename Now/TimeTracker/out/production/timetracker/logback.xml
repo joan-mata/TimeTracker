@@ -17,13 +17,14 @@
         <appender-ref ref="FILE" />
     </root>
 
-    <logger name="Tag.class" level="OFF"/>
-
+    <logger name="timetracker.Tag" level="OFF"/>
+    <logger name="timetracker.TotalTime" level="OFF"/>
+    
     <!-- Estan comentados porque loss descomentas segun tus necesidades/intereses-->
-    <!--<logger name="Tarea.class" level="OFF"/>
-    <logger name="Intervalo.class" level="OFF"/>
-    <logger name="Main.class" level="OFF"/>
-    <logger name="Atividad.class" level="OFF"/>
-    <logger name="Proyecto.class" level="OFF"/>
-    <logger name="Reloj.class" level="OFF"/>-->
+    <!--<logger name="timetracker.Tarea" level="OFF"/>
+    <logger name="timetracker.Intervalo" level="OFF"/>
+    <logger name="timetracker.Main" level="OFF"/>
+    <logger name="timetracker.Actividad" level="OFF"/>
+    <logger name="timetracker.Proyecto" level="OFF"/>
+    <logger name="timetracker.Reloj" level="OFF"/>-->
 </configuration>
