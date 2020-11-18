@@ -55,7 +55,7 @@ public class Main {
 
     /*Se busca el tag 'java' y se informa de 
     cuáles son las actividades que lo contienen.*/
-    String tagSearch = "java";
+    String tagSearch = "java"; //modificar por cualquier otro tag que se quiera buscar
     logger.info("Actividades con tag {}: {}", tagSearch, tags.searchTag(tagSearch));
 
     /*Se inicia el test y con él cada proyecto o tarea, 
@@ -85,10 +85,10 @@ public class Main {
     transportation.stop();
     logger.info("Transportation stop\n");
 
-    //Se calcula el total time de la actividad introducida, en este caso 'databases'
-    //y con el intervalo de 4 a 16
+    /*Se calcula el total time de la actividad introducida, en este caso 'databases', pero
+    se puede cambiar por cualquier otro, y con el intervalo de 4 a 16, también modificable*/
     TotalTime tiempoTotal = new TotalTime(root);
-    logger.info("Tiempo Total: {}", tiempoTotal.getTtTotalTime(softwareDesing, 4, 16));
+    logger.info("Tiempo Total: {}", tiempoTotal.getTtTotalTime(databases, 4, 16));
     
     /*Se crear el objeto JSON a partir del proyecto root,
     a partir del cual se recorrerá todo el árbol y se 
