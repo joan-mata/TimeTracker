@@ -27,7 +27,7 @@ public abstract class Actividad {
     this.actProyectoSuperior = p;
     this.actTiempoTotal = -100; //un valor muy pequeño para trabajar con él
     this.actClase = clase;
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
   }
 
   public Actividad(String name, Proyecto p, String clase, Reloj r) {
@@ -37,7 +37,7 @@ public abstract class Actividad {
     this.actClase = clase;
     assert (p == null) : "No es ROOT";
     this.actReloj = r;
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
   }
 
   protected boolean actInvariant() {
@@ -45,39 +45,37 @@ public abstract class Actividad {
   }
 
   public String getNombre() {
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
     return this.actNombre;
   }
 
   public String getFechaInicial() {
 
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
     return this.actFechaInicial;
   }
 
   public String getFechaFinal() {
 
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
     return this.actFechaFinal;
   }
 
   public int getTiempoTotal() {
 
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
     return this.actTiempoTotal;
   }
 
   public Proyecto getProyectoSuperior() {
 
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
     return this.actProyectoSuperior;
   }
 
-
-
   //Asignas la fecha inicial de la actividad y de sus proyectos superiores si los tuviera
   public void setFechaInicial(LocalDateTime start) {
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
 
     logger.debug("Fecha inicial asignada.");
     logger.trace("Estoy en el método setFechaInicial de la clase Actividad.");
@@ -85,7 +83,8 @@ public abstract class Actividad {
     if (this.actLdtFechaInicial == null) {
       this.actLdtFechaInicial = start;
       //Le damos el formato deseado al String fecha_inicial
-      actFechaInicial = actLdtFechaInicial.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      actFechaInicial = actLdtFechaInicial.format(
+                          DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
     if (actProyectoSuperior != null) {
       actProyectoSuperior.setFechaInicial(actLdtFechaInicial);
@@ -93,13 +92,13 @@ public abstract class Actividad {
 
     logger.debug("{}", actFechaInicial);
 
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
   }
 
   /*Asignas la fecha final y el tiempo total de la actividad
   Tambien de us proyectos superiores si los tuviera*/
   public void setFechaFinal(LocalDateTime finish) {
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
 
     logger.debug("Fecha final asignada.");
     logger.debug("Tiempo total asignado.");
@@ -119,37 +118,38 @@ public abstract class Actividad {
     if (actProyectoSuperior != null) {
       this.actProyectoSuperior.setFechaFinal(actLdtFechaFinal);
     }
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
   }
 
   //Calcula el tiempo total, cada subtarea a su manera
   public abstract int setTiempoTotal();
 
   public void setActReloj() {
-    logger.debug("SetActReloj()");
+    logger.debug("SetActReloj() {}", actNombre);
     if (actProyectoSuperior == null) {
       logger.debug("CHANGEFLAG()");
       actReloj.changeFlag(searchFlag());
-    }
-    else {
+    } else {
       actProyectoSuperior.setActReloj();
     }
   }
+
   public abstract boolean searchFlag();
 
   //muestra por pantalla los datos de la actividad
   public void actMostrar() {
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
     
     logger.trace("Estoy en el método actMostra de la clase Actividad.");
 
-    logger.info("Interval: (n){} (f.i){} (f.f){} (t.t){}", actNombre, actFechaInicial, actFechaFinal, actTiempoTotal);
+    logger.info("Interval: (n){} (f.i){} (f.f){} (t.t){}",
+                actNombre, actFechaInicial, actFechaFinal, actTiempoTotal);
 
     if (actProyectoSuperior != null) {
       actProyectoSuperior.actMostrar();
     }
 
-    assert actInvariant(): "Invariante";
+    assert actInvariant() : "Invariante";
   }
 
   public abstract JSONObject getJson();

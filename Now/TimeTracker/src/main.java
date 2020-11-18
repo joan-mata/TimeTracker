@@ -6,9 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import org.json.JSONObject;
-import timetracker.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import timetracker.*;
 
 public class Main {
   private static Reloj Reloj;
@@ -21,6 +21,7 @@ public class Main {
     logger.trace("Estoy en el Main");
         
     Thread time = new Thread(Reloj.getInstance());
+    time.start();
 
     Proyecto root = new Proyecto("Root", null, Reloj.getInstance());
     Proyecto softwareDesing = new Proyecto("Software design", root);
@@ -50,60 +51,44 @@ public class Main {
     tags.anadirTag(firstMilestone.getNombre(), "IntellJ");
 
     String tagSearch = "java";
-    logger.debug("Actividades con tag {}: {}", tagSearch, tags.searchTag(tagSearch));
+    logger.info("Actividades con tag {}: {}", tagSearch, tags.searchTag(tagSearch));
 
+    logger.info("Start Test\n");
+    logger.info("Transportation starts:\n");
+    transportation.start();
+    sleep(4);
+    transportation.stop();
+    logger.info("Transportation stop\n");
+    sleep(2);
+    logger.info("First list starts\n");
+    firstList.start();
+    sleep(6);
+    logger.info("Second list start\n");
+    secondList.start();
+    sleep(4);
+    firstList.stop();
+    logger.info("First list stop\n");
+    sleep(2);
+    secondList.stop();
+    logger.info("Second list stop\n");
+    sleep(2);
+    logger.info("Transportation starts\n");
+    transportation.start();
+    sleep(4);
+    transportation.stop();
+    logger.info("Transportation stop\n");
 
-    time.start();
-
-      logger.info("Start Test\n");
-      logger.info("Transportation starts:\n");
-      transportation.start();
-      sleep(4);
-      transportation.stop();
-      logger.info("Transportation stop\n");
-      sleep(2);
-      logger.info("First list starts\n");
-      firstList.start();
-      sleep(6);
-      logger.info("Second list start\n");
-      secondList.start();
-      sleep(4);
-      firstList.stop();
-      logger.info("First list stop\n");
-      sleep(2);
-      secondList.stop();
-      logger.info("Second list stop\n");
-      sleep(2);
-      logger.info("Transportation starts\n");
-      transportation.start();
-      sleep(4);
-      transportation.stop();
-      logger.info("Transportation stop\n");
-
-      JSONObject json = root.getJson();
-      String jsonString = json.toString();
-      Path path = Paths.get("json.txt");
-      try {
-        Files.writeString(path, jsonString, StandardCharsets.UTF_8);
-      } catch (IOException e) {
-        logger.error("{}", e);
-      }
+    JSONObject json = root.getJson();
+    String jsonString = json.toString();
+    Path path = Paths.get("json.txt");
+    try {
+      Files.writeString(path, jsonString, StandardCharsets.UTF_8);
+    } catch (IOException e) {
+      logger.error("{}", e);
+    }
     
-
-
-
-      
-
-
-
-     
-
-
-
-
-
-
-      logger.info("End of test\n");
+    logger.info("End of test\n");
+    time.stop();
   }
 
   public static void sleep(int seconds) {

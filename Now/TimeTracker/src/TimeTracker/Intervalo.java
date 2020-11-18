@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Observable;
 import java.util.Observer;
-import org.json.JSONObject;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +41,8 @@ public class Intervalo implements Observer {
   }
 
   protected boolean intInvariant() {
-    return intLdtFechaInicial != null && (intTiempoTotal == -100 || (intTiempoTotal > 0 && intTiempoTotal % 2 == 0));
+    return intLdtFechaInicial != null
+        && (intTiempoTotal == -100 || (intTiempoTotal > 0 && intTiempoTotal % 2 == 0));
   }
 
   public int intGetTiempoTotal() {
@@ -56,25 +57,25 @@ public class Intervalo implements Observer {
 
   public void stopFlag() {
     this.intflag = false;
+    this.intTareaSuperior.setActReloj();
   }
 
-//Asigna la fecha final del intervalo y calcula el tiempo total
+  //Asigna la fecha final del intervalo y calcula el tiempo total
   public void intSetFechaFinal(LocalDateTime finish) {
-    assert intInvariant(): "Invariante";
+    assert intInvariant() : "Invariante";
     assert (finish.isAfter(intLdtFechaInicial)) :
         "El tiempo final es inferior al tiempo inicial.";
-
-    intLdtFechaFinal = finish;
-    intFechaFinal = intLdtFechaFinal.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
-    this.intSetTiempoTotal();
-    this.intTareaSuperior.setFechaFinal(finish);
-
+    if (finish.getSecond() != intLdtFechaInicial.getSecond()) {
+      intLdtFechaFinal = finish;
+      intFechaFinal = intLdtFechaFinal.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      this.intSetTiempoTotal();
+      this.intTareaSuperior.setFechaFinal(finish);
+    }
     assert intInvariant() : "Invariante";
   }
 
   public void intSetTiempoTotal() {
-    assert intInvariant(): "Invariante";
+    assert intInvariant() : "Invariante";
     //int intSegundosInicial = intLdtFechaInicial.getSecond();
     LocalDateTime total = intLdtFechaFinal.minusSeconds(intLdtFechaInicial.getSecond());
 
@@ -92,10 +93,11 @@ public class Intervalo implements Observer {
   public void intMostrar() {
     assert intInvariant() : "Invariante";
 
-    logger.info("Interval: (f.i) {} (f.f) {} (t.t) {}", intFechaInicial, intFechaFinal, intTiempoTotal);
+    logger.info("Interval: (f.i) {} (f.f) {} (t.t) {}",
+                  intFechaInicial, intFechaFinal, intTiempoTotal);
 
    
-   intTareaSuperior.actMostrar();
+    intTareaSuperior.actMostrar();
 
     assert intInvariant() : "Invariante";
   }
@@ -125,7 +127,7 @@ public class Intervalo implements Observer {
   public void update(Observable o, Object arg) {
     assert intInvariant() : "Invariante";
 
-    //intTareaSuperior.setActReloj();
+    intTareaSuperior.setActReloj();
     this.intSetFechaFinal((LocalDateTime) arg);
     this.intMostrar();
 

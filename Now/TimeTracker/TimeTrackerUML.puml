@@ -1,78 +1,105 @@
 @startuml
 
+Actividad "1" - "0" Reloj
 Actividad "0..n" <--* "n " Proyecto
 Actividad <|-- Proyecto : hereda
 Actividad <|-- Tarea : hereda
 Tarea "1" <-- "1..n" Intervalo : dependencia >
+Actividad "0..n" -- "0..n" Tag
 
 Abstract Actividad {
--a_nombre
--a_LDT_fecha_inicial
--a_LDT_fecha_final
--a_fecha_inicial
--a_fecha_final
--a_tiempo_total
--a_proyecto_superior
+-actNombre
+-actLdtFechaInicial
+-actLdtFechaFinal
+-actFechaInicial
+-actFechaFinal
+-actTiempoTotal
+-actProyectoSuperior
+-actClase
+-actReloj
+-logger
 
-+get_nombre()
-+get_fecha_inicial()
-+get_gecha_final()
-+get_tiempo_total()
-+get_proyecto_superior()
-+set_nombre(name)
-+set_fecha_inicial(start)
-+set_fecha_final(finish)
-+set_tiempo_total()
-+a_mostrar()
++actInvariant()
++getNombre()
++getFechaInicial()
++getFechaFinal()
++getTiempoTotal()
++getProyectoSuperior()
++setFechaInicial(start)
++setFechaFinal(finish)
++setTiempoTotal()
++setActReloj()
++searchFlag()
++actMostrar()
++getJson()
 }
 
 Abstract Proyecto {
--p_lista_tareas
--p_lista_proyectos
+-proListaTareas
+-proListaProyectos
 
-+añadir_tarea(task)
-+añadir_proyecto(proyect)
-+eliminar_tarea(task)
-+eliminar_proyecto(proyect)
-+set_tiempo_total()
++anadirTarea(task)
++anadirProyecto(proyect)
++setTiempoTotal()
++searchFlag()
++getJson()
 }
 
 Class Tarea {
--t_lista_intervalos
--t_reloj
+-tarListaIntervalos
+-tarReloj
 
-+t_get_Instance()
-+set_tiempo_total()
-+añadir_intervalo(interval)
-+eliminar_interval(interval)
++tarInvariant()
++tarGetinstance()
++setTiempoTotal()
++searchFlag()
++anadirIntervalo(interval)
 +start()
 +stop()
++getJson()
 }
 
 Class Intervalo {
--i_LDT_fecha_inicio
--i_LDT_fecha_final
--i_fecha_inicio
--i_fecha_final
--i_tiempo_total
--i_tarea_superior
+-intLdtFechaInicial
+-intLdtFechaFinal
+-intFechaInicial
+-intFechaFinal
+-intTiempoTotal
+-intTareaSuperior
+-intClase
+-intflag
+-logger
 
-+i_get_fecha_inicial()
-+i_get_fecha_final()
-+i_get_tarea_superior()
-+i_get_tiempo_total()
-+i_set_fecha_inicial()
-+i_set_fecha_final()
-+i_mostrar()
++intInvariant()
++intGetTiempoTotal()
++isIntflag()
++stopFlag()
++intSetFechaFinal(finish)
++intSetTiempoTotal()
++intMostrar()
++getJson()
 +update()
+}
+
+Class Tag{
+-tagList
+-actList
+-logger
+
++tagInvariant()
++anadirTag()
++searchTag()
 }
 
 Class Reloj {
 -periodo
 -uniqueinstance
+-flag
+-logger
 
 +getInstance()
-+Notify()
++changeFlag()
++notificar()
 +run()
 }
 

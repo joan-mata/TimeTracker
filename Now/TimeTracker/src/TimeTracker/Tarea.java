@@ -2,9 +2,9 @@ package timetracker;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,14 +23,14 @@ public class Tarea extends Actividad {
     super(name, p, "Tarea");
     this.tarListaIntervalos = new ArrayList<Intervalo>();
     this.getProyectoSuperior().anadirTarea(this);
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
   }
 
   public Tarea(String name, Proyecto p, Reloj r) {
     super(name, p, "Tarea", r);
     this.tarListaIntervalos = new ArrayList<Intervalo>();
     this.getProyectoSuperior().anadirTarea(this);
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
   }
 
   protected boolean tarInvariant() {
@@ -39,26 +39,30 @@ public class Tarea extends Actividad {
 
   //Conseguimos la instancia única del reloj
   public Reloj tarGetInstance() {
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
     return tarReloj.getInstance();
   }
 
   //Conseguimos el tiempo total de tarea. al sumar los tiempos de sus intervalos
   @Override
   public int setTiempoTotal() {
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
 
     logger.debug("Tiempo de intervalo sumado.");
     logger.trace("Estoy en el método setTiempoTotal de la clase Tarea.");
 
     int totalTime = 0;
+    int k;
     for (int i = 0; i < tarListaIntervalos.size(); i++) {
-      totalTime += tarListaIntervalos.get(i).intGetTiempoTotal();
+      k = tarListaIntervalos.get(i).intGetTiempoTotal();
+      if (k > 0) { //Prevenir que no sume con tiempoTotal sin inicializar (=-100)
+        totalTime += k;
+      }
     }
     logger.debug("{}", totalTime);
     assert (totalTime >= getTiempoTotal()) :
         "El tiempo total futuro es inferior al tiempo total anterior.";
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
     return totalTime;
   }
 
@@ -76,15 +80,15 @@ public class Tarea extends Actividad {
 
   public void anadirIntervalo(Intervalo i) {
 
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
     this.tarListaIntervalos.add(i);
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
 
   }
 
   //Inicializas el intervalo que toca, nuevo en la lista y lo muestras
   public void start() {
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
 
     logger.trace("Estoy en el método start de la clase Tarea.");
 
@@ -93,27 +97,27 @@ public class Tarea extends Actividad {
     //setFechaInicial(hora); //TODO Que lo haga directamente intervalo llamando a iTareaSuperior
     //anadirIntervalo(i);
     tarGetInstance().addObserver(i);
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
   }
 
   //Finalizamos la actividad
   public void stop() {
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
 
     logger.trace("Estoy en el método stop de la clase Tarea.");
 
     Intervalo i = this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1);
-    i.stopFlag();
     tarGetInstance().deleteObserver(i);
-    assert tarInvariant(): "Invariante";
+    i.stopFlag();
+    logger.debug("Salí stop()");
+    assert tarInvariant() : "Invariante";
   }
-
 
   //Crea un objeto JSON con los datos del proyecto 
   //y un array JSON con los datos de los intervalos hijos
   @Override
   public JSONObject getJson() {
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
 
     logger.info("Generando JSON...");
     logger.trace("Estoy en el método getJson de la clase Tarea.");
@@ -134,7 +138,7 @@ public class Tarea extends Actividad {
     } catch (JSONException e) {
       logger.error("{}", e);
     }
-    assert tarInvariant(): "Invariante";
+    assert tarInvariant() : "Invariante";
     return jo;
   }
 }

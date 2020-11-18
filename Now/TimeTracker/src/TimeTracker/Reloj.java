@@ -24,7 +24,7 @@ public class Reloj extends Observable implements Runnable {
 
   /*Método que devuelve la instancia del reloj para asegurar que
   solo hay un reloj corriendo para todos los observadores.
-  synchronized no permite a dos thred o mas entrar a la vez
+  synchronized no permite a dos thread o mas entrar a la vez
   en la función, entran de uno en uno */
   public static synchronized Reloj getInstance() {
     if (uniqueInstance == null) {
@@ -35,19 +35,19 @@ public class Reloj extends Observable implements Runnable {
     return uniqueInstance;
   }
 
-  public void changeFlag(boolean f){
+  public void changeFlag(boolean f) {
     flag = f;
   }
 
   public void notificar() {
     logger.debug("Entré notificar()");
 
-    if(flag){
+    if (flag) {
       setChanged();
       logger.debug("Entré setChanged()");
-
     }
-    notifyObservers(LocalDateTime.now()); //Notifica a los observadores y les envia el objeto del reloj.
+    //Notifica a los observadores y les envia el objeto del reloj.
+    notifyObservers(LocalDateTime.now());
     logger.debug("Final notificar(), now={}", LocalDateTime.now());
   }
 
