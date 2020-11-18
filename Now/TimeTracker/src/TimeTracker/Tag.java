@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+/*Clase Tag
+ Permite buscar actividades a partir de un tag.
+ Tiene la relación entre tags y actividades.*/
 public class Tag {
   private ArrayList<String> tagList;
   private ArrayList<String> actList;
 
   private static final Logger logger = LoggerFactory.getLogger(Tag.class);
 
-  //Constructor crea dos arrays, tags y actividades, que iremos actualizando a la par.
+  /*Constructor crea dos arrays, uno de tags y otro de actividades,
+  que iremos actualizando a la par.*/
   public Tag() {
     this.tagList = new ArrayList<String>();
     this.actList = new ArrayList<String>();
@@ -21,7 +26,7 @@ public class Tag {
     return this.tagList.size() == this.actList.size();
   }
 
-  //Introducir 
+  //Introduce un tag y su correspondiente actividad.
   public void anadirTag(String act, String tag) {
     assert tagInvariant() : "Invariante";
     tagList.add(tag);

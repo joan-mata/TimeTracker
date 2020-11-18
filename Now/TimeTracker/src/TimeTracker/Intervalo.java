@@ -56,7 +56,7 @@ public class Intervalo implements Observer {
   }
 
   /*Actualiza la fecha final del intervalo, calcula el tiempo total de este 
-  y actuliza la fecha final de su tarea superior. Todo con el formato yyyy-MM-dd HH:mm:ss.*/
+  y actuliza la fecha final de su tarea superior. Todos con el formato yyyy-MM-dd HH:mm:ss.*/
   public void intSetFechaFinal(LocalDateTime finish) {
     assert intInvariant() : "Invariante";
     assert (finish.isAfter(intLdtFechaInicial)) :
