@@ -19,6 +19,7 @@ public abstract class Actividad {
   private Proyecto actProyectoSuperior;
   private String actClase;
   private int ttTiempoTotal;
+  private int id;
   
   private static final Logger logger = LoggerFactory.getLogger(Actividad.class);
 
