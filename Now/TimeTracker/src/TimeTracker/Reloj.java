@@ -1,4 +1,4 @@
-package TimeTracker;
+package timetracker;
 
 import java.lang.Thread;
 import java.time.LocalDateTime;

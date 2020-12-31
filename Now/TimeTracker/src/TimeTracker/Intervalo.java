@@ -1,4 +1,4 @@
-package TimeTracker;
+package timetracker;
 
 import java.lang.Object;
 import java.time.LocalDateTime;
@@ -21,6 +21,8 @@ public class Intervalo implements Observer {
   private int intTiempoTotal;
   private Tarea intTareaSuperior;
   private String intClase;
+  private int id;
+  private UniqueId actUniqueId;
   
   private static final Logger logger = LoggerFactory.getLogger(Intervalo.class);
 
@@ -32,6 +34,7 @@ public class Intervalo implements Observer {
     this.intTiempoTotal = -100; //un valor muy pequeño para trabajar con él.
     this.intTareaSuperior.setFechaInicial(start);
     this.intTareaSuperior.anadirIntervalo(this);
+    this.id = actUniqueId.uniqueGetInstance().getUniqueId();
 
     logger.debug(start + " " + LocalDateTime.now());
     assert intInvariant() : "Invariante";

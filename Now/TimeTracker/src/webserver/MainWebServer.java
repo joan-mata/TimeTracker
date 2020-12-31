@@ -1,5 +1,5 @@
 package webserver;
-import TimeTracker.*;
+import timetracker.*;
 
 //import core.Activity;
 //import core.Clock;
@@ -10,12 +10,12 @@ public class MainWebServer {
   }
 
   public static void webServer() {
-    //final Actividad root = makeTreeCourses();
+    final Actividad root = makeTreeCourses();
     // implement this method that returns the tree of
     // appendix A in the practicum handout
 
     // start your clock
 
-    //new WebServer(root);
+    new WebServer(root);
   }
 }

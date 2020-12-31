@@ -1,4 +1,4 @@
-package TimeTracker;
+package timetracker;
 
 import java.util.ArrayList;
 import org.slf4j.Logger;

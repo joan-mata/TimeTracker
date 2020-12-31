@@ -1,4 +1,4 @@
-package TimeTracker;
+package timetracker;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.json.JSONObject;
