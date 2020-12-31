@@ -5,7 +5,7 @@ Actividad <|-- Proyecto : hereda
 Actividad <|-- Tarea : hereda
 Tarea "1" <-- "1..n" Intervalo : dependencia >
 Actividad "0..n" -- "0..n" Tag
-Actividad "0..n" -- "0..n" TotalTime
+Actividad "1" -- "0..n" TotalTime
 
 Abstract Actividad {
 -actNombre

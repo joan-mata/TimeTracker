@@ -20,29 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa6b79ea-1ff8-44ce-a880-e2a70e06ed1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/json.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/json.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/logs.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/logs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/timetracker/Actividad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/timetracker/Actividad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/timetracker/Intervalo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/timetracker/Intervalo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/timetracker/Proyecto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/timetracker/Proyecto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/timetracker/Reloj.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/timetracker/Reloj.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/timetracker/Tag.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/timetracker/Tag.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/timetracker/Tarea.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/timetracker/timetracker/Tarea.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/timetracker/timetracker/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Actividad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Actividad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Intervalo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Intervalo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Proyecto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Proyecto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Reloj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Reloj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TimeTracker/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeTracker/Tarea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/json.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/logs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Informe P1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TimeTrackerUML.png" beforeDir="false" afterPath="$PROJECT_DIR$/TimeTrackerUML.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TimeTrackerUML.puml" beforeDir="false" afterPath="$PROJECT_DIR$/TimeTrackerUML.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,13 +70,15 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowPlantUML.ShowToolbar" value="false" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33103448" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -239,8 +223,8 @@
       <screen x="-480" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1878" height="376" key="GridCell.Tab.1.right/0.0.1440.900/1440.-900.1440.900/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604856681429" />
-    <state x="-1509" y="-278" width="1024" height="796" key="SettingsEditor" timestamp="1605696923698">
-      <screen x="-1920" y="-308" width="1920" height="1080" />
+    <state x="109" y="74" width="900" height="728" key="SettingsEditor" timestamp="1609243187547">
+      <screen x="0" y="25" width="1440" height="796" />
     </state>
     <state x="308" y="25" width="1024" height="796" key="SettingsEditor/0.0.1440.900/-441.-1080.1920.1080@0.0.1440.900" timestamp="1605637002779" />
     <state x="1440" y="-845" key="SettingsEditor/0.0.1440.900/-480.-1080.1920.1080/1440.-1084.900.1440@1440.-1084.900.1440" timestamp="1603876458301" />
@@ -254,6 +238,7 @@
     <state x="-450" y="-1036" key="SettingsEditor/0.23.1440.877/1440.-877.1440.805/-480.-1057.1920.1057@-480.-1057.1920.1057" timestamp="1604859488806" />
     <state x="-43" y="-961" key="SettingsEditor/0.23.1440.877/1440.-877.1440.877/-480.-1080.1920.1080@-480.-1080.1920.1080" timestamp="1604858790829" />
     <state x="-1509" y="-278" key="SettingsEditor/0.25.1440.793/-1920.-308.1920.1080@-1920.-308.1920.1080" timestamp="1605696815369" />
+    <state x="109" y="74" width="900" height="728" key="SettingsEditor/0.25.1440.796@0.25.1440.796" timestamp="1609243187547" />
     <state x="-1509" y="-278" key="SettingsEditor/0.25.1440.875/-1920.-308.1920.1080@-1920.-308.1920.1080" timestamp="1605696923698" />
     <state x="-1360" y="-31" key="Vcs.Push.Dialog.v2" timestamp="1605657414982">
       <screen x="-1920" y="-308" width="1920" height="1080" />
@@ -283,6 +268,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="421" y="82" width="597" height="735" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1605379151984" />
+    <state x="319" y="42" key="new project wizard" timestamp="1609244891710">
+      <screen x="0" y="25" width="1440" height="796" />
+    </state>
+    <state x="319" y="42" key="new project wizard/0.25.1440.796@0.25.1440.796" timestamp="1609244891710" />
     <state x="469" y="200" width="670" height="576" key="search.everywhere.popup" timestamp="1605374872181">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
