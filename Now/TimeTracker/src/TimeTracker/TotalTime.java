@@ -1,4 +1,4 @@
-package timetracker;
+package TimeTracker;
 
 import java.time.LocalDateTime;
 import org.slf4j.Logger;

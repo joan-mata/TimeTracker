@@ -8,7 +8,7 @@ import java.util.Scanner;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import timetracker.*;
+import TimeTracker.*;
 
 public class Main {
   private static Reloj Reloj;
@@ -93,7 +93,7 @@ public class Main {
     /*Se crear el objeto JSON a partir del proyecto root,
     a partir del cual se recorrerá todo el árbol y se 
     añadirá a dicho objeto JSON.*/
-    JSONObject json = root.getJson();
+    JSONObject json = root.toJson(1);
     String jsonString = json.toString();
     Path path = Paths.get("json.txt");
     try {

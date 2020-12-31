@@ -1,4 +1,4 @@
-package timetracker;
+package TimeTracker;
 
 import java.lang.Object;
 import java.time.LocalDateTime;
@@ -98,21 +98,23 @@ public class Intervalo implements Observer {
   }
 
   //Crea un objeto JSON con los datos del intervalo.
-  public JSONObject getJson() {
+  public JSONObject toJson(int depth) {
     assert intInvariant() : "Invariante";
     logger.info("Generando JSON...");
     logger.trace("Estoy en el método getJson de la clase Intervalo");
 
     JSONObject jo = new JSONObject();
-    try {
-      jo.put("class", intClase);
-      jo.put("initialDate", intFechaInicial);
-      jo.put("finalDate", intFechaFinal);
-      jo.put("duration", intTiempoTotal);
-    } catch (JSONException e) {
-      logger.error("{}", e);
+    if(depth>0) {
+      try {
+        jo.put("class", intClase);
+        jo.put("initialDate", intFechaInicial);
+        jo.put("finalDate", intFechaFinal);
+        jo.put("duration", intTiempoTotal);
+      } catch (JSONException e) {
+        logger.error("{}", e);
+      }
+      assert intInvariant() : "Invariante";
     }
-    assert intInvariant() : "Invariante";
     return jo;
   }
 
