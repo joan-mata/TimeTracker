@@ -101,6 +101,7 @@ public class Proyecto extends Actividad {
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
+      jo.put("id", getId());
       jo.put("class", "Proyecto");
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());

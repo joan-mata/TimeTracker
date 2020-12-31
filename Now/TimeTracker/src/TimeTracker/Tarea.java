@@ -141,6 +141,7 @@ public class Tarea extends Actividad {
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
+      jo.put("id", getId());
       jo.put("class", "Tarea");
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());
