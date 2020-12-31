@@ -1,4 +1,4 @@
-package timetracker;
+package TimeTracker;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -87,15 +87,17 @@ public class Proyecto extends Actividad {
   }
 
 
+
+
   /*Crea un objeto JSON con los datos del proyecto y un array 
   JSON con los datos de los proyectos, tareas e intervalos hijos*/
   @Override
-  public JSONObject getJson() {      
+  public JSONObject toJson(int depth) {
     assert actInvariant() : "Invariante";
-        
+
     logger.info("Generando JSON...");
     logger.trace("Estoy en el método getJson de la clase Proyecto.");
-    
+
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
@@ -103,19 +105,41 @@ public class Proyecto extends Actividad {
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());
       jo.put("duration", getTiempoTotal());
-      JSONArray ja = new JSONArray();
-      for (int i = 0; i < proListaProyectos.size(); i++) {
-        ja.put(proListaProyectos.get(i).getJson());
+      if(depth>0) {
+        depth--;
+        JSONArray ja = new JSONArray();
+        for (int i = 0; i < proListaProyectos.size(); i++) {
+          ja.put(proListaProyectos.get(i).toJson(depth));
+        }
+        for (int i = 0; i < proListaTareas.size(); i++) {
+          ja.put(proListaTareas.get(i).toJson(depth));
+        }
+        jo.put("activities", ja);
       }
-      for (int i = 0; i < proListaTareas.size(); i++) {
-        ja.put(proListaTareas.get(i).getJson());
-      }
-      jo.put("activities", ja);
     } catch (JSONException e) {
       logger.error("{}", e);
     }
     assert actInvariant() : "Invariante";
     return jo;
   }
-  
-}
+
+  public Actividad findActivityById(int id) {
+    Actividad ActivityWithId = null;
+    for (int i = 0; i < proListaProyectos.size(); i++) {
+      if(proListaProyectos.get(i).getId() == id){
+        ActivityWithId = proListaProyectos.get(i);
+      }
+      else{
+        ActivityWithId = proListaProyectos.get(i).findActivityById(id);
+      }
+    }
+    for (int i = 0; i < proListaTareas.size(); i++) {
+      if(proListaTareas.get(i).getId() == id){
+        ActivityWithId = proListaTareas.get(i);
+      }
+      else{
+        ActivityWithId = proListaTareas.get(i).findActivityById(id);
+      }
+    }
+    return ActivityWithId;
+  }

@@ -1,5 +1,4 @@
-package timetracker;
-
+package TimeTracker;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.json.JSONObject;
@@ -20,6 +19,7 @@ public abstract class Actividad {
   private String actClase;
   private int ttTiempoTotal;
   private int id;
+  private UniqueId actUniqueId;
   
   private static final Logger logger = LoggerFactory.getLogger(Actividad.class);
 
@@ -30,6 +30,7 @@ public abstract class Actividad {
     this.actTiempoTotal = -100; 
     this.actClase = clase;
     this.ttTiempoTotal = 0;
+    this.id = actUniqueId.uniqueGetInstance().getUniqueId();
     assert actInvariant() : "Invariante";
   }
 
@@ -40,6 +41,11 @@ public abstract class Actividad {
   public String getNombre() {
     assert actInvariant() : "Invariante";
     return this.actNombre;
+  }
+
+  public int getId(){
+    assert actInvariant() : "Invariante";
+    return this.id;
   }
 
   public LocalDateTime getLdtFechaInicial() {
@@ -149,6 +155,8 @@ public abstract class Actividad {
     assert actInvariant() : "Invariante";
   }
 
-  public abstract JSONObject getJson();
+  public abstract JSONObject toJson(int depth);
+
+  public abstract Actividad findActivityById(int id);
 }
 

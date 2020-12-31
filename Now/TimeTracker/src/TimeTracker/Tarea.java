@@ -1,4 +1,4 @@
-package timetracker;
+package TimeTracker;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -133,12 +133,11 @@ public class Tarea extends Actividad {
   /*Crea un objeto JSON con los datos del proyecto 
   y un array JSON con los datos de los intervalos hijo.*/
   @Override
-  public JSONObject getJson() {
+  public JSONObject toJson(int depth) {
     assert tarInvariant() : "Invariante";
 
     logger.info("Generando JSON...");
     logger.trace("Estoy en el método getJson de la clase Tarea.");
-
     JSONObject jo = new JSONObject();
     try {
       jo.put("name", getNombre());
@@ -146,16 +145,24 @@ public class Tarea extends Actividad {
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());
       jo.put("duration", getTiempoTotal());
-      JSONArray ja = new JSONArray();
-      for (int i = 0; i < tarListaIntervalos.size(); i++) {
-        ja.put(tarListaIntervalos.get(i).getJson());
+      if(depth>0) {
+        depth--;
+        JSONArray ja = new JSONArray();
+        for (int i = 0; i < tarListaIntervalos.size(); i++) {
+          ja.put(tarListaIntervalos.get(i).toJson(depth));
+        }
+        jo.put("intervals", ja);
       }
-      jo.put("intervals", ja);
-
     } catch (JSONException e) {
       logger.error("{}", e);
     }
     assert tarInvariant() : "Invariante";
     return jo;
   }
+
+  @Override
+  public Actividad findActivityById(int id) {
+    return null;
+  }
+
 }
