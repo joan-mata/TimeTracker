@@ -16,7 +16,7 @@ Lo mismo con las tareas que pudieran depender de él.*/
 public class Proyecto extends Actividad {
   private ArrayList<Tarea> proListaTareas;
   private ArrayList<Proyecto> proListaProyectos;
-  
+
   private static final Logger logger = LoggerFactory.getLogger(Proyecto.class);
 
   public Proyecto(String name, Proyecto p) {
@@ -46,9 +46,9 @@ public class Proyecto extends Actividad {
   /*Calcula el tiempo total del proyecto sumando los tiempos 
   totales de sus proyectos hijo y de sus tareas hijo.*/
   @Override
-  public int setTiempoTotal() {   
+  public int setTiempoTotal() {
     assert actInvariant() : "Invariante";
-    
+
     logger.trace("Estoy en el método setTiempoTotal de la clase Proyecto.");
 
     int totalTime = 0;
@@ -65,7 +65,7 @@ public class Proyecto extends Actividad {
         totalTime += k;
       }
     }
-    
+
     logger.debug("Tiempo de proyecto calculado. (t.t) {}", totalTime);
 
     assert actInvariant() : "Invariante";
@@ -87,9 +87,7 @@ public class Proyecto extends Actividad {
   }
 
 
-
-
-  /*Crea un objeto JSON con los datos del proyecto y un array 
+  /*Crea un objeto JSON con los datos del proyecto y un array
   JSON con los datos de los proyectos, tareas e intervalos hijos*/
   @Override
   public JSONObject toJson(int depth) {
@@ -106,7 +104,7 @@ public class Proyecto extends Actividad {
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());
       jo.put("duration", getTiempoTotal());
-      if(depth>0) {
+      if (depth > 0) {
         depth--;
         JSONArray ja = new JSONArray();
         for (int i = 0; i < proListaProyectos.size(); i++) {
@@ -127,20 +125,19 @@ public class Proyecto extends Actividad {
   public Actividad findActivityById(int id) {
     Actividad ActivityWithId = null;
     for (int i = 0; i < proListaProyectos.size(); i++) {
-      if(proListaProyectos.get(i).getId() == id){
+      if (proListaProyectos.get(i).getId() == id) {
         ActivityWithId = proListaProyectos.get(i);
-      }
-      else{
+      } else {
         ActivityWithId = proListaProyectos.get(i).findActivityById(id);
       }
     }
     for (int i = 0; i < proListaTareas.size(); i++) {
-      if(proListaTareas.get(i).getId() == id){
+      if (proListaTareas.get(i).getId() == id) {
         ActivityWithId = proListaTareas.get(i);
-      }
-      else{
+      } else {
         ActivityWithId = proListaTareas.get(i).findActivityById(id);
       }
     }
     return ActivityWithId;
   }
+}

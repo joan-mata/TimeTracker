@@ -49,31 +49,26 @@ public abstract class Actividad {
   }
 
   public LocalDateTime getLdtFechaInicial() {
-
     assert actInvariant() : "Invariante";
     return this.actLdtFechaInicial;
   }
 
   public String getFechaInicial() {
-
     assert actInvariant() : "Invariante";
     return this.actFechaInicial;
   }
 
   public String getFechaFinal() {
-
     assert actInvariant() : "Invariante";
     return this.actFechaFinal;
   }
 
   public int getTiempoTotal() {
-
     assert actInvariant() : "Invariante";
     return this.actTiempoTotal;
   }
 
   public Proyecto getProyectoSuperior() {
-
     assert actInvariant() : "Invariante";
     return this.actProyectoSuperior;
   }
