@@ -132,4 +132,5 @@ public class Intervalo implements Observer {
 
     assert intInvariant() : "Invariante";
   }
+
 }

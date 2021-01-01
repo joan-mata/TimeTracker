@@ -103,7 +103,11 @@ public class Proyecto extends Actividad {
       jo.put("class", "Proyecto");
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());
-      jo.put("duration", getTiempoTotal());
+      if (getTiempoTotal() == -100) {
+        jo.put("duration", 0);
+      } else {
+        jo.put("duration", getTiempoTotal());
+      }
       if (depth > 0) {
         depth--;
         JSONArray ja = new JSONArray();
@@ -124,20 +128,28 @@ public class Proyecto extends Actividad {
 
   public Actividad findActivityById(int id) {
     Actividad ActivityWithId = null;
-    for (int i = 0; i < proListaProyectos.size(); i++) {
-      if (proListaProyectos.get(i).getId() == id) {
-        ActivityWithId = proListaProyectos.get(i);
-      } else {
-        ActivityWithId = proListaProyectos.get(i).findActivityById(id);
+    if (this.getId() == id) {
+      ActivityWithId = this;
+    }
+    else {
+      for (int i = 0; i < proListaProyectos.size(); i++) {
+        if (proListaProyectos.get(i).getId() == id) {
+          ActivityWithId = proListaProyectos.get(i);
+        } else {
+          ActivityWithId = proListaProyectos.get(i).findActivityById(id);
+        }
+      }
+      if (ActivityWithId == null) {
+        for (int i = 0; i < proListaTareas.size(); i++) {
+          if (proListaTareas.get(i).getId() == id) {
+            ActivityWithId = proListaTareas.get(i);
+          } else {
+            ActivityWithId = proListaTareas.get(i).findActivityById(id);
+          }
+        }
       }
     }
-    for (int i = 0; i < proListaTareas.size(); i++) {
-      if (proListaTareas.get(i).getId() == id) {
-        ActivityWithId = proListaTareas.get(i);
-      } else {
-        ActivityWithId = proListaTareas.get(i).findActivityById(id);
-      }
-    }
+
     return ActivityWithId;
   }
 }

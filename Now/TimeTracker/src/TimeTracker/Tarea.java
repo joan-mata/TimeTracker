@@ -145,7 +145,11 @@ public class Tarea extends Actividad {
       jo.put("class", "Tarea");
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());
-      jo.put("duration", getTiempoTotal());
+      if (getTiempoTotal() == -100) {
+        jo.put("duration", 0);
+      } else {
+        jo.put("duration", getTiempoTotal());
+      }
       if(depth>0) {
         depth--;
         JSONArray ja = new JSONArray();
