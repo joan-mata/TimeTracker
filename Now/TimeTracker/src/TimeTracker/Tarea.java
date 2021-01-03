@@ -126,9 +126,14 @@ public class Tarea extends Actividad {
     tarGetInstance().addObserver(i);
     active = true;
     this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1).updateActive(true);
+
+    startActividad(hora);
     assert tarInvariant() : "Invariante";
   }
+  @Override
+  public void startActividad (LocalDateTime time) {
 
+  }
   //Finaliza la tarea.
   public void stop() {
     assert tarInvariant() : "Invariante";

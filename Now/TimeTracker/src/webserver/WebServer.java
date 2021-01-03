@@ -116,30 +116,67 @@ public class WebServer {
         case "get_tree" : {
           int id = Integer.parseInt(tokens[1]);
           Actividad Actividad = findActivityById(id);
-          assert (Actividad!=null);
+          assert (Actividad != null);
           body = Actividad.toJson(1).toString();
           break;
         }
         case "start": {
           int id = Integer.parseInt(tokens[1]);
           Actividad Actividad = findActivityById(id);
-          assert (Actividad!=null);
+          assert (Actividad != null);
           Tarea Tarea = (Tarea) Actividad;
-          Tarea.start();
-          body = "{}";
+          Tarea.start(); //TODO: cambiar start para configurar hora de inicio proyectos anteriores
+          body = "{}"; //TODO: ¿Que muestro por pantalla? ¿Modo JSON?
           break;
         }
         case "stop": {
           int id = Integer.parseInt(tokens[1]);
           Actividad Actividad = findActivityById(id);
-          assert (Actividad!=null);
+          assert (Actividad != null);
           Tarea Tarea = (Tarea) Actividad;
           Tarea.stop();
-          body = "{}";
+          body = "{}"; //TODO: ¿Que muestro por pantalla? ¿Modo JSON?
           break;
         }
         // TODO: add new Tarea, project
+        case "new_project": {
+          int id = Integer.parseInt(tokens[1]);
+          Actividad Actividad = findActivityById(id);
+          assert (Actividad != null);
+          String nombre = "Proyecto X"; //TODO: Como pregunto el nombre?
+          Proyecto Proyecto = new Proyecto(nombre, (Proyecto) Actividad);
+          body = "{}"; //TODO: ¿Que muestro por pantalla? ¿Modo JSON?
+          break;
+        }
+        case "new_task": {
+          int id = Integer.parseInt(tokens[1]);
+          Actividad Actividad = findActivityById(id);
+          assert (Actividad!=null);
+          //TODO: Como pregunto el nombre?
+          String nombre = "Tarea X";
+          Tarea Tarea = new Tarea(nombre, (Proyecto) Actividad);
+          body = "{}"; //TODO: ¿Que muestro por pantalla? ¿Modo JSON?
+          break;
+        }
         // TODO: edit Tarea, project properties
+        case "edit_project": {
+          int id = Integer.parseInt(tokens[1]);
+          Actividad Actividad = findActivityById(id);
+          assert (Actividad!=null);
+          //TODO: Como cogo los datos ha editar?
+          //funcion
+          body = "{}"; //TODO: ¿Que muestro por pantalla? ¿Modo JSON?
+          break;
+        }
+
+        case "edit_task": {
+          int id = Integer.parseInt(tokens[1]);
+          Actividad Actividad = findActivityById(id);
+          assert (Actividad!=null);
+          //funcion
+          body = "{}"; //TODO: ¿Que muestro por pantalla? ¿Modo JSON?
+          break;
+        }
         default:
           assert false;
       }

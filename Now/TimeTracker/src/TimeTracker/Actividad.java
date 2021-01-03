@@ -26,7 +26,7 @@ public abstract class Actividad {
   public Actividad(String name, Proyecto p, String clase) {
     this.actNombre = name;
     this.actProyectoSuperior = p;
-    //un valor muy pequeño para trabajar con él cuanod esta sin "inicializar"
+    //un valor muy pequeño para trabajar con él cuando esta sin "inicializar"
     this.actTiempoTotal = -100; 
     this.actClase = clase;
     this.ttTiempoTotal = 0;
@@ -131,7 +131,6 @@ public abstract class Actividad {
   public void sumaTtTiempoTotal(int valor) {
     this.ttTiempoTotal += valor;
   }
-  
 
   /*Muestra por pantalla los datos de la 
   actividad y de sus actividades superiores.*/
@@ -153,5 +152,7 @@ public abstract class Actividad {
   public abstract JSONObject toJson(int depth);
 
   public abstract Actividad findActivityById(int id);
+
+  public abstract void startActividad (LocalDateTime time);
 }
 
