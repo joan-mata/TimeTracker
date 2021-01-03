@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /*Clase Actividad,
 Su función es generalizar dos subclases (Proyecto y Tarea) */
 public abstract class Actividad {
@@ -152,7 +151,5 @@ public abstract class Actividad {
   public abstract JSONObject toJson(int depth);
 
   public abstract Actividad findActivityById(int id);
-
-  public abstract void startActividad (LocalDateTime time);
 }
 

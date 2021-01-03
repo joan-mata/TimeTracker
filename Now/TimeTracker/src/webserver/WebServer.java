@@ -109,7 +109,6 @@ public class WebServer {
       }
     }
 
-
     private String makeBodyAnswer(String[] tokens) {
       String body = "";
       switch (tokens[0]) {

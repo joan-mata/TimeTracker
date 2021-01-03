@@ -86,7 +86,6 @@ public class Proyecto extends Actividad {
     return getTtTiempoTotal();
   }
 
-
   /*Crea un objeto JSON con los datos del proyecto y un array
   JSON con los datos de los proyectos, tareas e intervalos hijos*/
   @Override
