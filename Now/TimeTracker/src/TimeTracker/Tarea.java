@@ -16,6 +16,7 @@ Tendrá una lista de los intervalos que se han realizado durante la tarea*/
 public class Tarea extends Actividad {
   private ArrayList<Intervalo> tarListaIntervalos;
   private Reloj tarReloj;
+  private boolean active = false;
   
   private static final Logger logger = LoggerFactory.getLogger(Tarea.class);
 
@@ -28,6 +29,10 @@ public class Tarea extends Actividad {
 
   protected boolean tarInvariant() {
     return actInvariant() && this.getProyectoSuperior() != null;
+  }
+
+  public boolean getActive(){
+    return this.active;
   }
 
   //Conseguimos la instancia única del reloj
@@ -83,6 +88,10 @@ public class Tarea extends Actividad {
     assert tarInvariant() : "Invariante";
   }
 
+  public Intervalo getLastInterval(){
+    return this.tarListaIntervalos.get(tarListaIntervalos.size() - 1);
+  }
+
   //Conseguimos el tiempo total de tarea al sumar los tiempos de sus intervalos.
   @Override
   public int setTiempoTotal() {
@@ -115,6 +124,8 @@ public class Tarea extends Actividad {
     LocalDateTime hora = LocalDateTime.now();
     Intervalo i = new Intervalo(this, hora);
     tarGetInstance().addObserver(i);
+    active = true;
+    this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1).updateActive(true);
     assert tarInvariant() : "Invariante";
   }
 
@@ -126,6 +137,8 @@ public class Tarea extends Actividad {
 
     Intervalo i = this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1);
     tarGetInstance().deleteObserver(i);
+    active = false;
+    this.tarListaIntervalos.get(this.tarListaIntervalos.size() - 1).updateActive(false);
     logger.debug("Salí stop()");
     assert tarInvariant() : "Invariante";
   }
@@ -143,21 +156,23 @@ public class Tarea extends Actividad {
       jo.put("name", getNombre());
       jo.put("id", getId());
       jo.put("class", "Tarea");
+      jo.put("active", getActive());
       jo.put("initialDate", getFechaInicial());
       jo.put("finalDate", getFechaFinal());
+
       if (getTiempoTotal() == -100) {
         jo.put("duration", 0);
       } else {
         jo.put("duration", getTiempoTotal());
       }
+      JSONArray ja = new JSONArray();
       if(depth>0) {
         depth--;
-        JSONArray ja = new JSONArray();
         for (int i = 0; i < tarListaIntervalos.size(); i++) {
           ja.put(tarListaIntervalos.get(i).toJson(depth));
         }
-        jo.put("intervals", ja);
       }
+      jo.put("intervals", ja);
     } catch (JSONException e) {
       logger.error("{}", e);
     }

@@ -22,7 +22,8 @@ public class Intervalo implements Observer {
   private Tarea intTareaSuperior;
   private String intClase;
   private int id;
-  private UniqueId actUniqueId;
+  private UniqueId intUniqueId;
+  private boolean active = false;
   
   private static final Logger logger = LoggerFactory.getLogger(Intervalo.class);
 
@@ -34,7 +35,7 @@ public class Intervalo implements Observer {
     this.intTiempoTotal = -100; //un valor muy pequeño para trabajar con él.
     this.intTareaSuperior.setFechaInicial(start);
     this.intTareaSuperior.anadirIntervalo(this);
-    this.id = actUniqueId.uniqueGetInstance().getUniqueId();
+    this.id = intUniqueId.uniqueGetInstance().getUniqueId();
 
     logger.debug(start + " " + LocalDateTime.now());
     assert intInvariant() : "Invariante";
@@ -49,14 +50,15 @@ public class Intervalo implements Observer {
     assert intInvariant() : "Invariante";
     return this.intTiempoTotal;
   }
-  
+
   public LocalDateTime getFechaInicial() {
-    return this.intLdtFechaFinal;
+    return this.intLdtFechaInicial;
   }
 
   public LocalDateTime getFechaFinal() {
     return this.intLdtFechaFinal;
   }
+
 
   /*Actualiza la fecha final del intervalo, calcula el tiempo total de este 
   y actuliza la fecha final de su tarea superior. Todos con el formato yyyy-MM-dd HH:mm:ss.*/
@@ -100,6 +102,10 @@ public class Intervalo implements Observer {
     assert intInvariant() : "Invariante";
   }
 
+  public void updateActive(boolean act){
+    this.active = act;
+  }
+
   //Crea un objeto JSON con los datos del intervalo.
   public JSONObject toJson(int depth) {
     assert intInvariant() : "Invariante";
@@ -109,10 +115,12 @@ public class Intervalo implements Observer {
     JSONObject jo = new JSONObject();
     if(depth>0) {
       try {
-        jo.put("class", intClase);
-        jo.put("initialDate", intFechaInicial);
-        jo.put("finalDate", intFechaFinal);
-        jo.put("duration", intTiempoTotal);
+        jo.put("id", this.id);
+        jo.put("class", this.intClase);
+        jo.put("active", this.active);
+        jo.put("initialDate", this.intFechaInicial);
+        jo.put("finalDate", this.intFechaFinal);
+        jo.put("duration", this.intTiempoTotal);
       } catch (JSONException e) {
         logger.error("{}", e);
       }

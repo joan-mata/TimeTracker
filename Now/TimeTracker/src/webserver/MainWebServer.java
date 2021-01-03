@@ -13,7 +13,7 @@ public class MainWebServer {
   public static Actividad makeTreeCourses() {
     /*Se crean todos los proyectos y tareas que
     utilizará el test. Según Apéndice A*/
-    Proyecto root = new Proyecto("Root", null);
+    Proyecto root = new Proyecto("Inicio", null);
     Proyecto softwareDesing = new Proyecto("Software design", root);
     Proyecto softwareTesting = new Proyecto("Software testing", root);
     Proyecto databases = new Proyecto("Databases", root);

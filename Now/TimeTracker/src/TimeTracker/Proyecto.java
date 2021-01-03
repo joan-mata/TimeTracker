@@ -135,16 +135,24 @@ public class Proyecto extends Actividad {
       for (int i = 0; i < proListaProyectos.size(); i++) {
         if (proListaProyectos.get(i).getId() == id) {
           ActivityWithId = proListaProyectos.get(i);
+          return ActivityWithId;
         } else {
           ActivityWithId = proListaProyectos.get(i).findActivityById(id);
+          if (ActivityWithId != null){
+            return ActivityWithId;
+          }
         }
       }
       if (ActivityWithId == null) {
         for (int i = 0; i < proListaTareas.size(); i++) {
           if (proListaTareas.get(i).getId() == id) {
             ActivityWithId = proListaTareas.get(i);
+            return ActivityWithId;
           } else {
             ActivityWithId = proListaTareas.get(i).findActivityById(id);
+            if (ActivityWithId != null){
+              return ActivityWithId;
+            }
           }
         }
       }
